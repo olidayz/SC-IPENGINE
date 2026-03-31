@@ -54,7 +54,7 @@ The medium. Choose the visual style before building anything. Animation? Anime? 
 
 **Run** style recommendations (3-5 directions from `references/style-directions.md`) → **Generate** 4 vertical money shot test prompts per direction → **PRESENT to user for selection.**
 
-**Exit:** User locks one style. All downstream work inherits it.
+**Exit:** User locks one style. All downstream work inherits it. **→ Save Style Lock to IP Bible (Stage 4: Visual Development > Style Lock).**
 
 ### Stage 1: Art Director (load `4a-art-director.md`)
 
@@ -62,7 +62,7 @@ The rules. Establish the visual grammar that constrains everything downstream.
 
 **Run** 5 perspective clusters (7 principles as lens) → **Synthesize** into Visual Language Document → **Gate check** → **PRESENT to user for review.**
 
-**Exit:** User approves VLD (with adjustments). Proceed to Stage 2.
+**Exit:** User approves VLD (with adjustments). Proceed to Stage 2. **→ Save VLD to IP Bible (Stage 4: Visual Development > VLD).**
 
 ### Stage 2: Characters + Locations (load `4b-characters.md` and `4c-locations.md` — parallel)
 

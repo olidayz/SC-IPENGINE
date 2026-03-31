@@ -55,7 +55,7 @@ The spark becomes a world with an identity.
 
 No speculative tech seeds at this stage. No explicit Spacecadet dimension tagging in output. The World Premise should be social, cultural, or allegorical first — speculative mechanisms enter at Stage 2 if needed.
 
-**Exit:** User picks a direction (or hybridizes) before Stage 2.
+**Exit:** User picks a direction (or hybridizes) before Stage 2. **→ Save approved direction to IP Bible (Stage 2: World > Core Identity).**
 
 ### Stage 2: World (load `2b-world.md`)
 
@@ -63,7 +63,7 @@ The identity becomes an inhabitable place.
 
 **Contains:** Speculative Layer (optional enrichment — tech seeds load here if needed), World Texture, History, Factions (with territory, contested rivals, and character archetypes integrated), Conflicts, Objects & Artifacts
 
-**Exit:** User confirms world before scaling to franchise.
+**Exit:** User confirms world before scaling to franchise. **→ Save approved world to IP Bible (Stage 2: World > World Build).**
 
 ### Stage 3: Franchise (load `2c-franchise.md`)
 
@@ -73,7 +73,7 @@ The world becomes a multi-format, multi-decade IP.
 
 Re-introduce key world elements with brief reminders — don't assume the user remembers Stage 1/2 terminology. Final verification runs invisibly; surface only specific concerns.
 
-**Exit:** Complete expansion passes internal verification against `world-references.md`. World is ready for Stage 3 — Renders.
+**Exit:** Complete expansion passes internal verification against `world-references.md`. World is ready for Stage 3 — Renders. **→ Save approved franchise architecture to IP Bible (Stage 2: World > Franchise).**
 
 ---
 

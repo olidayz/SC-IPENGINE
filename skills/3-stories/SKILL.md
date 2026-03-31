@@ -52,7 +52,7 @@ The world becomes a set of story doors.
 
 **Run** 5 prompt families → **Bundle** character findings into story clusters → **Evaluate** against Sauce Mothers (light) + Kill Gates → **Present** 3-5 stories (protagonist + premise + ensemble).
 
-**Exit:** User selects 1-3 stories for development.
+**Exit:** User selects 1-3 stories for development. **→ Save selected seeds to IP Bible (Stage 3: Story > Selected Seeds).**
 
 ### Stage 2: Arcs (load `3b-arcs.md`)
 
@@ -60,7 +60,7 @@ Selected seeds become full narrative blueprints.
 
 **Develop** each selected story into a complete Story Window → **Apply** 5 Sauce Mothers with full rigor → **Stress-test** against world bible → **Sacred Question Check** → **Present** 1-3 Story Windows.
 
-**Exit:** Story Windows ready for 4-vis-dev or 5-scenes.
+**Exit:** Story Windows ready for 4-vis-dev or 5-scenes. **→ Save Story Windows to IP Bible (Stage 3: Story > Story Window).**
 
 ---
 

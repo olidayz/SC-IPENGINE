@@ -2,22 +2,30 @@
 
 A six-stage pipeline for generating, developing, and producing creative intellectual properties at scale. Built as a repeatable skill system for Claude — each stage produces outputs that feed into the next.
 
+## Start Here
+
+**Before any pipeline run:** Load `ip-engine-contexts/SESSION.md` — set the Alien dial, Spacecadet dimension emphasis, tech seed territory, and idea modifiers. This configures the entire run.
+
+**Persistent output:** Every approval saves to `[IP-TITLE]-bible.md` via `ip-bible.md`. The bible IS the persistent context — survives session breaks and context compression.
+
 ## Pipelines
 
 ### Full Pipeline (Franchise-Scale IP)
 ```
+SESSION CONFIG → set dials, modifiers, pipeline
+    ↓
 1-IDEAS → 2-WORLDS → 3-STORIES → 4-VIS-DEV → 5-SCENES → 6-SHOTS → Production
-                                      ↑
-                              Style Lock → VLD → Characters + Locations → Casting
-                                                                            ↓
-                                                            Name Registry + Prompt Anchors
+    ↓         ↓           ↓            ↓           ↓          ↓
+  [approve] [approve]  [approve]   [approve]   [curate]   [select]
+    ↓         ↓           ↓            ↓           ↓          ↓
+  ════════════════ IP BIBLE (saves incrementally) ════════════════
 ```
 
 ### Short-Form Pipeline (Viral Content)
 ```
-1-IDEAS → spark selected → SHORT-FORM → Concept Lock → Production Prompts → Generate
+SESSION CONFIG → 1-IDEAS → spark selected → SHORT-FORM → Concept Lock → Production Prompts
 ```
-Formats: Stills, Loops (3-5s), Hooks (5-15s), Carousels, Micro-Trailers, Character Intros.
+Formats: Loops (3-5s), Punches (5-15s), Carousels, Micro-Trailers, Character Intros. Motion only.
 Can also run post-pipeline on a completed IP.
 
 ### Stage 1: IDEAS — Spark Generation
@@ -56,6 +64,7 @@ Creative filters loaded before any generation:
 ## Repo Structure
 
 ```
+ip-bible.md                     ← Persistent output template (saves all approvals)
 skills/
 ├── 1-ideas-titles-thumbs/     ← Stage 1: Spark generation
 ├── 2-worlds/                   ← Stage 2: World building
@@ -76,6 +85,8 @@ skills/
 │   ├── sf-concept.md          ← Concept lock (format + hook + viral mechanic)
 │   └── sf-prompt.md           ← Production prompts by format
 └── ip-engine-contexts/         ← Creative contexts & filters
+    ├── SESSION.md              ← Session config (dials, modifiers, pipeline selection)
+    ├── CONTEXTS.md             ← Context orchestrator
     └── references/
         └── speculative-tech-seeds/
 ```

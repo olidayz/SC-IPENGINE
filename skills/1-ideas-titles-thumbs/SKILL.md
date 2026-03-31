@@ -10,8 +10,17 @@ Generate IP sparks, name them, visualize them.
 ## Workflow
 
 ```
-Input → 1-IDEAS (divergent, 30-50+ sparks) → User Selection → 1B-THUMBNAILS (visual hooks for selected sparks) → 2-WORLDS
+Session Config (dials + modifiers set) → Input → 1-IDEAS (divergent, 30-50+ sparks) → User Selection → 1B-THUMBNAILS (visual hooks) → IP Bible (save spark) → 2-WORLDS or SHORT-FORM
 ```
+
+### Before Generating
+
+Check the Session Config (`ip-engine-contexts/SESSION.md`):
+- **Alien dial** — set? (default 7)
+- **Spacecadet dimensions** — emphasis set? (default balanced)
+- **Idea modifiers** — any active? (Violation Mode, Satiraverse, Anti-Taste, Emotional Registers, Contrast Mode)
+
+If no session config exists, prompt the user to set one. Modifiers are optional but must be consciously chosen or declined — not silently skipped.
 
 ## What This Stage Does
 
