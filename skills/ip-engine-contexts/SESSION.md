@@ -53,6 +53,37 @@ Four dimensions. All always present as background radiation. But you can EMPHASI
 
 **Command:** `load seeds [territory]` — or `no seeds` for concepts that don't need speculative tech. Seeds activate at Stage 2 (Worlds), not Stage 1.
 
+### Reference Anchors (2-3 touchstones)
+
+Lock 2-3 films, shows, artists, or works that define the north star for this IP. These aren't casual references — they're the persistent creative compass. Every stage checks against them.
+
+**What anchors do:**
+- **Stage 1 (Ideas):** "Would this spark feel at home in the world of [anchor]?"
+- **Stage 2 (Worlds):** "Does this world's texture/tone sit in the neighborhood of [anchor]?"
+- **Stage 3 (Stories):** "Would this story's emotional register work in a double feature with [anchor]?"
+- **Stage 4 (Vis-Dev):** Anchors feed directly into VLD references. Style Lock, palette, lighting, composition all triangulate from the anchors.
+- **Stage 5 (Scenes):** "Would this scene feel native in a trailer for [anchor]?"
+- **Stage 6 (Shots):** Anchors inform prompt language — "the lighting of [anchor], the framing of [anchor]."
+- **Short-Form:** "Would this piece sit in the same feed as content from [anchor]?"
+
+**How to pick anchors:**
+
+| Rule | Why |
+|------|-----|
+| **Max 3** | More than 3 and they cancel each other out. The triangulation needs precision. |
+| **At least 1 visual, 1 tonal** | One anchor should define how it LOOKS. One should define how it FEELS. The third (if used) can be wild card — a music artist, a brand, a game, a photographer. |
+| **Name what you TAKE and what you LEAVE** | "Coen Brothers — take the landscape-as-moral-commentary, leave the nihilism." "Miyazaki — take the world-as-character, leave the pastoral pace." Every anchor has a take and a leave. |
+| **They don't have to be similar** | The most interesting IPs come from anchors that shouldn't coexist. "Wes Anderson meets Bong Joon-ho" creates a specific, productive tension. "Wes Anderson meets Wes Anderson" creates nothing. |
+
+**Command:** `anchor [work] — take [X], leave [Y]`
+
+**Examples:**
+```
+anchor Coen Brothers — take dry landscape morality, leave nihilism
+anchor Miyazaki — take living worlds, leave slow pacing
+anchor Kanye (production) — take maximalist layering, leave ego
+```
+
 ---
 
 ## Step 2: Select Idea Modifiers (Stage 1 only)
@@ -92,6 +123,10 @@ SESSION CONFIG
 Alien Dial:       [N] / 10
 SC Dimensions:    [emphasized dimensions or "balanced"]
 Tech Seeds:       [territory or "none"]
+Reference Anchors:
+  1. [work] — take [X], leave [Y]
+  2. [work] — take [X], leave [Y]
+  3. [work] — take [X], leave [Y] (optional)
 Modifiers:        [list or "none"]
 Pipeline:         [Full / Short-Form]
 Taste Profile:    Always on
@@ -111,5 +146,6 @@ Dials can be adjusted at any stage. But changes must be noted in the IP Bible so
 | Alien dial | Yes, at any stage | Common to lower at vis-dev (production constraints) or raise at scenes (push weird territory). |
 | Dimension emphasis | Yes, at any stage | The world may reveal which dimensions are strongest. |
 | Tech seeds | Add territory at Stage 2+ | Don't remove seeds already integrated into the world. |
+| Reference anchors | Yes, but rarely | Anchors usually hold. If you swap one, note it in the IP Bible Change Log — it may shift everything downstream. |
 | Modifiers | Stage 1 only | Modifiers are ideation tools. They don't apply past spark generation. |
 | Pipeline | Can switch to short-form at any point | Any approved material carries forward. |

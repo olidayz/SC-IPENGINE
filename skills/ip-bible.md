@@ -26,6 +26,10 @@ Last updated: [date + stage]
 Alien Dial: [N] / 10
 SC Dimensions: [emphasized or balanced]
 Tech Seeds: [territory or none]
+Reference Anchors:
+  1. [work] — take [X], leave [Y]
+  2. [work] — take [X], leave [Y]
+  3. [work] — take [X], leave [Y] (if set)
 Modifiers: [list or none]
 Pipeline: [Full / Short-Form / Both]
 
