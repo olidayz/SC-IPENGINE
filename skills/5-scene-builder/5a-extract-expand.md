@@ -4,6 +4,8 @@ Work from what exists. Mine the world package for every cinematic moment — exp
 
 This invocation produces the backbone: the scenes most directly rooted in the world's established characters, locations, conflicts, and story beats. Both cinematic fragments AND world media scenes using Cultural Instruments.
 
+**Naming rule:** Use character and location names from the Name Registry in every hook line. Never role labels ("the protagonist"), never generic descriptions ("the canyon"). Names carry forward into 6-shots prompts.
+
 ---
 
 ## Story Precedence

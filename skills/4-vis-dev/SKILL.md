@@ -1,6 +1,6 @@
 ---
 name: 4-vis-dev
-description: "Visual development — define what this IP looks like as a system. Takes world bible + story window, produces Visual Language Document (art direction rules), character visual packages, and location visual packages. Three sub-skills in sequence: (1) Art Director establishes the visual grammar, (2) Characters applies it to people, (3) Locations applies it to spaces. Art direction runs first; characters and locations run in parallel after VLD approval."
+description: "Visual development — define what this IP looks like as a system. Five sub-skills: (0) Style Lock selects the visual medium/aesthetic, (1) Art Director establishes the visual grammar, (2) Characters + Locations designed and named, (3) Casting generates 5 landscape variations per character — user selects, locked sheet + Prompt Anchor produced. Style Lock → VLD → Characters + Locations → Casting → Locked Sheets + Name Registry with Prompt Anchors."
 ---
 
 # 4-VIS-DEV
@@ -11,7 +11,8 @@ Define what this IP looks like. Produce the visual rules that constrain everythi
 
 ## Summary
 
-- **Art-direct** the world — establish the visual grammar (color, light, material, composition, motifs)
+- **Lock the style** — choose visual medium (live action, animation, anime, hybrid, etc.) with test prompts for comparison
+- **Art-direct** the world — establish the visual grammar within the locked style (color, light, material, composition, motifs)
 - **Design** 3-6 key characters as visual systems (silhouette, costume, props, arc)
 - **Design** 5-8 key locations as visual systems (atmosphere, texture, history, faction)
 - **Include** image prompts in summary tables for visual sampling and direction confirmation
@@ -45,7 +46,15 @@ Before generating, classify the world's visual nature. This informs how the pers
 
 ## Staged Development
 
-Three sub-skills. Art direction is the bottleneck — everything depends on it.
+Five sub-skills. Style lock is the first gate, casting is the last.
+
+### Stage 0: Style Lock (load `4-style-lock.md`)
+
+The medium. Choose the visual style before building anything. Animation? Anime? Live action? Hybrid?
+
+**Run** style recommendations (3-5 directions from `references/style-directions.md`) → **Generate** 4 vertical money shot test prompts per direction → **PRESENT to user for selection.**
+
+**Exit:** User locks one style. All downstream work inherits it.
 
 ### Stage 1: Art Director (load `4a-art-director.md`)
 
@@ -112,7 +121,55 @@ Run all three coherence checks internally after packages are complete. If all pa
 - Characters crossing territories feel visually displaced?
 - Protagonist's physical journey through locations mirrors internal arc?
 
-**Exit:** VLD + Characters (with image prompts) + Locations (with image prompts) ready for 5-scenes.
+### Stage 2 Output: The Registry
+
+After characters and locations are complete, compile a **Name Registry** — the single source of truth for all named entities.
+
+```
+## Name Registry
+
+### Characters
+| Name | Role | Visual Shorthand |
+|------|------|-----------------|
+| [Full Name] | [story role — one phrase] | [3-5 word visual ID: "scarred cowboy, leather duster, bone spur"] |
+
+### Locations
+| Name | Territory | Visual Shorthand | Prompt Anchor |
+|------|-----------|-----------------|---------------|
+| [Place Name] | [faction or neutral] | [3-5 word visual ID] | [30-50 word portable visual description — paste verbatim into all downstream prompts] |
+```
+
+**Location Prompt Anchors are written during 4c** — not deferred to 6a. Every named location gets a prompt-ready visual description immediately so that scenes (Stage 5) and shots (Stage 6) both have visual weight behind the name.
+
+**Downstream rule:** Every prompt in 5-scenes, 6-shots, and 6c-motion must use character and location names from the registry. Never role labels or generic descriptions.
+
+**Exit:** VLD + Characters + Locations + Name Registry ready for casting.
+
+### Stage 3: Casting (load `4d-casting.md`)
+
+Cast the characters. Two phases per character:
+
+**Phase 1 — Cast:** Generate 5 landscape (16:9) portrait variations per character. Same costume, same signature detail — different person wearing it. User selects one.
+
+**Phase 2 — Lock:** Selected cast gets a full turnaround reference sheet (16:9, white background). A **Prompt Anchor** (30-50 words) is written — the portable locked description pasted verbatim into every downstream prompt.
+
+**After casting, the full registry looks like:**
+
+```
+### Characters (Post-Casting)
+| Name | Role | Visual Shorthand | Prompt Anchor |
+|------|------|-----------------|---------------|
+| [Full Name] | [story role] | [3-5 words] | [30-50 words — locked cast face/build + costume + signature detail. Paste verbatim.] |
+
+### Locations (from 4c)
+| Name | Territory | Visual Shorthand | Prompt Anchor |
+|------|-----------|-----------------|---------------|
+| [Place Name] | [faction or neutral] | [3-5 words] | [30-50 words — physical environment + materials + light + signature detail. Paste verbatim.] |
+```
+
+Both character and location Prompt Anchors are locked before Stage 5 (scenes) begins. Scenes use names for readability; shots expand names into Prompt Anchors for image generation.
+
+**Exit:** VLD + Locked Character Sheets + Location Packages (with Prompt Anchors) + Name Registry ready for 5-scenes → 6a-shots.
 
 ---
 
@@ -123,12 +180,14 @@ Run all three coherence checks internally after packages are complete. If all pa
 > **Story:** [story window title]
 > **Visual Mode:** [Constructed / Revealed / Hybrid]
 > **Taste filter:** Active — aesthetic references + PASS/FAIL.
-> **Stage 1:** Art direction (VLD) → **Review** → **Stage 2:** Characters + Locations (parallel)
+> **Stage 0:** Style Lock → **Stage 1:** Art direction (VLD) → **Review** → **Stage 2:** Characters + Locations → **Stage 3:** Casting (5 variations → select → lock)
 
 ---
 
 ## Downstream
 
-- **5-scenes** expects: VLD (for shot-aware writing), character visuals (for action/description), location visuals (for scene-setting)
-- **6-shots** expects: VLD (palette, lighting, composition rules), character designs + image prompts (for framing and consistency), location packages + image prompts (for establishing shots and spatial reference)
-- **7-motion** expects: Complete visual package for animation consistency
+All downstream stages receive the **Name Registry** and must use proper names in every prompt and description.
+
+- **5-scenes** expects: VLD, Name Registry, character visuals (for action/description), location visuals (for scene-setting). Scene descriptions use character names and location names — never role labels.
+- **6-shots** expects: VLD, Name Registry, character designs + visual shorthands (for prompt consistency), location packages + visual shorthands (for establishing shots). Every shot prompt includes the character/location name AND their visual shorthand from the registry.
+- **6c-motion** expects: Complete visual package, Name Registry. Motion prompts reference characters and locations by name.

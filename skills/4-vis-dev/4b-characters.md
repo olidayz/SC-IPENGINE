@@ -116,9 +116,19 @@ Character design isn't just what someone looks like standing still — it's how 
 
 ## Generation Process
 
-### Step 1: Identify Key Characters
+### Step 1: Identify and NAME Key Characters
 
 From the story window: protagonist, opponent, 1-4 ensemble. 3-6 total. Only characters with narrative weight get full visual packages.
+
+**Every character gets a proper name.** Not "the cowboy," not "the protagonist," not "the leader." A name. First name minimum. Full name if the world supports it. The name should feel native to the world — era, culture, faction, class all inform naming.
+
+| Naming Rule | Why |
+|-------------|-----|
+| **Name, not role** | "Mara Voss" carries into every prompt downstream. "The rebel leader" doesn't. |
+| **World-native** | Names should sound like they belong in THIS world. Faction, class, region inform naming conventions. |
+| **Sayable** | The Say Test from Stage 1 applies here. If you can't say it in conversation, rename. |
+| **Distinct** | No two characters should share starting sounds or syllable count. Mara and Marcus compete. Mara and Jude don't. |
+| **Carry forward** | Once named, the name is used in ALL downstream prompts, scene descriptions, and shot references. Never revert to role labels. |
 
 ### Step 1.5: Character Read (Before Visual Design)
 

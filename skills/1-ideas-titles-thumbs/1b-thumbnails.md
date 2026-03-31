@@ -12,7 +12,8 @@
 |----------|------|
 | **Purpose** | Generate iconic image concepts — visual hooks that compress premise, emotion, and intrigue into a single frame |
 | **Core Principle** | Image = Hook. Not illustration, not decoration — *visual hook*. |
-| **Output** | Concept brief: visual description + generation-ready prompt |
+| **Format** | **Vertical money shot. 9:16. Always.** Single hero composition, poster energy, scroll-stopper. The frame is tall — use the height. |
+| **Output** | Concept brief: visual description + generation-ready vertical prompt |
 | **Quality Bar** | Would you stop scrolling? Would you remember it tomorrow? Would you screenshot it? |
 | **Integration** | Pairs with Title Hooks — title is conceptual hook, image is visual hook. Together = 1-second premise. |
 
@@ -259,30 +260,33 @@ Apply all gates. Kill liberally. Do not show failed concepts to user.
 
 ### Phase 3: Present Output
 
-Present the 15 best ideas.
+Present the 5 best ideas.
 
 ### 1. [CONCEPT NAME]
 
 **Visual Description:** [1-2 sentences. The concept, not the execution.]
 
 **Prompt:**
-[Generation-ready prompt. Include composition, lighting, style, and "Exclude:" line.]
+[Generation-ready prompt. 9:16 vertical composition. Include subject, framing, lighting, style, and "Exclude:" line.]
 
 ---
 
-## Format-Specific Guidance
+## Format: Locked Vertical
 
-| Format | Aspect | Constraints | Optimization | Proximity / Face Floor |
-|--------|--------|-------------|--------------|----------------------|
-| **YouTube Thumbnail** | 16:9 | Small, text overlay common | High contrast, clear focal point, works at 120px height | 85% CU+, 85% face |
-| **Netflix/Streaming Poster** | 2:3 | No text overlay, browse mode, mood-forward | Atmospheric, single subject, vertical composition | 70% CU+, 70% face |
-| **Instagram Feed** | 1:1 | Scroll context, bright performs well | Strong center, edge-to-edge interest | 80% CU+, 80% face |
-| **Instagram Story / TikTok** | 9:16 | Full-screen, swipe context, text safe zones | Vertical emphasis, top-third focal point | 85% CU+, 85% face |
-| **Album Art** | 1:1 | Iconic, symbolic, no text dependency | Symbolic reduction, works as avatar | 50% CU+, 50% face |
-| **Key Art (Hero)** | Variable | Marketing anchor, defines visual identity | Definitive, brandable, extensible | 60% CU+, 60% face |
+**Aspect ratio: 9:16. Always. No exceptions.**
 
-**Cross-Format Concepts:**
-The best concepts work across formats with adaptation, not reinvention. A concept that only works at one aspect ratio is weaker than one that scales.
+This is a vertical money shot — a single hero image built for full-screen phone, story, poster, and scroll contexts. Every prompt must be composed for vertical.
+
+| Spec | Rule |
+|------|------|
+| **Aspect** | 9:16 |
+| **Composition** | Use the height. Subject dominates the vertical axis. Top-third focal point, full-bleed energy. |
+| **Proximity** | 85% of concepts framed at medium close-up or tighter |
+| **Face** | 85% of concepts feature face or body as primary subject |
+| **Lighting** | Dramatic. One source. Contrast. No flat studio light unless deliberately clinical. |
+| **Feel** | Poster, not screenshot. Money shot, not establishing shot. The single frame that sells the world. |
+
+**Prompt format rule:** Every generation-ready prompt must include `9:16 vertical composition` in the prompt body. No horizontal. No square.
 
 ---
 

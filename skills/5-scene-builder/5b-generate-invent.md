@@ -4,6 +4,8 @@ Work from what SHOULD exist but doesn't yet. The world material has been mined. 
 
 This invocation produces the depth: scenes that prove the world is richer than its documented material, and media artifacts that prove the civilization is real.
 
+**Naming rule:** Use character and location names from the Name Registry in every hook line. New characters or locations invented here get named immediately — they enter the registry.
+
 ---
 
 ## Story Precedence

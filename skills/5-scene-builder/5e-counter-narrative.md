@@ -2,6 +2,8 @@
 
 Every world has people who push back. This invocation generates scenes from the friction — the people who hate the premise, mourn what was lost, see through the system, refuse the mythology, or profit from it with full awareness of the cost. Counter-narrative scenes are the test of the world's integrity. A world that can absorb its own criticism is a world that's real.
 
+**Naming rule:** Use character and location names from the Name Registry. Dissenters and counter-narrative voices invented here get named immediately — they enter the registry.
+
 Gate 6 (Promise Break) is MANDATORY for every scene.
 
 ---

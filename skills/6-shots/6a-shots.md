@@ -127,13 +127,28 @@ The Description column is the bridge between the scene's hook line and the promp
 
 ### Medium Lock
 
-**The visual medium/style is declared PER SCENE before any prompts are generated.** The user chooses the medium when invoking a scene (e.g. "shoot this in cinematic photography" or "charcoal" or "editorial illustration"). Every prompt in that scene uses the declared medium. No variation on this axis.
+**The visual medium/style is inherited from the Style Lock (4-vis-dev Stage 0).** If a Style Lock exists, it is the default for all scenes. The user can override per scene (e.g. "shoot this in charcoal" or "editorial illustration"), but the Style Lock is the baseline.
 
-If the user doesn't declare a medium, ask before generating.
+If no Style Lock exists and the user doesn't declare a medium, ask before generating.
 
-The medium declaration appears in the Announce Block and is baked into every prompt's Layer 1 as a constant, not a variable.
+The medium declaration appears in the Announce Block and is baked into every prompt as a constant, not a variable.
 
-**Available mediums** (from `references/shot-language.md`): cinematic photography, naturalistic photography, high-contrast photography, documentary/photojournalism, editorial illustration, graphic novel, concept art, oil painting, gouache/watercolor, charcoal/graphite, mixed media, double exposure, macro photography, cyanotype — or any custom medium the user declares.
+### Name Registry → Prompt Translation
+
+**Scene hook lines use proper names. Shot prompts must expand those names into visual descriptions.**
+
+The Name Registry is the translation layer between scenes (which use names) and prompts (which need physical descriptions an image model can render).
+
+| Scene says | Prompt must expand to |
+|------------|----------------------|
+| "Mara" | The **Prompt Anchor** from her Locked Sheet — 30-50 words, pasted verbatim |
+| "The Bonefield" | The **Location Visual Shorthand** + relevant details from the 4c location package |
+
+**Rules:**
+- Every character in a prompt is identified by their **Prompt Anchor** from the Name Registry (post-casting). Paste verbatim. No paraphrasing.
+- Every location in a prompt is expanded from the **Location Visual Shorthand** + 4c package details (architecture, materials, palette, lighting per VLD zone).
+- The name itself does NOT appear in the image prompt — image models don't know what "Mara" or "the Bonefield" means. Only the physical description appears.
+- The name DOES appear in the shot table and sequence design for human readability.
 
 ---
 
@@ -157,12 +172,17 @@ MEDIUM BLOCK (identical in every prompt):
 "[Exact medium phrase]"
 
 ENVIRONMENT BLOCK (identical in every prompt sharing this location):
-"[Exact environment description — specific colors, materials, textures, objects,
-pulled from VLD zone + location package. No paraphrasing across prompts.]"
+"[Paste the Set Sheet Prompt Block from 6-settings — verbatim.
+This block was built from the Location Prompt Anchor + 4c package + specific
+set dressing (props, furniture, surfaces, practical lights).
+The location NAME does not appear — only the physical description.
+No paraphrasing across prompts. No improvising objects not on the Set Sheet.]"
 
 CHARACTER BLOCK(S) (identical in every prompt featuring this character):
-"[Exact character description — costume, palette, physical description, signature
-detail, pulled from 4b package. No synonym drift across prompts.]"
+"[Prompt Anchor from Name Registry (post-casting) — pasted VERBATIM.
+The character NAME does not appear — only the physical description.
+If no casting has been done, build from 4b package: costume, palette,
+physical description, signature detail. No synonym drift across prompts.]"
 
 NEGATIVE BLOCK (identical in every prompt):
 "[Exact negative phrases — pulled from VLD anti-prompt list.]"
@@ -400,29 +420,27 @@ Every prompt carries VLD DNA. Before generating any prompts, extract from the VL
 
 ### Character Integration
 
-When a shot includes a character from 4b:
+When a shot includes a character, the **Prompt Anchor** from the Name Registry is the primary source — pasted verbatim into the CHARACTER BLOCK. The Prompt Anchor already contains the cast face/build, costume, and signature detail from casting (4d).
 
-| Character Element | How It Enters the Prompt |
-|-------------------|-------------------------|
-| **Silhouette** | Shape language described in subject layer |
-| **Palette** | Character's personal colors specified |
-| **Costume (current state)** | Specific garments named |
-| **Signature detail** | Included when the shot is close enough to see it |
-| **Body in space** | Posture and spatial relationship described |
-| **Visual arc position** | Start-state or end-state costume/posture depending on narrative position |
+| Source | What It Provides | How It Enters the Prompt |
+|--------|-----------------|-------------------------|
+| **Prompt Anchor** (Name Registry) | Locked cast description — face, build, age, costume, signature detail | Pasted verbatim as the CHARACTER BLOCK. This is the single source of truth. |
+| **4b package** (supplement) | Body in space, visual arc position, faction gradient, secondary costume states | Used to inform posture and arc-specific details the Prompt Anchor doesn't cover |
+| **Visual arc position** | Start-state or end-state | Determines which costume state appears — override the Prompt Anchor's costume if the scene is in a different arc position |
+
+**If no casting has been done** (no Prompt Anchors exist), build the CHARACTER BLOCK from the 4b package directly: silhouette, palette, costume, signature detail, body in space.
 
 ### Location Integration
 
-When a shot is set in a location from 4c:
+When a shot is set in a named location, expand the **Location Visual Shorthand** from the Name Registry using the full 4c package. The location name does NOT appear in the prompt — only the physical description.
 
-| Location Element | How It Enters the Prompt |
-|------------------|-------------------------|
-| **Establishing shot direction** | Informs wide-shot framing |
-| **Palette & lighting** | Specific to this location per VLD zone |
-| **Architecture & scale** | Described in environment layer |
-| **Texture & detail** | Materials named for close-up shots |
-| **Sensory depth** | Atmospheric cues (visible breath, steam, dust) |
-| **Faction signature** | Visual markers of whose territory this is |
+| Source | What It Provides | How It Enters the Prompt |
+|--------|-----------------|-------------------------|
+| **Visual Shorthand** (Name Registry) | Quick ID — "red canyon, fossil walls, dawn light" | Starting point for the ENVIRONMENT BLOCK |
+| **4c package** (full expansion) | Architecture, scale, materials, faction signature, sensory depth, threshold | Fleshes out the ENVIRONMENT BLOCK with specific colors, textures, objects, VLD zone palette |
+| **VLD zone** | Palette, lighting system, composition rules for this territory | Constrains every visual decision in the ENVIRONMENT BLOCK |
+
+The ENVIRONMENT BLOCK is the **Set Sheet Prompt Block** from `6-settings.md` — pasted verbatim into every prompt. It was built from the Location Prompt Anchor + specific set dressing (props, furniture, surfaces, practical lights). Do not improvise objects that aren't on the Set Sheet. For close-up shots that need additional detail, pull from the full Set Sheet's Props & Objects table.
 
 ---
 
@@ -537,8 +555,10 @@ When processing multiple scenes in sequence:
 > **Scene:** [title]
 > **Hook:** [hook line]
 > **Format:** 9×16 vertical
-> **Medium:** [declared medium — locked for all prompts]
+> **Style Lock:** [locked medium/aesthetic]
 > **VLD loaded:** [world title] — palette, lighting, texture, negatives active.
+> **Cast:** [character names in scene → Prompt Anchors loaded]
+> **Location:** [location name → expanded from registry + 4c]
 > **Decomposition:** [X] shots identified.
 > **Generating:** 10 prompts per shot ([total] prompts).
 

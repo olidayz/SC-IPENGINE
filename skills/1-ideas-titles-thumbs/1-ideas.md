@@ -7,7 +7,7 @@ Generate 30-50 IP sparks. Maximum divergence. Light format. Volume over depth.
 | Attribute | Spec |
 |-----------|------|
 | **Purpose** | Generate a large volume of divergent IP concepts |
-| **Output** | 30-50 sparks, each as Title + Paragraph |
+| **Output** | 30-50 sparks, each as Title + 2-sentence logline |
 | **Perspectives** | 8 ideation families (73 lenses) + 12 title moves |
 | **Gates** | 5 light gates — Title Rule is primary |
 | **What This Is NOT** | World-building. That's 2-WORLDS. This is ideation. |
@@ -22,14 +22,22 @@ Ideally these overlap: Promise Break generates the idea AND the title ("DRACULA 
 
 ## Presentation Format
 
-Each spark is two elements. 
+Each spark is two elements.
 
 ```
 TITLE
-2-3 sentences. The world and the hook merged into a single flow.
+2 sentences max. The world and the hook in a logline.
 ```
 
-The title contains the IP and the concept, using the title moves. The paragraph implies a world, not a plot.
+The title contains the IP and the concept, using the title moves. The logline implies a world, not a plot. Two sentences. No more. Compress ruthlessly — if it takes three sentences, the idea isn't sharp enough yet.
+
+### On Selection
+
+When the user selects a spark, offer:
+- **Develop** — Expand the logline into a full paragraph: the world, the system, the central tension, what makes it a franchise. This is the depth that was held back during scanning.
+- **Modify** — Riff, twist, or redirect the spark.
+- **Collide** — Smash it into another spark or IP.
+- **→ Stage 2** — Skip development, send directly to 2-WORLDS.
 
 ---
 
@@ -75,7 +83,7 @@ Do this as a distinct pass after gating, not during generation.
 
 ### Step 4: Present
 
-No grouping by perspective. No tags. No commentary. Just titles and paragraphs. The user scans the full set marks what hits.
+No grouping by perspective. No tags. No commentary. Just titles and loglines. The user scans the full set, marks what hits. Keep loglines to 2 sentences — this is a scanning surface, not a reading experience. Depth comes after selection.
 
 ---
 

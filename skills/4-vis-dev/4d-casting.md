@@ -6,7 +6,12 @@ Generate character reference sheets — one image per character, portrait + turn
 
 ## Purpose
 
-Character sheets are the casting step. Before any scene shots (6a) can include a character, that character needs a locked visual reference — a single image showing the character from multiple angles with consistent appearance, costume, and detail. This image becomes the reference that all downstream scene shots match against.
+Character sheets are the casting step. Two phases:
+
+1. **Cast** — For each character, generate **5 portrait variations** (16:9 landscape). Same costume, same signature detail — different person wearing it. User selects one.
+2. **Lock** — Selected cast gets a full turnaround reference sheet (16:9 landscape, white background). This locked sheet becomes the reference all downstream scene shots match against.
+
+No scene shots (6a) until every character is cast and locked.
 
 ---
 
@@ -110,51 +115,133 @@ Each character sheet is a single JSON prompt:
 
 ## Generation Process
 
-### Step 1: Identify Characters
+### Phase 1: CASTING
 
-From the story window and scene list, identify which characters need sheets. Only characters who appear in scene shots need sheets.
+#### Step 1: Identify Characters
 
-### Step 2: Extract from 4b
+From the Name Registry, identify all characters who need sheets. Every named character gets cast.
 
-For each character, pull the complete visual package from 4b. Every field in the JSON prompt maps to a specific element of the 4b package:
+#### Step 2: Extract from 4b + Registry
 
-| JSON Field | 4b Source |
-|-----------|-----------|
-| `character.description` | Physical description, silhouette, shape language |
-| `character.costume` | Costume Logic → Primary state (or Secondary if specified) |
-| `character.palette` | Palette section |
-| `character.signature_detail` | Signature Detail section |
-| `character.posture` | Body in Space → default posture |
-| `character.expression` | Inferred from wound/performance — the neutral face, the mask |
+For each character, pull:
+- **Name** and **Visual Shorthand** (from Name Registry)
+- **Silhouette, Costume, Signature Detail, Palette, Body in Space** (from 4b package)
+- **Style Lock** prompt DNA (from 4-style-lock)
+- **VLD** lighting/palette anchors
 
-### Step 3: Determine Costume State
+#### Step 3: Generate 5 Casting Variations Per Character
+
+Each variation is a **16:9 landscape portrait** — face and upper body dominant, white or neutral background, even lighting. Same character design, different casting.
+
+**What varies across the 5:**
+
+| Element | Varies |
+|---------|--------|
+| **Face** | Bone structure, features, age, ethnicity, skin tone |
+| **Build** | Height, weight, musculature, proportion |
+| **Age** | Within a plausible range for the role |
+| **Energy** | Expression, gaze, tension in the face |
+| **Micro-details** | Scars, hair texture, weathering, grooming |
+
+**What stays locked across all 5:**
+
+| Element | Locked |
+|---------|--------|
+| **Costume** | Primary state from 4b |
+| **Signature detail** | The ONE thing from 4b |
+| **Silhouette** | Shape language from 4b |
+| **Background** | White/neutral, no environment |
+| **Format** | 16:9 landscape |
+
+**Casting prompt structure:**
+
+```json
+{
+  "format": "horizontal 16:9 landscape",
+  "style": "[locked medium from Style Lock / VLD]",
+  "type": "character casting variation",
+  "background": "pure white, seamless, no shadow, no environment",
+  "lighting": "even, flat, studio softbox, shadowless, neutral color temperature",
+  "character": {
+    "name": "[character name]",
+    "variation": "[1-5]",
+    "cast_description": "[specific face/build/age/energy for THIS variation — physically renderable]",
+    "costume": "[exact costume from 4b primary state]",
+    "palette": "[character's color range from 4b]",
+    "signature_detail": "[the ONE detail from 4b]",
+    "posture": "[default posture from 4b]",
+    "expression": "[physically renderable neutral expression]"
+  },
+  "layout": {
+    "views": ["front upper-body portrait", "three-quarter view"],
+    "arrangement": "side by side on white background"
+  },
+  "negative": [
+    "no background environment",
+    "no dramatic lighting",
+    "no shadows on background",
+    "no action poses",
+    "no atmospheric effects"
+  ]
+}
+```
+
+#### Step 4: Present for Selection
+
+Present all 5 variations per character. One character at a time.
+
+> **Casting: [CHARACTER NAME]**
+> **Design:** [visual shorthand from registry]
+>
+> **Variation 1:** [1 sentence — the casting pitch: age, energy, distinguishing features]
+> **Variation 2:** ...
+> (etc.)
+
+User selects one variation per character.
+
+#### Step 5: Build Prompt Anchor
+
+For the selected variation, write a **Prompt Anchor** — a 30-50 word physically renderable description combining the cast face/build with the locked costume and signature detail. This is the portable character description that gets pasted verbatim into every downstream prompt.
+
+```
+**[CHARACTER NAME] — Prompt Anchor:**
+[30-50 words: specific face, build, age, features, costume, signature detail. Physically renderable only.]
+```
+
+Update the Name Registry with the Prompt Anchor column.
+
+---
+
+### Phase 2: LOCKED SHEETS
+
+After casting is approved, generate the full turnaround reference sheets for the locked cast.
+
+#### Step 6: Determine Costume State
 
 If the character has a visual arc (start state → end state), determine which state to sheet:
 - **Default:** Sheet the start state (how the character first appears)
 - **If user specifies:** Sheet the requested state
 - **If both needed:** Generate two separate sheets, one per state
 
-### Step 4: Generate Prompt
+#### Step 7: Generate Locked Sheet Prompt
 
-Build the JSON prompt from the extracted 4b data. The prompt is fully self-contained — it includes everything the generator needs.
-
-### Step 5: Present
-
-Output the JSON prompts. Nothing else.
+Build the full turnaround JSON prompt using the selected cast description. The prompt is fully self-contained.
 
 ---
 
 ## Output Format
 
-One JSON prompt per character. No headers, no announce blocks, no metadata. Just the prompts.
+**Phase 1 (Casting):** 5 JSON prompts per character. Present with casting pitch lines.
+
+**Phase 2 (Locked Sheets):** One JSON prompt per character using the selected cast. Includes Prompt Anchor for downstream use.
 
 ```
-```json
-{ complete JSON prompt for character 1 }
-```
+## [CHARACTER NAME] — Locked Sheet
+
+**Prompt Anchor:** [30-50 words — paste verbatim into all downstream prompts]
 
 ```json
-{ complete JSON prompt for character 2 }
+{ complete turnaround JSON prompt }
 ```
 ```
 
@@ -163,14 +250,16 @@ One JSON prompt per character. No headers, no announce blocks, no metadata. Just
 ## Pipeline Position
 
 ```
-4-VIS-DEV (character packages approved)
+4-VIS-DEV (character packages + Name Registry approved)
     ↓
-6B-CHARACTER-SHEETS (generate reference images, lock character appearance)
+6B Phase 1: CASTING (5 variations per character → user selects → Prompt Anchors written)
     ↓
-6A-SHOTS (scene shots — characters match the locked sheets)
+6B Phase 2: LOCKED SHEETS (turnaround reference for selected cast)
+    ↓
+6A-SHOTS (scene shots — characters match locked sheets, prompts paste Prompt Anchors verbatim)
 ```
 
-Character sheets MUST be generated and approved before any scene shots that include those characters. The sheet IS the casting. Once locked, every scene shot's `subject` field copy-pastes the character description from the approved sheet — ensuring consistency.
+No scene shots until every character is cast and locked. Once locked, every scene shot's `subject` field copy-pastes the Prompt Anchor from the locked sheet — ensuring consistency across all generated images.
 
 ---
 
@@ -189,7 +278,9 @@ Character sheets MUST be generated and approved before any scene shots that incl
 
 ## Invocation
 
-- "Generate character sheets" → Run for all characters in the current story window
-- "Sheet [character name]" → Run for a specific character
-- "Cast the show" → Same as generating all character sheets
+- "Cast the show" / "Cast the characters" → Phase 1: generate 5 casting variations per character
+- "Lock [character name]" / "Lock the cast" → Phase 2: generate locked turnaround sheets for selected variations
+- "Generate character sheets" → Both phases in sequence
+- "Sheet [character name]" → Run for a specific character (both phases)
+- "Recast [character name]" → Re-run Phase 1 for a specific character with 5 new variations
 - "Sheet [character] in end state" → Generate the end-state costume version

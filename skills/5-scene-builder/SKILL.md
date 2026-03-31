@@ -41,6 +41,18 @@ Two lines. That's it.
 
 **The hook line** carries the whole scene in one sentence. It must contain: (1) a specific visual image — something you can SEE, and (2) the emotional payload — why this image matters. The best hook lines create internal contradiction within the sentence itself.
 
+### The Naming Rule
+
+**Use proper names from the Name Registry. Always.** Characters are referenced by name, not role. Locations are referenced by name, not description.
+
+| Write | Don't Write |
+|-------|-------------|
+| "Mara stands at the edge of the Bonefield" | "The protagonist stands at the graveyard" |
+| "Jude's badge catches light in the Thornwall checkpoint" | "The cowboy's badge catches light at the border" |
+| "A child in the Kelphouse draws Mara from memory" | "A child in the school draws the main character" |
+
+Names carry identity into downstream prompts. Role labels lose it. If a scene introduces a NEW character not yet in the registry, name them — they get added.
+
 **What does NOT belong here:**
 - Camera angles, aspect ratios, composition cues → 6-shots
 - Sound design, audio direction, sonic texture → 6-shots
@@ -244,8 +256,11 @@ The Spine Report is strategic — it tells the editor which threads to pull. It'
 ═══════════════════════════════════════════
 ACTIVATING 5-SCENE-BUILDER — INVOCATION [1/2/3/4/5]
 World: [title]
+Style Lock: [locked medium/aesthetic]
 Sacred Question: [from world bible]
 Invocation: [name and mode]
+Cast: [list character names from registry]
+Locations: [list location names from registry]
 Taste filter: Active
 Target: ~50 scenes
 ═══════════════════════════════════════════
@@ -274,12 +289,15 @@ EXCLUSION LIST — INVOCATION [N]
 
 ## Integration
 
-### Required
+### Required — Vis-Dev Package
 - World bible from 2-worlds — all stages (REQUIRED)
 - Story window from 3-stories — protagonist, ensemble, key tensions (REQUIRED)
-- Visual Language Document from 4-vis-dev — palette, lighting, composition rules (REQUIRED)
-- Character visual packages from 4-vis-dev — silhouettes, costumes, signature details (REQUIRED)
-- Location visual packages from 4-vis-dev — atmospheres, textures, thresholds (REQUIRED)
+- **Style Lock** from 4-vis-dev Stage 0 — locked medium/aesthetic (REQUIRED)
+- **Visual Language Document** from 4-vis-dev Stage 1 — palette, lighting, composition rules (REQUIRED)
+- **Character visual packages** from 4-vis-dev Stage 2 — silhouettes, costumes, signature details (REQUIRED)
+- **Location visual packages** from 4-vis-dev Stage 2 — atmospheres, textures, thresholds (REQUIRED)
+- **Name Registry** from 4-vis-dev — all character and location proper names (REQUIRED)
+- **Locked Character Sheets + Prompt Anchors** from 4-vis-dev Stage 3 (4d-casting) — locked cast descriptions (REQUIRED)
 - `daniel-taste-profile/SKILL.md` → PASS/FAIL criteria (REQUIRED)
 
 ### Required (All Invocations)
@@ -292,7 +310,7 @@ EXCLUSION LIST — INVOCATION [N]
 
 ### Downstream
 - **User curation** → User selects best scenes for each content piece
-- **6-shots** expects: curated scene titles + hooks → full shot design (composition, camera, lighting, sound, image generation prompt)
+- **6-shots** expects: curated scene titles + hooks + Name Registry + Prompt Anchors → full shot design (composition, camera, lighting, image generation prompt with character/location names and Prompt Anchors pasted verbatim)
 - **Future sequencing skill** expects: curated scenes → editing order, transitions, timing, spine threading
 
 ---
@@ -301,9 +319,10 @@ EXCLUSION LIST — INVOCATION [N]
 
 > **Activating IP Engine — 5-SCENE-BUILDER.**
 > **World:** [world title]
-> **Sacred Question:** [the world's Sacred Question]
+> **Sacred Question:** [from world bible]
+> **Style Lock:** [locked medium/aesthetic]
 > **Invocation:** [1-5: name]
-> **Material loaded:** World bible, story window, VLD, characters, locations.
+> **Material loaded:** World bible, story window, VLD, Name Registry ([N] characters, [N] locations), locked cast sheets.
 > **Taste filter:** Active — PASS/FAIL.
 > **Target:** ~50 scenes this invocation.
 

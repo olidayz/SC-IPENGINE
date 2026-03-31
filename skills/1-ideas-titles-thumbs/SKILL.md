@@ -1,6 +1,6 @@
 ---
 name: ip-ideas-titles-thumbs
-description: "IP Engine Stage 1: Generate original IP concepts at scale. Three sub-skills in sequence: (1) IDEAS generates 30-50+ divergent IP sparks using 8 ideation families with 73 lenses + 12 title construction moves, each spark as Title + Paragraph; (2) user selects favorites; (3) THUMBNAILS generates visual hook concepts for selected sparks using 17 perspectives across 5 clusters, filtering through 7 quality gates and 5 spreadability principles. Use when creating IP concepts, generating world seeds, brainstorming franchise premises, developing visual hooks for content, or any creative ideation for entertainment IP. Triggers: 'generate IP', 'IP concepts', 'world ideas', 'break this IP', 'thumbnail concepts', 'visual hooks', 'what does this look like', 'IP Engine', 'spark generation', 'premise ideas'."
+description: "IP Engine Stage 1: Generate original IP concepts at scale. Three sub-skills in sequence: (1) IDEAS generates 30-50+ divergent IP sparks using 8 ideation families with 73 lenses + 12 title construction moves, each spark as Title + 2-sentence logline; (2) user selects favorites and can Develop (expand into full paragraph), Modify, Collide, or send to Stage 2; (3) THUMBNAILS generates visual hook concepts for selected sparks using 17 perspectives across 5 clusters, filtering through 7 quality gates and 5 spreadability principles. Use when creating IP concepts, generating world seeds, brainstorming franchise premises, developing visual hooks for content, or any creative ideation for entertainment IP. Triggers: 'generate IP', 'IP concepts', 'world ideas', 'break this IP', 'thumbnail concepts', 'visual hooks', 'what does this look like', 'IP Engine', 'spark generation', 'premise ideas'."
 ---
 
 # Stage 1: Ideas, Titles, Thumbs
@@ -17,8 +17,8 @@ Input → 1-IDEAS (divergent, 30-50+ sparks) → User Selection → 1B-THUMBNAIL
 
 Three things happen here, in sequence:
 
-1. **Ideas** — Generate 30-50+ IP sparks using 8 ideation families (73 lenses) + 12 title moves. Each spark is a Title + Paragraph. Volume over depth. → `1-ideas.md`
-2. **Selection** — User scans, marks favorites. Expand | Modify | Reject | More | Riff | Collide.
+1. **Ideas** — Generate 30-50+ IP sparks using 8 ideation families (73 lenses) + 12 title moves. Each spark is a Title + 2-sentence logline. Volume over depth. → `1-ideas.md`
+2. **Selection** — User scans, marks favorites. Develop (expand logline into full paragraph) | Modify | Collide | → Stage 2.
 3. **Thumbnails** — Selected sparks get visual hooks. 100+ concepts internally, present Top 3 + 10-15 survivors. → `1b-thumbnails.md`
 
 ## Files

@@ -117,9 +117,19 @@ This is a written skill, not an image generator. We can encode every sense. Down
 
 ## Generation Process
 
-### Step 1: Identify Key Locations
+### Step 1: Identify and NAME Key Locations
 
 From the story window + world build: 5-8 locations that the narrative needs. Include at least one per faction territory, the protagonist's primary space, and one threshold/border location.
+
+**Every location gets a proper name.** Not "the canyon," not "the headquarters," not "the market." A name that the people in this world would use. Place names carry history, faction, geography, myth.
+
+| Naming Rule | Why |
+|-------------|-----|
+| **Name, not description** | "The Bonefield" carries into every prompt. "The dinosaur graveyard" doesn't. |
+| **World-native** | Names should sound like locals coined them. Folk names, faction designations, geological features, historical events — all valid sources. |
+| **Evocative** | The name should imply the place's character. "Thornwall" tells you more than "the border." |
+| **Distinct** | No two locations should be confused by name. Different rhythm, different sound. |
+| **Carry forward** | Once named, the name is used in ALL downstream prompts, scene descriptions, and shot references. Never revert to generic labels. |
 
 ### Step 2: For Each Location — Run the Principles
 
@@ -157,10 +167,33 @@ Stage 2 location output uses the two-layer structure defined in SKILL.md:
 Scannable checkpoint + visual sampling. One row per location. User reviews this before proceeding. The Image Prompt column contains a ready-to-use generation prompt.
 
 ```
-| Location | Territory | Register | Key Visual Idea | Threshold | Image Prompt |
-|----------|-----------|----------|----------------|-----------|-------------|
-| **[Name]** | [faction or contested] | [VLD tonal register] | [one-sentence visual hook] | [the crossing — what changes when you enter] | [Single establishing shot prompt. Architecture, palette, lighting, key textures, emotional register, VLD style anchor. Self-contained, 80-120 words, includes anti-prompt.] |
+| Location | Territory | Register | Key Visual Idea | Threshold | Prompt Anchor | Image Prompt |
+|----------|-----------|----------|----------------|-----------|---------------|-------------|
+| **[Name]** | [faction or contested] | [VLD tonal register] | [one-sentence visual hook] | [the crossing — what changes when you enter] | [30-50 word portable visual description — physically renderable, no proper names, paste verbatim into any downstream prompt. The image model version of this place.] | [Single establishing shot prompt. Architecture, palette, lighting, key textures, emotional register, VLD style anchor. Self-contained, 80-120 words, includes anti-prompt.] |
 ```
+
+### Location Prompt Anchors
+
+Every named location gets a **Prompt Anchor** — the equivalent of what casting produces for characters. This is a 30-50 word condensed visual description that an image model can render. It gets pasted verbatim into every downstream prompt that includes this location.
+
+**What a Location Prompt Anchor contains:**
+- Physical environment (canyon, corridor, market, etc.)
+- Key materials and textures
+- Defining architectural feature
+- Light quality
+- Color palette anchors from VLD zone
+- One signature detail
+
+**What it does NOT contain:**
+- The location's proper name (image models don't know what "the Bonefield" means)
+- Narrative function or story context
+- Sensory information that isn't visual (sound, smell, temperature)
+- Mood or psychology ("eerie," "oppressive")
+
+**Example:**
+> Narrow canyon with exposed fossil walls in stratified red-ochre sandstone, dinosaur ribcages embedded in cliff face, cracked dry riverbed floor, dawn light raking horizontally across east-facing wall, dust suspended in amber shafts.
+
+The Prompt Anchor is written during 4c and added to the Name Registry. It stays locked — every downstream stage pastes it verbatim.
 
 ### Layer 2: Full Location Visual Packages
 

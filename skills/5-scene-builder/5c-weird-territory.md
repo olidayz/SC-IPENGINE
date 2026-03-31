@@ -4,6 +4,8 @@ The obvious ideas are spent. The material has been mined. The entities have been
 
 This invocation's quality bar is SURPRISE. If a scene could have been generated in Invocations 1 or 2, it fails. Gate 6 (Promise Break) is MANDATORY for every scene.
 
+**Naming rule:** Use character and location names from the Name Registry. New characters or locations invented here get named immediately.
+
 ---
 
 ## Story Precedence

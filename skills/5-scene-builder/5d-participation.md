@@ -2,6 +2,8 @@
 
 Scenes designed for audience entry. The viewer sees this and thinks: "I want to DO that." "I want to OWN that." "I want to BE in that faction." This invocation generates the invitation layer — the scenes that turn spectators into participants.
 
+**Naming rule:** Use character and location names from the Name Registry. New characters or locations invented here get named immediately.
+
 ---
 
 ## Story Precedence

@@ -2,11 +2,23 @@
 
 A six-stage pipeline for generating, developing, and producing creative intellectual properties at scale. Built as a repeatable skill system for Claude — each stage produces outputs that feed into the next.
 
-## Pipeline
+## Pipelines
 
+### Full Pipeline (Franchise-Scale IP)
 ```
 1-IDEAS → 2-WORLDS → 3-STORIES → 4-VIS-DEV → 5-SCENES → 6-SHOTS → Production
+                                      ↑
+                              Style Lock → VLD → Characters + Locations → Casting
+                                                                            ↓
+                                                            Name Registry + Prompt Anchors
 ```
+
+### Short-Form Pipeline (Viral Content)
+```
+1-IDEAS → spark selected → SHORT-FORM → Concept Lock → Production Prompts → Generate
+```
+Formats: Stills, Loops (3-5s), Hooks (5-15s), Carousels, Micro-Trailers, Character Intros.
+Can also run post-pipeline on a completed IP.
 
 ### Stage 1: IDEAS — Spark Generation
 Generate 30-50+ IP concepts from any subject using 8 ideation families and 73 lenses. Each spark is a title + paragraph. Includes thumbnail visual hook generation.
@@ -49,13 +61,20 @@ skills/
 ├── 2-worlds/                   ← Stage 2: World building
 ├── 3-stories/                  ← Stage 3: Story development
 ├── 4-vis-dev/                  ← Stage 4: Visual development
+│   ├── 4-style-lock.md        ← Style/medium selection
+│   ├── 4d-casting.md          ← Character casting (5 variations → lock)
 │   └── references/
+│       └── style-directions.md ← 18 mediums + 35 aesthetics
 ├── 5-scene-builder/            ← Stage 5: Scene generation
 │   └── references/
 ├── 6-shots/                    ← Stage 6: Production assets
+│   ├── 6-settings.md          ← Set sheets + prop registry
 │   └── references/
 │       ├── shot-taxonomy.md    ← 164 tagged shot types
 │       └── camera-movements.md ← 134 tagged camera movements
+├── short-form/                 ← Alt pipeline: viral short-form content
+│   ├── sf-concept.md          ← Concept lock (format + hook + viral mechanic)
+│   └── sf-prompt.md           ← Production prompts by format
 └── ip-engine-contexts/         ← Creative contexts & filters
     └── references/
         └── speculative-tech-seeds/
