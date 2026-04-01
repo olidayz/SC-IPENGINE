@@ -68,11 +68,11 @@ The rules. Establish the visual grammar that constrains everything downstream.
 
 Applications. Apply the VLD to people and spaces.
 
-**Characters:** 3-6 from story window. Each gets a full visual package (silhouette, costume, props, faction, arc). Constrained by VLD.
+**Characters:** 3-6 from story window. Each gets a full visual package (silhouette, costume, props, faction, arc). Constrained by VLD. **Each character gets a concept image generated** — a single visual that shows the character design before casting begins. This is not the locked cast — it's a "this is the vibe" image that lets the user see and adjust the design before committing to casting variations.
 
 **Locations:** 5-8 from story window + world build. Each gets a full visual package (atmosphere, texture, history, faction). Constrained by VLD.
 
-**Gate check** on each → **Coherence checks (silent)** → **PRESENT** two-layer output.
+**Gate check** on each → **Coherence checks (silent)** → **Generate concept images per character** → **PRESENT** two-layer output with images.
 
 ### Two-Layer Output Structure (Stage 2)
 
@@ -86,13 +86,24 @@ The Stage 2 output serves two audiences: the human reviewing creative direction,
 **Summary Table columns — Characters:** Character, Role, Silhouette, Palette, Signature Detail, Visual Arc, Image Prompt.
 **Summary Table columns — Locations:** Location, Territory, Register, Key Visual Idea, Threshold, Image Prompt.
 
+### Character Concept Images (Generated Before Casting)
+
+Every character gets a **concept image** generated at this stage — BEFORE casting. This is the design preview: "here's what this character looks like based on the visual package." The user reviews the concept image and can adjust the design (costume, signature detail, silhouette, faction gradient) before committing to the casting step.
+
+**This is NOT the cast.** The concept image shows the design direction — the costume, the world, the vibe. Casting (Stage 3 / 4d) finds the specific FACE to wear it. The concept image may show a generic or stylized figure; casting locks the actual person.
+
+**User actions on concept images:**
+- **Approve** → design confirmed, proceed to casting with this direction
+- **Edit** → adjust the visual package (change costume, swap signature detail, shift palette) → regenerate concept image
+- **Spacecadetify** → run brand dimensions against the character design, amplify strangeness → regenerate
+
 ### Image Prompt Requirements
 
 Image prompts live in the summary tables and serve as the visual sampling layer — direction confirmation, not production frames. 6-shots (Stage 6) generates production-quality prompts later.
 
-**Characters:** Each prompt generates a two-panel split frame (LEFT close-up, RIGHT wide shot). The prompt must be self-contained, include VLD style anchors (e.g., "Fincher procedural," "Succession corporate"), specify lighting, palette, signature detail, and body-in-space. Approx 120-150 words.
+**Characters:** Each prompt generates a concept image showing the character in their primary environment. The prompt must be self-contained, include VLD style anchors (e.g., "Fincher procedural," "Succession corporate"), specify lighting, palette, costume, signature detail, and body-in-space. Approx 120-150 words. Generated inline via Image Gen API.
 
-**Locations:** Each prompt generates a single establishing shot capturing the location's key visual idea. Self-contained, includes VLD style anchors, specifies palette, lighting, architecture, key textures, and emotional register. Approx 80-120 words.
+**Locations:** Each prompt generates a single establishing shot capturing the location's key visual idea. Self-contained, includes VLD style anchors, specifies palette, lighting, architecture, key textures, and emotional register. Approx 80-120 words. Generated inline via Image Gen API.
 
 **Rules:**
 - Every prompt is fully independent — no prompt references another prompt.

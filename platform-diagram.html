@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Engine — How It Works</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #08080a;
+    color: #e0e0e0;
+    padding: 60px 40px;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: #444;
+    margin-bottom: 56px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* === STEP ROWS === */
+  .step {
+    display: flex;
+    gap: 0;
+    margin-bottom: 2px;
+    position: relative;
+  }
+
+  .step-left {
+    width: 340px;
+    flex-shrink: 0;
+    padding: 28px 28px 28px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .step-num {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  .step-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .step-center {
+    width: 320px;
+    flex-shrink: 0;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .step-right {
+    flex: 1;
+    padding: 24px 0 24px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* === CONNECTOR LINE === */
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 48px;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, #222, #1a1a1a);
+    margin-left: 170px;
+  }
+
+  .connector-branch {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 100px;
+  }
+
+  .connector-branch .cb-line {
+    width: 2px;
+    height: 48px;
+    background: #1a1a1a;
+  }
+
+  .connector-branch .cb-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  /* === SCREEN MOCK === */
+  .screen {
+    width: 280px;
+    background: #0e0e10;
+    border: 1px solid #1e1e22;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .screen-bar {
+    height: 28px;
+    background: #111114;
+    border-bottom: 1px solid #1e1e22;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 6px;
+  }
+
+  .screen-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #222;
+  }
+
+  .screen-body {
+    padding: 16px;
+    min-height: 120px;
+  }
+
+  .screen-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  .screen-content {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.7;
+  }
+
+  .screen-content strong { color: #ccc; }
+
+  .screen-highlight {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    padding: 8px 10px;
+    margin-top: 8px;
+    font-size: 10px;
+    color: #666;
+  }
+
+  /* === OUTPUT BLOCK === */
+  .output-block {
+    background: #0e0e10;
+    border: 1px solid #1e1e22;
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .output-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #444;
+    margin-bottom: 8px;
+  }
+
+  .output-item {
+    font-size: 11px;
+    color: #666;
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .output-item .oi-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .output-item strong { color: #aaa; font-weight: 600; }
+
+  /* === IMAGE GEN FLOW === */
+  .gen-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .gen-arrow {
+    font-size: 16px;
+    color: #333;
+  }
+
+  .gen-box {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .gen-prompt {
+    background: #1a150d;
+    border: 1px solid #3d2a0a;
+    color: #c4943a;
+  }
+
+  .gen-tool {
+    background: #0d1a17;
+    border: 1px solid #0a3d2e;
+    color: #3ac47a;
+  }
+
+  .gen-output {
+    background: #1a0d17;
+    border: 1px solid #3d0a2e;
+    color: #c43a8a;
+  }
+
+  .gen-review {
+    background: #0d0f1a;
+    border: 1px solid #0a153d;
+    color: #3a6ec4;
+  }
+
+  .gen-lock {
+    background: #0f1a0d;
+    border: 1px solid #153d0a;
+    color: #5ec43a;
+  }
+
+  /* === USER ACTION BADGE === */
+  .user-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 8px;
+  }
+
+  .ua-select { background: #1a1a0d; border: 1px solid #3d3d0a; color: #c4c43a; }
+  .ua-approve { background: #0f1a0d; border: 1px solid #153d0a; color: #5ec43a; }
+  .ua-generate { background: #1a0d14; border: 1px solid #3d0a28; color: #c43a6e; }
+  .ua-iterate { background: #0d141a; border: 1px solid #0a283d; color: #3a8ac4; }
+
+  /* === SECTION DIVIDERS === */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0 32px;
+  }
+
+  .section-divider .sd-line {
+    height: 1px;
+    flex: 1;
+    background: #1a1a1a;
+  }
+
+  .section-divider .sd-label {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #2a2a2a;
+    white-space: nowrap;
+  }
+
+  /* === BIBLE BAR === */
+  .bible-bar {
+    background: #0c0c10;
+    border: 1px solid #1a1a22;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 11px;
+  }
+
+  .bible-bar .bb-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .bible-bar .bb-text {
+    color: #555;
+  }
+
+  .bible-bar .bb-text strong {
+    color: #888;
+  }
+
+  .bible-bar .bb-save {
+    margin-left: auto;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #3a6ec4;
+    background: #0d0f1a;
+    border: 1px solid #0a153d;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* === MEGA ROW (generation cycle) === */
+  .gen-cycle {
+    background: #0a0a0e;
+    border: 1px solid #16161e;
+    border-radius: 14px;
+    padding: 32px;
+    margin: 24px 0;
+  }
+
+  .gen-cycle h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .gen-cycle .gc-sub {
+    font-size: 11px;
+    color: #444;
+    margin-bottom: 20px;
+  }
+
+  .gen-cycle-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+  }
+
+  .gc-step {
+    flex: 1;
+    padding: 16px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .gc-step h4 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .gc-step p {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .gc-step .gc-arrow {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #222;
+    font-size: 14px;
+    z-index: 2;
+  }
+
+  .gc-1 { background: #110f08; border: 1px solid #2a2508; }
+  .gc-1 h4 { color: #c4943a; }
+  .gc-2 { background: #080f11; border: 1px solid #082a25; }
+  .gc-2 h4 { color: #3ac47a; }
+  .gc-3 { background: #110810; border: 1px solid #2a0828; }
+  .gc-3 h4 { color: #c43a8a; }
+  .gc-4 { background: #080911; border: 1px solid #08102a; }
+  .gc-4 h4 { color: #3a6ec4; }
+  .gc-5 { background: #091108; border: 1px solid #102a08; }
+  .gc-5 h4 { color: #5ec43a; }
+
+  /* === CONSISTENCY DETAIL === */
+  .consistency {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .consistency-card {
+    background: #0c0c0e;
+    border: 1px solid #18181e;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .consistency-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .consistency-card .cc-sub {
+    font-size: 10px;
+    color: #444;
+    margin-bottom: 12px;
+  }
+
+  .consistency-card .cc-example {
+    font-size: 10px;
+    color: #333;
+    background: #09090b;
+    border: 1px solid #141418;
+    border-radius: 6px;
+    padding: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+
+  .consistency-card .cc-example strong {
+    color: #666;
+  }
+
+  /* === FOOTER === */
+  .footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #111;
+    font-size: 11px;
+    color: #222;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>How the Pipeline Works</h1>
+  <p class="subtitle">UX flow — from idea to generated image</p>
+
+  <!-- ============================== -->
+  <!-- STEP 1: SESSION -->
+  <!-- ============================== -->
+  <div class="step">
+    <div class="step-left">
+      <div class="step-num">Start</div>
+      <div class="step-title">Configure</div>
+      <div class="step-desc">Set your creative dials before anything generates. These persist across the entire run.</div>
+    </div>
+    <div class="step-center">
+      <div class="screen">
+        <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div></div>
+        <div class="screen-body">
+          <div class="screen-label">Session Config</div>
+          <div class="screen-content">
+            <strong>Alien:</strong> 8 / 10<br>
+            <strong>Emphasis:</strong> Sci-Fi + Satiraverse<br>
+            <strong>Seeds:</strong> Society & Control<br>
+            <strong>Anchors:</strong><br>
+            &nbsp;&nbsp;Coen Bros — dry morality<br>
+            &nbsp;&nbsp;Miyazaki — living worlds<br>
+            <strong>Modifiers:</strong> none
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="step-right">
+      <div class="output-block">
+        <div class="output-label">You're setting</div>
+        <div class="output-item"><span class="oi-dot" style="background:#f97316"></span> How weird (Alien 1-10)</div>
+        <div class="output-item"><span class="oi-dot" style="background:#a855f7"></span> Which creative dimensions to push</div>
+        <div class="output-item"><span class="oi-dot" style="background:#06b6d4"></span> Which tech library to draw from</div>
+        <div class="output-item"><span class="oi-dot" style="background:#ec4899"></span> 2-3 reference works as north star</div>
+        <div class="output-item"><span class="oi-dot" style="background:#eab308"></span> Idea generation constraints (optional)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-line"></div></div>
+
+  <!-- ============================== -->
+  <!-- STEP 2: IDEAS -->
+  <!-- ============================== -->
+  <div class="step">
+    <div class="step-left">
+      <div class="step-num">Stage 1</div>
+      <div class="step-title">Spark Ideas</div>
+      <div class="step-desc">You give a seed — a subject, a "what if," a collision. The engine generates 30-50 IP sparks. Each is a title + 2-sentence logline. You scan, select.</div>
+    </div>
+    <div class="step-center">
+      <div class="screen">
+        <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div></div>
+        <div class="screen-body">
+          <div class="screen-label">You see</div>
+          <div class="screen-content">
+            <strong>SADDLESAUR</strong><br>
+            <span style="font-size:10px;color:#555;">Cowboys ride living dinosaurs across an untamed continent, but the mounts are smarter than the riders.</span><br><br>
+            <strong>COLD BLOOD CODE</strong><br>
+            <span style="font-size:10px;color:#555;">Dinosaurs never went extinct. Cowboys are the invasive species.</span><br><br>
+            <span style="color:#333;">...38 more sparks</span>
+          </div>
+          <div class="user-action ua-select">→ Select favorites</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-right">
+      <div class="output-block">
+        <div class="output-label">What happens next</div>
+        <div class="output-item"><span class="oi-dot" style="background:#eab308"></span> <strong>Develop</strong> — expand logline into full paragraph</div>
+        <div class="output-item"><span class="oi-dot" style="background:#3b82f6"></span> <strong>Modify</strong> — riff, twist, redirect</div>
+        <div class="output-item"><span class="oi-dot" style="background:#a855f7"></span> <strong>Collide</strong> — smash into another spark</div>
+        <div class="output-item"><span class="oi-dot" style="background:#22c55e"></span> <strong>→ Stage 2</strong> — build the world</div>
+        <div class="output-item"><span class="oi-dot" style="background:#ec4899"></span> <strong>→ Short-Form</strong> — skip to viral content</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bible-bar">
+    <span class="bb-icon">📖</span>
+    <span class="bb-text"><strong>IP Bible:</strong> Selected spark saved. Title + logline locked.</span>
+    <span class="bb-save">Auto-save</span>
+  </div>
+
+  <!-- ============================== -->
+  <!-- THUMBNAILS -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">First Image Generation</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="gen-cycle">
+    <h3>Thumbnails — Your First Generated Images</h3>
+    <p class="gc-sub">5 vertical money shots per selected spark. This is where image generation enters the pipeline.</p>
+
+    <div class="gen-cycle-flow">
+      <div class="gc-step gc-1">
+        <h4>Engine Writes</h4>
+        <p>5 image prompts per spark. 9:16 vertical. Each a different visual approach — face, object, scale, symbol, moment.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-2">
+        <h4>You Generate</h4>
+        <p>Copy prompts into your image tool — Midjourney, DALL-E, Flux, Ideogram, whatever you use. Prompts are platform-agnostic.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-3">
+        <h4>Images Come Back</h4>
+        <p>5 different visualizations of your concept. Poster energy. Scroll-stoppers. The IP starts to have a face.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-4">
+        <h4>You Review</h4>
+        <p>Which direction feels right? Which captures the IP? Select favorites. Request modifications. Regenerate.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-5">
+        <h4>Lock</h4>
+        <p>Thumbnail direction saved to IP Bible. This visual tone carries forward into all future generation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- WORLD + STORY (text stages) -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">World + Story — Text Stages (no generation)</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-left">
+      <div class="step-num">Stages 2-3</div>
+      <div class="step-title">World & Story</div>
+      <div class="step-desc">Build the world (factions, history, rules, texture) and find stories inside it. All text — no image generation here. But every decision feeds vis-dev.</div>
+    </div>
+    <div class="step-center">
+      <div class="screen">
+        <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div></div>
+        <div class="screen-body">
+          <div class="screen-label">You approve</div>
+          <div class="screen-content">
+            <strong>World:</strong> 2 directions → pick one<br>
+            <strong>Build:</strong> Factions, history, rules → approve<br>
+            <strong>Franchise:</strong> Formats, tone, fans → approve<br>
+            <strong>Stories:</strong> 3-5 seeds → select<br>
+            <strong>Story Window:</strong> Full narrative → approve
+          </div>
+          <div class="screen-highlight">Each approval → saved to IP Bible immediately</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-right">
+      <div class="output-block">
+        <div class="output-label">What this produces for image gen</div>
+        <div class="output-item"><span class="oi-dot" style="background:#f97316"></span> Characters with names, psychology, factions</div>
+        <div class="output-item"><span class="oi-dot" style="background:#3b82f6"></span> Locations with atmosphere, history, texture</div>
+        <div class="output-item"><span class="oi-dot" style="background:#a855f7"></span> Tonal range — how light/dark the IP goes</div>
+        <div class="output-item"><span class="oi-dot" style="background:#22c55e"></span> Story beats, emotional arcs, key moments</div>
+        <div class="output-item" style="color:#444; font-style:italic; margin-top:8px;">All of this becomes the CONTENT that image prompts describe</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIS DEV — HEAVY GENERATION -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">Visual Development — Heavy Generation Phase</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <!-- STYLE LOCK -->
+  <div class="gen-cycle">
+    <h3>Style Lock — How Should This IP Look?</h3>
+    <p class="gc-sub">3-5 style directions. 4 test images per direction. You're choosing the visual skin of the entire IP.</p>
+
+    <div class="gen-cycle-flow">
+      <div class="gc-step gc-1">
+        <h4>Engine Recommends</h4>
+        <p>3-5 combos from 18 mediums × 35 aesthetics.<br><br><em style="color:#555;">e.g. "Anime × Western"<br>"Arcane CG × Coen Brothers"<br>"Live Action × Kurosawa"</em></p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-2">
+        <h4>4 Test Shots Each</h4>
+        <p>The Face, The World, The Moment, The Icon — same IP, different visual skin. You generate all of them.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-3">
+        <h4>Compare Side by Side</h4>
+        <p>Same dinosaur cowboy in anime vs. live action vs. painterly CG. The style changes everything.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-4">
+        <h4>Pick One</h4>
+        <p>Lock the medium, the aesthetic, or both. This becomes the visual DNA in every prompt from now on.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-5">
+        <h4>Locked Forever</h4>
+        <p>Style Lock keywords baked into every downstream prompt automatically. No drift. No inconsistency.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASTING -->
+  <div class="gen-cycle">
+    <h3>Casting — Find the Faces</h3>
+    <p class="gc-sub">5 variations per character. Same costume, same design — different person wearing it. Like a casting call.</p>
+
+    <div class="gen-cycle-flow">
+      <div class="gc-step gc-1">
+        <h4>Engine Writes 5</h4>
+        <p>5 landscape portraits per character. Different face, build, age, energy. Same costume + signature detail locked.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-2">
+        <h4>You Generate</h4>
+        <p>5 images in your tool. 16:9 landscape. White background. Neutral lighting. This is a casting call, not a photoshoot.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-3">
+        <h4>Pick Your Cast</h4>
+        <p>Select one face per character. "That's Mara." "That's Jude." The cast is locked.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-4">
+        <h4>Prompt Anchor</h4>
+        <p>Engine writes a 30-50 word description of the selected face. This EXACT text gets pasted into every future prompt.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-5">
+        <h4>Consistency</h4>
+        <p>From now on, "Mara" in any scene = the same face, same build, same scar, same everything. Hundreds of images. Same person.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW CONSISTENCY WORKS -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">How Consistency Works Across Hundreds of Images</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="consistency">
+    <div class="consistency-card">
+      <h4>Character Prompt Anchor</h4>
+      <div class="cc-sub">Locked after casting. Pasted verbatim into every prompt that includes this character.</div>
+      <div class="cc-example"><strong>Mara Voss:</strong> Weather-lined woman, early 40s, deep-set dark eyes, broken nose healed crooked, sun-darkened angular face, lean muscular build. Worn leather duster, bone-spur clasp at collar, dust in cropped grey-streaked hair.</div>
+    </div>
+    <div class="consistency-card">
+      <h4>Location Prompt Anchor</h4>
+      <div class="cc-sub">Locked after location design. Pasted verbatim into every prompt set in this place.</div>
+      <div class="cc-example"><strong>The Bonefield:</strong> Narrow canyon, exposed fossil walls in stratified red-ochre sandstone, dinosaur ribcages embedded in cliff face, cracked dry riverbed floor, dawn light raking horizontally across east-facing wall, dust suspended in amber shafts.</div>
+    </div>
+    <div class="consistency-card">
+      <h4>Set Sheet Prompt Block</h4>
+      <div class="cc-sub">Locked after settings. Every physical object in the space — no improvising.</div>
+      <div class="cc-example"><strong>Mara's camp:</strong> Canvas lean-to against canyon wall, fire pit with iron grate, tin coffee pot (dented, blackened base), coiled hemp rope on sandstone ledge, saddle on ground with bone-spur pommel, single wool blanket (grey, frayed edge).</div>
+    </div>
+    <div class="consistency-card">
+      <h4>Scene Template</h4>
+      <div class="cc-sub">Built per scene. Locked blocks identical across all 10 prompt variations. Only camera/lens/light vary.</div>
+      <div class="cc-example"><strong>Locked:</strong> Format + Medium + Environment + Character + Negatives
+<strong>Variable:</strong> Camera angle, lens focal length, DOF, which light source dominates
+
+<strong>Result:</strong> 10 different camera angles of the same moment. All cut together. Any combination works.</div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- SCENES + SHOTS -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">Scenes → Settings → Shots — Production</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="step">
+    <div class="step-left">
+      <div class="step-num">Stage 5</div>
+      <div class="step-title">Scene Library</div>
+      <div class="step-desc">250+ scene ideas generated across 5 passes. Each is a title + one-line hook using character and location NAMES. You curate the best.</div>
+    </div>
+    <div class="step-center">
+      <div class="screen">
+        <div class="screen-bar"><div class="screen-dot"></div><div class="screen-dot"></div><div class="screen-dot"></div></div>
+        <div class="screen-body">
+          <div class="screen-label">You see</div>
+          <div class="screen-content" style="font-size:10px;">
+            <strong>[047] THE REACH</strong><br>
+            <em style="color:#555;">Mara extends her hand toward the snout of a wild Rex at the edge of the Bonefield — both hesitating, both measuring.</em><br><br>
+            <strong>[048] COMMISSARY</strong><br>
+            <em style="color:#555;">Jude inventories saddle permits in the Thornwall checkpoint, rubber-stamping forms while a herd shakes the ground outside.</em><br><br>
+            <span style="color:#333;">...248 more scenes</span>
+          </div>
+          <div class="user-action ua-select">→ Curate favorites</div>
+        </div>
+      </div>
+    </div>
+    <div class="step-right">
+      <div class="output-block">
+        <div class="output-label">Names → Descriptions (the translation)</div>
+        <div class="output-item" style="color:#555;"><strong>Scene says:</strong> "Mara at the Bonefield"</div>
+        <div class="output-item" style="color:#555;"><strong>Shot prompt expands to:</strong> the full Prompt Anchor for Mara + full Prompt Anchor for the Bonefield + Set Sheet props</div>
+        <div class="output-item" style="margin-top: 8px; color:#444; font-style:italic;">The image model never sees "Mara" or "Bonefield" — only the physical descriptions. The Name Registry is the translation layer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connector"><div class="connector-line"></div></div>
+
+  <!-- SETTINGS -->
+  <div class="step">
+    <div class="step-left">
+      <div class="step-num">Stage 6.0</div>
+      <div class="step-title">Dress the Sets</div>
+      <div class="step-desc">Before any shots, lock every physical object in every space. The specific chair. The specific mug. The specific stain. No improvising during generation.</div>
+      <div class="user-action ua-approve" style="margin-top:12px;">→ Approve set sheets</div>
+    </div>
+    <div class="step-center" style="padding: 20px;">
+      <div style="font-size: 32px; color: #222; text-align: center;">↓</div>
+    </div>
+    <div class="step-right">
+    </div>
+  </div>
+
+  <!-- SHOT GENERATION - THE BIG ONE -->
+  <div class="gen-cycle" style="border-color: #2a2a0a;">
+    <h3>Shot Generation — The Production Cycle</h3>
+    <p class="gc-sub">This is where the bulk of image generation happens. For each curated scene: decompose into shots, build the Scene Template, generate 10 prompt variations per shot, generate images, select the best.</p>
+
+    <div class="gen-cycle-flow">
+      <div class="gc-step gc-1">
+        <h4>Scene Template</h4>
+        <p>Engine builds locked blocks from Prompt Anchors + Set Sheets + VLD. Only camera/lens/light will vary.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-2">
+        <h4>Shot Table</h4>
+        <p>Scene decomposed into 3-8 shots. Each shot is a different moment/angle. Designed as an edit — they must cut together.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-3">
+        <h4>10 Prompts Per Shot</h4>
+        <p>JSON prompts. Each varies camera angle, lens, light emphasis. Same locked character + environment. You generate all 10.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-4">
+        <h4>Select Best</h4>
+        <p>Review generated images. Pick the strongest from each shot. Mix and match — 1a cuts with 2c cuts with 3f.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-5">
+        <h4>Motion</h4>
+        <p>Selected stills get video prompts — camera movement + subject action + environment motion. Generate in Runway, Kling, etc.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #1a1a1e;">
+      <div style="font-size: 11px; color: #444; display: flex; gap: 24px; flex-wrap: wrap;">
+        <span><strong style="color:#666;">Per scene:</strong> 3-8 shots × 10 prompts = 30-80 images generated</span>
+        <span><strong style="color:#666;">Per IP:</strong> 20-40 curated scenes = 600-3,200 images generated</span>
+        <span><strong style="color:#666;">Consistency:</strong> Same character face, same location, same props across ALL of them</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- SHORT FORM BRANCH -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">Alt Path — Short-Form (branches at any point)</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div class="gen-cycle" style="border-color: #2a0a1a;">
+    <h3>Short-Form — Viral Content Pipeline</h3>
+    <p class="gc-sub">Branches from Stage 1 (standalone concept) or from a completed IP (inherits all locked visual data). Motion only — no stills.</p>
+
+    <div class="gen-cycle-flow">
+      <div class="gc-step gc-1">
+        <h4>Find the Angle</h4>
+        <p>15 creative angles run against the concept. The Wrong Detail, The Pull-Back, The Document, The Face... 1-2 fire.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-2">
+        <h4>Pick Format</h4>
+        <p>Loop (3-5s), Punch (5-15s), Carousel, Micro-Trailer, or Character Intro. The angle dictates the format.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-3">
+        <h4>Concept Lock</h4>
+        <p>Angle + format + viral mechanics + copy. Everything decided before any generation. No prompt without a locked concept.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-4">
+        <h4>Generate</h4>
+        <p>Video prompts by format. If post-pipeline: Prompt Anchors pasted verbatim for character/location consistency.</p>
+        <span class="gc-arrow">→</span>
+      </div>
+      <div class="gc-step gc-5">
+        <h4>Distribute</h4>
+        <p>9:16 vertical. Works muted. Hook in frame 1. Platform-agnostic but scroll-native.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- THE CYCLE -->
+  <!-- ============================== -->
+  <div class="section-divider">
+    <div class="sd-line"></div>
+    <div class="sd-label">The Generation Cycle — Every Time You Make Images</div>
+    <div class="sd-line"></div>
+  </div>
+
+  <div style="background: #0a0a0e; border: 1px solid #16161e; border-radius: 14px; padding: 32px; text-align: center;">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+      <div class="gen-box gen-prompt">ENGINE WRITES PROMPT</div>
+      <span class="gen-arrow">→</span>
+      <div class="gen-box gen-tool">YOU PASTE INTO GEN TOOL</div>
+      <span class="gen-arrow">→</span>
+      <div class="gen-box gen-output">IMAGE / VIDEO COMES BACK</div>
+      <span class="gen-arrow">→</span>
+      <div class="gen-box gen-review">YOU REVIEW + SELECT</div>
+      <span class="gen-arrow">→</span>
+      <div class="gen-box gen-lock">LOCK TO IP BIBLE</div>
+    </div>
+    <p style="font-size: 11px; color: #333; margin-top: 16px;">This cycle repeats at: Thumbnails · Style Lock · Casting · Shots · Motion · Short-Form</p>
+    <p style="font-size: 11px; color: #222; margin-top: 4px;">The engine writes. You generate. You decide. The bible remembers.</p>
+  </div>
+
+  <div class="footer">
+    <span>Spacecadet × Claude — IP Engine</span>
+    <span>One-Person Film Studio</span>
+  </div>
+
+</div>
+</body>
+</html>

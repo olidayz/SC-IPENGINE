@@ -1,12 +1,31 @@
 # SESSION — Configure Before You Start
 
-Set the dials, pick your modifiers, configure the pipeline. Do this ONCE at the start of any IP Engine run. The session config carries forward through all stages.
+Pick your pipeline, set the dials, configure the run. Do this ONCE at the start. The session config carries forward through all stages.
 
 ---
 
-## Step 1: Set the Dials
+## Step 1: Choose Your Pipeline
 
-Three dials. Set each before generating.
+This is the first decision. Everything downstream adapts to it.
+
+| Pipeline | What You're Making | What You'll Configure |
+|----------|-------------------|----------------------|
+| **Full Pipeline** | Franchise-scale IP: Ideas → Worlds → Stories → Vis-Dev → Scenes → Shots | All dials + modifiers + anchors + seeds |
+| **Short-Form** | Viral content: Ideas → Concept Lock → Production Prompts | Dials + anchors. No seeds, no world modifiers. |
+| **Full → Short-Form** | Build the world, THEN produce viral content from it | Full config — short-form inherits later. |
+
+**Command:** `run full pipeline` / `run short-form` / `run both`
+
+The config screen adapts:
+- **Full Pipeline** → shows all controls
+- **Short-Form** → hides Tech Seeds, simplifies modifiers, keeps dials + anchors
+- **Both** → shows all controls (short-form inherits what's relevant)
+
+---
+
+## Step 2: Set the Dials
+
+Three dials (two for short-form). Set each before generating.
 
 ### Alien Dial (1-10)
 
@@ -86,7 +105,7 @@ anchor Kanye (production) — take maximalist layering, leave ego
 
 ---
 
-## Step 2: Select Idea Modifiers (Stage 1 only)
+## Step 3: Select Idea Modifiers (Stage 1 only)
 
 Optional. These constrain HOW ideas are generated. Stack multiple.
 
@@ -102,16 +121,6 @@ Optional. These constrain HOW ideas are generated. Stack multiple.
 
 ---
 
-## Step 3: Select Pipeline
-
-| Pipeline | When | Command |
-|----------|------|---------|
-| **Full** | Franchise-scale IP: Ideas → Worlds → Stories → Vis-Dev → Scenes → Shots | `run full pipeline` |
-| **Short-Form** | Viral content: Ideas → Concept Lock → Production Prompts | `run short-form` |
-| **Full → Short-Form** | Build the world, THEN produce viral content from it | `run full pipeline` then `run short-form` on completed IP |
-
----
-
 ## Session Config Output
 
 After setup, confirm the session:
@@ -120,16 +129,16 @@ After setup, confirm the session:
 ═══════════════════════════════════════════
 SESSION CONFIG
 ═══════════════════════════════════════════
+Pipeline:         [Full / Short-Form / Both]
 Alien Dial:       [N] / 10
 SC Dimensions:    [emphasized dimensions or "balanced"]
-Tech Seeds:       [territory or "none"]
+Tech Seeds:       [territory or "none"] (Full pipeline only)
 Reference Anchors:
   1. [work] — take [X], leave [Y]
   2. [work] — take [X], leave [Y]
   3. [work] — take [X], leave [Y] (optional)
 Modifiers:        [list or "none"]
-Pipeline:         [Full / Short-Form]
-Taste Profile:    Always on
+Taste Profile:    [On / Off]
 ═══════════════════════════════════════════
 ```
 
@@ -148,4 +157,19 @@ Dials can be adjusted at any stage. But changes must be noted in the IP Bible so
 | Tech seeds | Add territory at Stage 2+ | Don't remove seeds already integrated into the world. |
 | Reference anchors | Yes, but rarely | Anchors usually hold. If you swap one, note it in the IP Bible Change Log — it may shift everything downstream. |
 | Modifiers | Stage 1 only | Modifiers are ideation tools. They don't apply past spark generation. |
+| Taste filter | Yes, any stage | On by default. Turn off when you want to explore without the quality floor. Turn back on before locking. |
 | Pipeline | Can switch to short-form at any point | Any approved material carries forward. |
+
+---
+
+## Persistent Actions (Available at Every Stage)
+
+These actions are always available — not locked to a specific stage.
+
+| Action | What It Does | When to Use |
+|--------|-------------|-------------|
+| **Spacecadetify** | Run the Spacecadet Brand dimensions against current output. Amplify Sci-Fi, Surreal, Spiritual, or Satiraverse presence. Returns amplification suggestions with specific options. | Any time output feels too conventional, too safe, not weird enough. Works on sparks, worlds, stories, scenes, prompts — anything. |
+| **Edit** | Inline edit any approved output. Change names, rewrite descriptions, adjust details. Saves updated version to IP Bible with Change Log entry. | Anytime. The user is always in control. Approvals aren't permanent — they're the current best version. |
+| **→ Short-Form** | Branch current concept/spark/scene to the short-form pipeline. | Any spark in Stage 1. Any scene in Stage 5. Any moment from any stage that has viral energy. |
+| **→ Build World** | Send a spark or concept into the full pipeline (Stage 2). | Any spark in Stage 1 that deserves franchise depth. Can also be triggered from short-form if a concept reveals world potential. |
+| **Toggle Taste Filter** | Turn the 12-principle quality filter on or off. | On = quality floor enforced. Off = explore freely, no gates. |

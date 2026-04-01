@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Engine — UX Flow (Dev Spec)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #06060a;
+    color: #c0c0c0;
+    line-height: 1.6;
+  }
+
+  .page { max-width: 1200px; margin: 0 auto; padding: 60px 40px 100px; }
+
+  h1 { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 4px; }
+  .sub { font-size: 12px; color: #444; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 48px; }
+
+  /* === ARCHITECTURE === */
+  .arch {
+    display: flex; gap: 2px; margin-bottom: 48px;
+  }
+  .arch-box {
+    flex: 1; padding: 20px; border-radius: 10px; text-align: center;
+  }
+  .arch-box h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .arch-box p { font-size: 11px; color: #555; line-height: 1.5; }
+  .arch-fe { background: #0d0d12; border: 1px solid #1a1a24; }
+  .arch-fe h3 { color: #888; }
+  .arch-claude { background: #0d1017; border: 1px solid #0a1a3d; }
+  .arch-claude h3 { color: #3a6ec4; }
+  .arch-img { background: #110d0d; border: 1px solid #3d1a0a; }
+  .arch-img h3 { color: #c4713a; }
+  .arch-vid { background: #110d14; border: 1px solid #3d0a28; }
+  .arch-vid h3 { color: #c43a6e; }
+  .arch-db { background: #0d110d; border: 1px solid #0a3d15; }
+  .arch-db h3 { color: #3ac45e; }
+  .arch-arrow { display: flex; align-items: center; justify-content: center; color: #222; font-size: 18px; padding: 0 4px; }
+
+  /* === STEP === */
+  .step {
+    position: relative;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    min-height: 0;
+  }
+
+  .step-info {
+    background: #0a0a0e;
+    border: 1px solid #14141c;
+    border-radius: 10px;
+    padding: 24px;
+  }
+
+  .step-screen {
+    background: #08080c;
+    border: 1px solid #14141c;
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .step-tag {
+    font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+    display: inline-block; padding: 3px 8px; border-radius: 4px; margin-bottom: 10px;
+  }
+
+  .tag-config { background: #1a1a0d; color: #c4c43a; border: 1px solid #3d3d0a; }
+  .tag-text { background: #0d1a17; color: #3ac47a; border: 1px solid #0a3d2e; }
+  .tag-gen { background: #1a0d14; color: #c43a8a; border: 1px solid #3d0a28; }
+  .tag-select { background: #1a1a0d; color: #c4c43a; border: 1px solid #3d3d0a; }
+  .tag-approve { background: #0d1a0d; color: #3ac45e; border: 1px solid #0a3d15; }
+
+  .step-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .step-num { font-size: 11px; color: #333; font-weight: 600; margin-bottom: 2px; }
+  .step-desc { font-size: 12px; color: #555; margin-bottom: 16px; }
+
+  /* API badges */
+  .api-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .api-badge {
+    font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    padding: 3px 8px; border-radius: 4px;
+  }
+  .api-claude { background: #0d1017; color: #3a6ec4; border: 1px solid #0a1a3d; }
+  .api-image { background: #110d0d; color: #c4713a; border: 1px solid #3d1a0a; }
+  .api-video { background: #110d14; color: #c43a6e; border: 1px solid #3d0a28; }
+  .api-db { background: #0d110d; color: #3ac45e; border: 1px solid #0a3d15; }
+
+  /* Screen mock */
+  .mock {
+    background: #060609; border: 1px solid #1a1a22; border-radius: 8px;
+    overflow: hidden;
+  }
+  .mock-bar {
+    height: 24px; background: #0a0a0e; border-bottom: 1px solid #1a1a22;
+    display: flex; align-items: center; padding: 0 10px; gap: 5px;
+  }
+  .mock-dot { width: 6px; height: 6px; border-radius: 50%; background: #1a1a22; }
+  .mock-body { padding: 14px; font-size: 11px; color: #666; }
+  .mock-body strong { color: #aaa; }
+
+  .mock-card {
+    background: #0c0c10; border: 1px solid #1a1a22; border-radius: 6px;
+    padding: 10px; margin-bottom: 6px;
+  }
+  .mock-card-title { font-size: 12px; font-weight: 700; color: #ccc; margin-bottom: 2px; }
+  .mock-card-sub { font-size: 10px; color: #444; }
+
+  .mock-actions {
+    display: flex; gap: 6px; margin-top: 8px;
+  }
+  .mock-btn {
+    font-size: 9px; font-weight: 600; padding: 4px 10px; border-radius: 4px;
+    background: #111118; border: 1px solid #22222e; color: #888;
+  }
+  .mock-btn-primary { background: #0d1a17; border: 1px solid #0a3d2e; color: #3ac47a; }
+
+  /* Image grid mock */
+  .img-grid {
+    display: grid; gap: 4px; margin: 8px 0;
+  }
+  .img-grid-5 { grid-template-columns: repeat(5, 1fr); }
+  .img-grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .img-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .img-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .img-placeholder {
+    aspect-ratio: 9/16; background: #0e0e14; border: 1px solid #1a1a24; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px; color: #222; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .img-placeholder.landscape { aspect-ratio: 16/9; }
+  .img-placeholder.selected { border-color: #3ac45e; box-shadow: 0 0 0 1px #3ac45e; }
+  .img-placeholder.generating {
+    background: linear-gradient(135deg, #0e0e14, #12121a, #0e0e14);
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+  /* Data flow */
+  .data-flow {
+    background: #060609; border: 1px solid #14141a; border-radius: 6px;
+    padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    color: #444; margin-top: 10px; line-height: 1.7;
+  }
+  .data-flow strong { color: #666; }
+  .data-flow .hl-claude { color: #3a6ec4; }
+  .data-flow .hl-img { color: #c4713a; }
+  .data-flow .hl-vid { color: #c43a6e; }
+  .data-flow .hl-db { color: #3ac45e; }
+  .data-flow .hl-user { color: #c4c43a; }
+
+  /* Section dividers */
+  .divider {
+    display: flex; align-items: center; gap: 16px; margin: 40px 0 24px;
+  }
+  .divider-line { height: 1px; flex: 1; background: #141418; }
+  .divider-label {
+    font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
+    color: #2a2a2e; white-space: nowrap;
+  }
+
+  /* Bible bar */
+  .bible-bar {
+    background: #080810; border: 1px solid #16161e; border-radius: 8px;
+    padding: 12px 16px; margin: 8px 0;
+    display: flex; align-items: center; gap: 12px; font-size: 10px; color: #444;
+  }
+  .bible-bar strong { color: #666; }
+  .bible-bar .save-tag {
+    margin-left: auto; font-size: 8px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: #3ac45e; background: #0d1a0d; border: 1px solid #0a3d15;
+    padding: 3px 8px; border-radius: 3px;
+  }
+
+  /* Generation cycle */
+  .gen-cycle {
+    display: flex; gap: 2px; margin: 12px 0;
+  }
+  .gc-step {
+    flex: 1; padding: 14px; border-radius: 8px; position: relative;
+  }
+  .gc-step h4 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .gc-step p { font-size: 10px; color: #444; line-height: 1.5; }
+  .gc-arrow { position: absolute; right: -9px; top: 50%; transform: translateY(-50%); color: #1a1a1e; font-size: 13px; z-index: 2; }
+  .gc-1 { background: #0d0d17; border: 1px solid #1a1a3d; } .gc-1 h4 { color: #3a6ec4; }
+  .gc-2 { background: #110d0d; border: 1px solid #3d1a0a; } .gc-2 h4 { color: #c4713a; }
+  .gc-3 { background: #0d110d; border: 1px solid #0a3d15; } .gc-3 h4 { color: #3ac45e; }
+
+  /* Consistency section */
+  .consistency-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0;
+  }
+  .con-card {
+    background: #08080c; border: 1px solid #14141a; border-radius: 8px; padding: 16px;
+  }
+  .con-card h4 { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .con-card .con-sub { font-size: 10px; color: #333; margin-bottom: 10px; }
+  .con-card .con-code {
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; color: #444;
+    background: #060608; border: 1px solid #111118; border-radius: 4px;
+    padding: 8px; line-height: 1.6; white-space: pre-wrap;
+  }
+  .con-card .con-code strong { color: #666; }
+
+  /* API table */
+  .api-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 11px; }
+  .api-table th {
+    text-align: left; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: #333; padding: 8px 12px; border-bottom: 1px solid #1a1a1e;
+  }
+  .api-table td { padding: 8px 12px; border-bottom: 1px solid #0e0e12; color: #555; }
+  .api-table td:first-child { color: #888; font-weight: 600; }
+  .api-table tr:hover td { background: #0a0a0e; }
+
+  /* Footer */
+  .footer {
+    margin-top: 60px; padding-top: 20px; border-top: 1px solid #111;
+    font-size: 10px; color: #1a1a1e; display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>IP Engine — UX Flow</h1>
+<p class="sub">Developer specification &middot; every screen, API call, and data write</p>
+
+<!-- ========== ARCHITECTURE ========== -->
+<div class="arch">
+  <div class="arch-box arch-fe">
+    <h3>Frontend</h3>
+    <p>Dashboard &rarr; Project &rarr; Stage Screens &rarr; Generation Views</p>
+  </div>
+  <div class="arch-arrow">&rarr;</div>
+  <div class="arch-box arch-claude">
+    <h3>Claude API</h3>
+    <p>All creative text: ideas, worlds, stories, VLD, prompts</p>
+  </div>
+  <div class="arch-arrow">+</div>
+  <div class="arch-box arch-img">
+    <h3>Image Gen API</h3>
+    <p>Midjourney, DALL-E, Flux, Ideogram — user picks</p>
+  </div>
+  <div class="arch-arrow">+</div>
+  <div class="arch-box arch-vid">
+    <h3>Video Gen API</h3>
+    <p>Runway, Kling, Sora — from stills or prompts</p>
+  </div>
+  <div class="arch-arrow">&rarr;</div>
+  <div class="arch-box arch-db">
+    <h3>Database</h3>
+    <p>IP Bible per project. Every approval writes here.</p>
+  </div>
+</div>
+
+<!-- ========== GLOBAL TOOLBAR ========== -->
+<div style="background:#08080c;border:1px solid #14141c;border-radius:10px;padding:16px 20px;margin-bottom:16px;">
+  <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#333;margin-bottom:10px;">Global Toolbar — Always Available</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;">
+    <span style="font-size:9px;padding:5px 12px;background:#1a0d17;border:1px solid #3d0a2e;color:#c43a8a;border-radius:4px;font-weight:600;">🛸 Spacecadetify</span>
+    <span style="font-size:9px;padding:5px 12px;background:#111118;border:1px solid #22222e;color:#888;border-radius:4px;font-weight:600;">✎ Edit</span>
+    <span style="font-size:9px;padding:5px 12px;background:#110d0d;border:1px solid #3d1a0a;color:#c4713a;border-radius:4px;font-weight:600;">&rarr; Short-Form</span>
+    <span style="font-size:9px;padding:5px 12px;background:#0d1a17;border:1px solid #0a3d2e;color:#3ac47a;border-radius:4px;font-weight:600;">&rarr; Build World</span>
+    <span style="font-size:9px;padding:5px 12px;background:#1a1a0d;border:1px solid #3d3d0a;color:#c4c43a;border-radius:4px;font-weight:600;">Taste Filter: ON</span>
+    <span style="font-size:9px;padding:5px 12px;background:#111118;border:1px solid #22222e;color:#888;border-radius:4px;font-weight:600;">Alien: 7</span>
+    <span style="font-size:9px;padding:5px 12px;background:#111118;border:1px solid #22222e;color:#888;border-radius:4px;font-weight:600;">Dimensions: Sci-Fi + Satiraverse</span>
+  </div>
+  <div style="font-size:9px;color:#222;margin-top:8px;line-height:1.5;">
+    <strong style="color:#333;">Spacecadetify</strong> runs on any output — sparks, worlds, characters, scenes, prompts. Amplifies strangeness on demand.<br>
+    <strong style="color:#333;">Edit</strong> is always available. Approvals aren't permanent — they're the current best version.<br>
+    <strong style="color:#333;">&rarr; Short-Form / &rarr; Build World</strong> branch any spark, scene, or character into either pipeline at any time.<br>
+    <strong style="color:#333;">Taste Filter</strong> toggles on/off. Off = explore without quality gates.
+  </div>
+</div>
+
+<!-- ========== SESSION CONFIG ========== -->
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-config">Config</span>
+    <div class="step-title">Session Config</div>
+    <div class="step-desc">New project starts here. User sets creative dials that persist across all stages.</div>
+    <div class="api-row">
+      <span class="api-badge api-db">Writes: bible.config</span>
+    </div>
+    <div class="data-flow">
+      <strong>Controls:</strong><br>
+      &bull; Seed text input <span class="hl-user">(required)</span><br>
+      &bull; Alien dial — slider 1-10 <span class="hl-user">(default 7)</span><br>
+      &bull; Spacecadet dimensions — 4 toggles <span class="hl-user">(min 2)</span><br>
+      &bull; Tech seeds — multi-select from 7 territories<br>
+      &bull; Reference anchors — 2-3 works, each with take/leave fields<br>
+      &bull; Idea modifiers — checkbox group<br>
+      &bull; Pipeline — radio: Full / Short-Form / Both<br><br>
+      <strong>Action:</strong> [Start] &rarr; creates project, saves config, routes to Stage 1
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <!-- Pipeline choice FIRST -->
+        <div style="margin-bottom:12px;">
+          <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">What are you making?</div>
+          <div style="display:flex;gap:4px;">
+            <span style="font-size:9px;padding:6px 12px;background:#0d1a17;border:1px solid #0a3d2e;color:#3ac47a;border-radius:4px;font-weight:600;">Full Pipeline</span>
+            <span style="font-size:9px;padding:6px 12px;background:#0a0a0e;border:1px solid #1a1a22;color:#444;border-radius:4px;">Short-Form</span>
+            <span style="font-size:9px;padding:6px 12px;background:#0a0a0e;border:1px solid #1a1a22;color:#444;border-radius:4px;">Both</span>
+          </div>
+          <div style="font-size:8px;color:#333;margin-top:4px;">Config adapts to your choice — Short-Form hides world-building controls</div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <strong style="font-size:14px;color:#fff;">What's your idea?</strong><br>
+          <div style="background:#0a0a0e;border:1px solid #1a1a22;border-radius:4px;padding:8px;margin-top:6px;color:#555;">Dinosaur Cowboy</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+          <div>
+            <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Alien Dial</div>
+            <div style="background:#0a0a0e;border:1px solid #1a1a22;border-radius:4px;padding:6px;height:8px;position:relative;">
+              <div style="position:absolute;left:70%;top:50%;transform:translate(-50%,-50%);width:12px;height:12px;background:#c4c43a;border-radius:50%;"></div>
+            </div>
+            <div style="font-size:9px;color:#444;margin-top:2px;">7 — Uncomfortable territory</div>
+          </div>
+          <div>
+            <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Dimensions</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;">
+              <span style="font-size:8px;padding:3px 6px;background:#0d1a17;border:1px solid #0a3d2e;color:#3ac47a;border-radius:3px;">Sci-Fi</span>
+              <span style="font-size:8px;padding:3px 6px;background:#1a1a0d;border:1px solid #3d3d0a;color:#c4c43a;border-radius:3px;">Satiraverse</span>
+              <span style="font-size:8px;padding:3px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Surreal</span>
+              <span style="font-size:8px;padding:3px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Spiritual</span>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Reference Anchors (searchable picker)</div>
+        <!-- Anchor picker mock -->
+        <div style="background:#060609;border:1px solid #1a1a22;border-radius:4px;padding:8px;margin-bottom:4px;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;">
+            <div style="flex:1;background:#0a0a0e;border:1px solid #1a1a22;border-radius:3px;padding:4px 8px;font-size:9px;color:#555;">Search directors, films, shows, artists, brands...</div>
+          </div>
+          <div style="display:flex;gap:3px;margin-bottom:6px;">
+            <span style="font-size:7px;padding:2px 6px;background:#0d0d17;border:1px solid #1a1a3d;color:#3a6ec4;border-radius:2px;">Directors</span>
+            <span style="font-size:7px;padding:2px 6px;background:#110d0d;border:1px solid #3d1a0a;color:#c4713a;border-radius:2px;">Films</span>
+            <span style="font-size:7px;padding:2px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:2px;">TV</span>
+            <span style="font-size:7px;padding:2px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:2px;">Movements</span>
+            <span style="font-size:7px;padding:2px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:2px;">Music</span>
+            <span style="font-size:7px;padding:2px 6px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:2px;">Brands</span>
+          </div>
+          <!-- Selected anchors -->
+          <div style="background:#0c0c10;border:1px solid #16161e;border-radius:4px;padding:6px;margin-bottom:3px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:7px;padding:2px 6px;background:#0d0d17;border:1px solid #1a1a3d;color:#3a6ec4;border-radius:2px;">Director</span>
+              <strong style="font-size:10px;color:#ccc;">Coen Brothers</strong>
+              <span style="font-size:8px;color:#333;">&times;</span>
+            </div>
+            <div style="display:flex;gap:4px;margin-top:4px;">
+              <div style="flex:1;">
+                <div style="font-size:7px;color:#333;margin-bottom:2px;">TAKE</div>
+                <div style="font-size:9px;color:#3ac45e;background:#0a0a0e;border:1px solid #153d0a;border-radius:2px;padding:2px 4px;">Dry landscape morality</div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:7px;color:#333;margin-bottom:2px;">LEAVE</div>
+                <div style="font-size:9px;color:#c43a3a;background:#0a0a0e;border:1px solid #3d150a;border-radius:2px;padding:2px 4px;">Nihilism</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#0c0c10;border:1px solid #16161e;border-radius:4px;padding:6px;">
+            <div style="display:flex;align-items:center;gap:6px;">
+              <span style="font-size:7px;padding:2px 6px;background:#0d0d17;border:1px solid #1a1a3d;color:#3a6ec4;border-radius:2px;">Director</span>
+              <strong style="font-size:10px;color:#ccc;">Miyazaki</strong>
+              <span style="font-size:8px;color:#333;">&times;</span>
+            </div>
+            <div style="display:flex;gap:4px;margin-top:4px;">
+              <div style="flex:1;">
+                <div style="font-size:7px;color:#333;margin-bottom:2px;">TAKE</div>
+                <div style="font-size:9px;color:#3ac45e;background:#0a0a0e;border:1px solid #153d0a;border-radius:2px;padding:2px 4px;">Living worlds</div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:7px;color:#333;margin-bottom:2px;">LEAVE</div>
+                <div style="font-size:9px;color:#c43a3a;background:#0a0a0e;border:1px solid #3d150a;border-radius:2px;padding:2px 4px;">Slow pacing</div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:8px;color:#222;margin-top:4px;text-align:center;">+ Add anchor (max 3)</div>
+        </div>
+        <div class="mock-actions">
+          <span class="mock-btn mock-btn-primary" style="font-size:11px;padding:6px 20px;">Start Project &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bible-bar">
+  <span>📖</span> <strong>IP Bible:</strong> Project created. Config saved. <span class="save-tag">Auto-save</span>
+</div>
+
+<!-- ========== STAGE 1: IDEAS ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 1 — Ideas</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-text">Text Generation</span>
+    <div class="step-num">Stage 1</div>
+    <div class="step-title">Spark Ideas</div>
+    <div class="step-desc">User's seed &rarr; Claude generates 30-50 IP sparks. Each is a title + 2-sentence logline. User scans, selects favorites.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: generate sparks</span>
+      <span class="api-badge api-db">Writes: bible.stage1.sparks[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>User actions per spark card:</strong><br>
+      <span class="hl-user">&hearts; Select</span> &rarr; add to selection tray<br>
+      <span class="hl-user">&para; Develop</span> &rarr; <span class="hl-claude">Claude call</span> &rarr; expand logline inline<br>
+      <span class="hl-user">&orarr; Modify</span> &rarr; text input &rarr; <span class="hl-claude">Claude call</span> &rarr; replace card<br>
+      <span class="hl-user">&LeftRightArrow; Collide</span> &rarr; pick 2nd spark &rarr; <span class="hl-claude">Claude call</span> &rarr; new spark<br><br>
+      <strong>Exit routes:</strong><br>
+      &bull; &rarr; Thumbnails (1+ selected)<br>
+      &bull; &rarr; Build World (skip thumbs)<br>
+      &bull; &rarr; Short-Form (per spark)
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;margin-bottom:8px;">38 SPARKS GENERATED</div>
+        <div class="mock-card" style="border-left:2px solid #3ac45e;">
+          <div class="mock-card-title">SADDLESAUR</div>
+          <div class="mock-card-sub">Cowboys ride living dinosaurs across an untamed continent, but the mounts are smarter than the riders.</div>
+          <div class="mock-actions">
+            <span class="mock-btn" style="color:#c4c43a;">&hearts;</span>
+            <span class="mock-btn">Develop</span>
+            <span class="mock-btn">Modify</span>
+            <span class="mock-btn">Collide</span>
+          </div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-card-title">COLD BLOOD CODE</div>
+          <div class="mock-card-sub">Dinosaurs never went extinct. Cowboys are the invasive species.</div>
+          <div class="mock-actions">
+            <span class="mock-btn">&hearts;</span>
+            <span class="mock-btn">Develop</span>
+            <span class="mock-btn">Modify</span>
+            <span class="mock-btn">Collide</span>
+          </div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-card-title">YEAR ONE</div>
+          <div class="mock-card-sub">The first cowboy to see a living dinosaur. Not awe — negotiation.</div>
+          <div class="mock-actions">
+            <span class="mock-btn">&hearts;</span>
+            <span class="mock-btn">Develop</span>
+            <span class="mock-btn">Modify</span>
+            <span class="mock-btn">Collide</span>
+          </div>
+        </div>
+        <div style="font-size:9px;color:#222;text-align:center;padding:8px;">...35 more</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== THUMBNAILS ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">First Image Generation</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen">Image Generation</span>
+    <div class="step-num">Stage 1b</div>
+    <div class="step-title">Thumbnails</div>
+    <div class="step-desc">5 vertical money shots per spark. Claude writes prompts &rarr; Image Gen API creates images inline &rarr; user selects.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 5 prompts</span>
+      <span class="api-badge api-image">Image Gen: 5 images</span>
+      <span class="api-badge api-db">Writes: bible.stage1.thumbnails[]</span>
+    </div>
+    <div class="gen-cycle">
+      <div class="gc-step gc-1"><h4>Claude writes</h4><p>5 prompts (9:16)</p><span class="gc-arrow">&rarr;</span></div>
+      <div class="gc-step gc-2"><h4>Auto-generate</h4><p>Image API fires</p><span class="gc-arrow">&rarr;</span></div>
+      <div class="gc-step gc-3"><h4>User selects</h4><p>Pick best, regen, edit</p></div>
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:10px;color:#888;font-weight:600;margin-bottom:8px;">YEAR ONE — Thumbnails</div>
+        <div class="img-grid img-grid-5">
+          <div class="img-placeholder selected">selected</div>
+          <div class="img-placeholder">9:16</div>
+          <div class="img-placeholder">9:16</div>
+          <div class="img-placeholder">9:16</div>
+          <div class="img-placeholder">9:16</div>
+        </div>
+        <div class="mock-actions" style="margin-top:10px;">
+          <span class="mock-btn">&orarr; Regen</span>
+          <span class="mock-btn">&para; Edit Prompt</span>
+          <span class="mock-btn">+5 More</span>
+          <span class="mock-btn mock-btn-primary">&rarr; Build World</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bible-bar">
+  <span>📖</span> <strong>IP Bible:</strong> Spark + thumbnail direction locked. <span class="save-tag">Auto-save</span>
+</div>
+
+<!-- ========== WORLD + STORIES ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stages 2-3 — World + Story (Text Only)</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-text">Text Generation</span>
+    <div class="step-title">World Building + Stories</div>
+    <div class="step-desc">All text. No image generation. Claude builds the world and finds stories inside it. User approves at each gate. Everything feeds vis-dev downstream.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 5 calls</span>
+      <span class="api-badge api-db">Writes: bible.stage2 + bible.stage3</span>
+    </div>
+    <div class="data-flow">
+      <strong>Stage 2 — World</strong> (3 approval gates):<br>
+      <span class="hl-claude">2a Core</span> &rarr; 2 directions, <span class="hl-user">user picks one or hybridizes</span> &rarr; <span class="hl-db">save</span><br>
+      <span class="hl-claude">2b Build</span> &rarr; factions, history, objects &rarr; <span class="hl-user">approve/edit per section</span> &rarr; <span class="hl-db">save</span><br>
+      <span class="hl-claude">2c Franchise</span> &rarr; tonal range, formats, fans &rarr; <span class="hl-user">approve</span> &rarr; <span class="hl-db">save</span><br><br>
+      <strong>Stage 3 — Stories</strong> (2 approval gates):<br>
+      <span class="hl-claude">3a Seeds</span> &rarr; 3-5 story pitches &rarr; <span class="hl-user">select 1-3</span> &rarr; <span class="hl-db">save</span><br>
+      <span class="hl-claude">3b Arcs</span> &rarr; full Story Windows &rarr; <span class="hl-user">approve/edit</span> &rarr; <span class="hl-db">save</span>
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Stage 2a — Pick a direction</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="mock-card" style="border-left:2px solid #3a6ec4;">
+            <div class="mock-card-title">Direction A</div>
+            <div class="mock-card-sub">Dinosaurs as infrastructure. Cowboys as maintenance workers for a biological machine they didn't build.</div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-title">Direction B</div>
+            <div class="mock-card-sub">Dinosaurs as gods. Cowboys as the first species arrogant enough to ride something sacred.</div>
+          </div>
+        </div>
+        <div class="mock-actions" style="margin-top:10px;">
+          <span class="mock-btn mock-btn-primary">Pick A</span>
+          <span class="mock-btn">Pick B</span>
+          <span class="mock-btn">Hybridize</span>
+        </div>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #111118;">
+          <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Stage 3a — Story Seeds</div>
+          <div class="mock-card">
+            <div class="mock-card-title">YEAR ONE</div>
+            <div class="mock-card-sub">Mara Voss — first contact negotiator. The dinosaurs don't want to be tamed. Neither does she.</div>
+            <div class="mock-actions"><span class="mock-btn" style="color:#c4c43a;">&hearts; Select</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VIS DEV: STYLE LOCK ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 4 — Visual Development (Heavy Generation)</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen">Image Generation</span>
+    <div class="step-num">Stage 4.0</div>
+    <div class="step-title">Style Lock</div>
+    <div class="step-desc">How should this IP look? 3-5 style directions, 4 test images each. Generated inline. User compares and locks one.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 3-5 directions + 4 prompts each</span>
+      <span class="api-badge api-image">Image Gen: 12-20 test images</span>
+      <span class="api-badge api-db">Writes: bible.stage4.style_lock</span>
+    </div>
+    <div class="data-flow">
+      <strong>After lock:</strong> Style DNA keywords baked into EVERY downstream prompt automatically. Medium + aesthetic are immovable.
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Choose your visual style</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="mock-card" style="border-left:2px solid #3ac45e;">
+            <div class="mock-card-title">Anime &times; Western</div>
+            <div class="mock-card-sub" style="margin-bottom:6px;">Cowboy Bebop meets Leone</div>
+            <div class="img-grid img-grid-2">
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Face</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">World</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Moment</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Icon</div>
+            </div>
+          </div>
+          <div class="mock-card">
+            <div class="mock-card-title">Arcane CG &times; Coen</div>
+            <div class="mock-card-sub" style="margin-bottom:6px;">Painterly + dry morality</div>
+            <div class="img-grid img-grid-2">
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Face</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">World</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Moment</div>
+              <div class="img-placeholder" style="aspect-ratio:1;font-size:7px;">Icon</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-actions" style="margin-top:10px;">
+          <span class="mock-btn mock-btn-primary">Lock Style</span>
+          <span class="mock-btn">More Directions</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CHARACTERS + LOCATIONS (with concept images) ========== -->
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen">Image Generation</span>
+    <div class="step-num">Stage 4.2</div>
+    <div class="step-title">Characters + Locations</div>
+    <div class="step-desc">Design characters and locations. Each character gets a <strong>concept image</strong> generated — see the design before casting a face. Adjust costume, detail, palette until the design is right.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: visual packages + prompts</span>
+      <span class="api-badge api-image">Image Gen: 1 concept per character + 1 per location</span>
+      <span class="api-badge api-db">Writes: bible.stage4.characters[] + locations[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>Concept image ≠ cast.</strong> This shows the DESIGN — costume, world, vibe. Casting (next step) finds the specific FACE.<br><br>
+      <strong>User actions on concept images:</strong><br>
+      <span class="hl-user">Approve</span> &rarr; design locked, proceed to casting<br>
+      <span class="hl-user">Edit</span> &rarr; change costume/detail/palette &rarr; <span class="hl-claude">regen prompt</span> &rarr; <span class="hl-img">regen image</span><br>
+      <span class="hl-user">Spacecadetify</span> &rarr; amplify strangeness &rarr; <span class="hl-claude">regen</span> &rarr; <span class="hl-img">regen</span><br>
+      <span class="hl-user">&rarr; Short-Form</span> &rarr; branch character to Character Intro
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Character Designs — Concept Images</div>
+        <div style="display:flex;gap:6px;">
+          <div style="flex:1;">
+            <div class="img-placeholder" style="aspect-ratio:3/4;font-size:7px;border-color:#3ac45e;">Mara Voss</div>
+            <div style="font-size:9px;color:#888;font-weight:600;margin-top:4px;">Mara Voss</div>
+            <div style="font-size:8px;color:#444;">Scarred, leather duster, bone-spur clasp</div>
+            <div class="mock-actions" style="margin-top:4px;">
+              <span class="mock-btn" style="font-size:7px;">✓</span>
+              <span class="mock-btn" style="font-size:7px;">Edit</span>
+              <span class="mock-btn" style="font-size:7px;color:#c43a8a;">🛸</span>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div class="img-placeholder" style="aspect-ratio:3/4;font-size:7px;">Jude Calloway</div>
+            <div style="font-size:9px;color:#888;font-weight:600;margin-top:4px;">Jude Calloway</div>
+            <div style="font-size:8px;color:#444;">Permit officer, clean uniform, ink-stained hands</div>
+            <div class="mock-actions" style="margin-top:4px;">
+              <span class="mock-btn" style="font-size:7px;">✓</span>
+              <span class="mock-btn" style="font-size:7px;">Edit</span>
+              <span class="mock-btn" style="font-size:7px;color:#c43a8a;">🛸</span>
+            </div>
+          </div>
+          <div style="flex:1;">
+            <div class="img-placeholder generating" style="aspect-ratio:3/4;font-size:7px;">&hellip;</div>
+            <div style="font-size:9px;color:#888;font-weight:600;margin-top:4px;">Kael Ridge</div>
+            <div style="font-size:8px;color:#444;">Generating...</div>
+          </div>
+        </div>
+        <div style="font-size:8px;color:#333;margin-top:10px;text-align:center;font-style:italic;">These are design previews — casting finds the face</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CASTING ========== -->
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen">Image Generation</span>
+    <div class="step-num">Stage 4.3</div>
+    <div class="step-title">Casting</div>
+    <div class="step-desc">5 portrait variations per character (16:9 landscape). Same costume — different face. User picks one. Prompt Anchor locked &rarr; that face appears in every future image.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 5 prompts + Prompt Anchor</span>
+      <span class="api-badge api-image">Image Gen: 5 portraits + 1 turnaround</span>
+      <span class="api-badge api-db">Writes: bible.stage4.cast[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>The Prompt Anchor (30-50 words):</strong><br>
+      <span style="color:#555;font-style:italic;">"Weather-lined woman, early 40s, deep-set dark eyes, broken nose healed crooked, sun-darkened angular face, lean muscular build. Worn leather duster, bone-spur clasp at collar, dust in cropped grey-streaked hair."</span><br><br>
+      <strong>This EXACT text</strong> gets pasted into every downstream prompt containing this character. Consistency across hundreds of images.
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:10px;color:#888;font-weight:600;margin-bottom:4px;">Casting: MARA VOSS</div>
+        <div style="font-size:9px;color:#333;margin-bottom:8px;">scarred cowboy, leather duster, bone spur</div>
+        <div class="img-grid img-grid-5">
+          <div class="img-placeholder landscape">v1</div>
+          <div class="img-placeholder landscape">v2</div>
+          <div class="img-placeholder landscape selected">v3</div>
+          <div class="img-placeholder landscape">v4</div>
+          <div class="img-placeholder landscape">v5</div>
+        </div>
+        <div style="margin-top:10px;background:#0a0e0a;border:1px solid #153d0a;border-radius:6px;padding:10px;font-size:10px;color:#3ac45e;">
+          &check; This is Mara Voss.
+        </div>
+        <div class="mock-actions" style="margin-top:8px;">
+          <span class="mock-btn mock-btn-primary">Lock Cast &rarr; Next Character</span>
+          <span class="mock-btn">&orarr; Regen All</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bible-bar">
+  <span>📖</span> <strong>IP Bible:</strong> Style Lock + VLD + Name Registry + Prompt Anchors + Locked Cast saved. <span class="save-tag">Auto-save</span>
+</div>
+
+<!-- ========== SCENES ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 5 — Scenes</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-select">Curation</span>
+    <div class="step-num">Stage 5</div>
+    <div class="step-title">Scene Library</div>
+    <div class="step-desc">250+ scenes across 5 invocations. Title + hook line using character/location names. User curates the best. No image generation here — scenes are text. Shots come next.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 5 calls (~50 scenes each)</span>
+      <span class="api-badge api-db">Writes: bible.stage5.curated_scenes[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>5 invocations (tabs):</strong><br>
+      1. Extract + Expand &bull; 2. Generate + Invent &bull; 3. Weird Territory<br>
+      4. Participation &bull; 5. Counter-Narrative<br><br>
+      <strong>User:</strong> Scan all ~250. Select favorites. Drag to reorder. Finalize curation.
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="display:flex;gap:4px;margin-bottom:8px;">
+          <span style="font-size:8px;padding:3px 8px;background:#0d1a17;border:1px solid #0a3d2e;color:#3ac47a;border-radius:3px;">Extract</span>
+          <span style="font-size:8px;padding:3px 8px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Invent</span>
+          <span style="font-size:8px;padding:3px 8px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Weird</span>
+          <span style="font-size:8px;padding:3px 8px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Participation</span>
+          <span style="font-size:8px;padding:3px 8px;background:#0a0a0e;border:1px solid #1a1a22;color:#333;border-radius:3px;">Counter</span>
+        </div>
+        <div class="mock-card" style="border-left:2px solid #3ac45e;">
+          <div class="mock-card-title">[047] THE REACH</div>
+          <div class="mock-card-sub">Mara extends her hand toward a wild Rex at the Bonefield — both hesitating.</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-card-title">[048] COMMISSARY</div>
+          <div class="mock-card-sub">Jude inventories saddle permits at the Thornwall checkpoint while a herd shakes the ground.</div>
+        </div>
+        <div class="mock-card">
+          <div class="mock-card-title">[049] THE SHED</div>
+          <div class="mock-card-sub">Workers peel scales from a sleeping brachiosaur at dawn. The animal doesn't flinch.</div>
+        </div>
+        <div style="font-size:9px;color:#222;text-align:center;padding:6px;">...47 more in this invocation</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SHOTS (THE BIG ONE) ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 6 — Production (Heaviest Generation)</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen">Image Generation</span>
+    <div class="step-num">Stage 6.1</div>
+    <div class="step-title">Shot Generation</div>
+    <div class="step-desc">The bulk of image generation. For each curated scene: Claude decomposes into shots, writes 10 prompt variations per shot. Image Gen API fires per prompt. User selects best takes.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 1 call per scene</span>
+      <span class="api-badge api-image">Image Gen: 10 &times; shots per scene</span>
+      <span class="api-badge api-db">Writes: bible.stage6.shots[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>Per scene:</strong> 3-8 shots &times; 10 prompts = <span class="hl-img">30-80 images</span><br>
+      <strong>Per IP:</strong> 20-40 scenes = <span class="hl-img">600-3,200 images</span><br><br>
+      <strong>Name &rarr; Description translation:</strong><br>
+      Scene says "Mara at the Bonefield" &rarr;<br>
+      Prompt pastes <span class="hl-db">Prompt Anchor (Mara)</span> + <span class="hl-db">Set Sheet Prompt Block (Bonefield)</span><br>
+      Image model never sees names — only physical descriptions.
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:10px;color:#888;font-weight:600;margin-bottom:2px;">SCENE 047: THE REACH</div>
+        <div style="font-size:9px;color:#444;margin-bottom:10px;">Mara extends her hand toward a wild Rex at the Bonefield</div>
+
+        <div style="display:flex;gap:8px;">
+          <!-- Shot table -->
+          <div style="flex:0 0 120px;">
+            <div style="font-size:8px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Shot Table</div>
+            <div style="font-size:9px;color:#555;padding:4px 6px;background:#0c0c10;border:1px solid #1a1a22;border-radius:3px;margin-bottom:3px;border-left:2px solid #c4c43a;">1. The Hand</div>
+            <div style="font-size:9px;color:#444;padding:4px 6px;background:#0a0a0e;border:1px solid #14141a;border-radius:3px;margin-bottom:3px;">2. The Canyon</div>
+            <div style="font-size:9px;color:#444;padding:4px 6px;background:#0a0a0e;border:1px solid #14141a;border-radius:3px;margin-bottom:3px;">3. The Eye</div>
+            <div style="font-size:9px;color:#444;padding:4px 6px;background:#0a0a0e;border:1px solid #14141a;border-radius:3px;margin-bottom:3px;">4. Two Breaths</div>
+            <div style="font-size:9px;color:#444;padding:4px 6px;background:#0a0a0e;border:1px solid #14141a;border-radius:3px;">5. The Touch</div>
+          </div>
+
+          <!-- Gen grid -->
+          <div style="flex:1;">
+            <div style="font-size:8px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Shot 1: The Hand — 10 variations</div>
+            <div class="img-grid" style="grid-template-columns:repeat(5,1fr);">
+              <div class="img-placeholder selected" style="font-size:7px;">1a</div>
+              <div class="img-placeholder" style="font-size:7px;">1b</div>
+              <div class="img-placeholder" style="font-size:7px;">1c</div>
+              <div class="img-placeholder generating" style="font-size:7px;">&hellip;</div>
+              <div class="img-placeholder" style="font-size:7px;">1e</div>
+              <div class="img-placeholder" style="font-size:7px;">1f</div>
+              <div class="img-placeholder" style="font-size:7px;">1g</div>
+              <div class="img-placeholder" style="font-size:7px;">1h</div>
+              <div class="img-placeholder" style="font-size:7px;">1i</div>
+              <div class="img-placeholder" style="font-size:7px;">1j</div>
+            </div>
+            <div class="mock-actions" style="margin-top:6px;">
+              <span class="mock-btn">Generate All</span>
+              <span class="mock-btn">&para; Edit Prompt</span>
+              <span class="mock-btn mock-btn-primary">Complete Scene</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MOTION ========== -->
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen" style="background:#1a0d17;color:#c43a8a;border-color:#3d0a2e;">Video Generation</span>
+    <div class="step-num">Stage 6.2</div>
+    <div class="step-title">Motion</div>
+    <div class="step-desc">Selected stills &rarr; video prompts (camera + subject + environment motion) &rarr; Video Gen API &rarr; 3-5 second clips. Sequence into an edit.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 1 prompt per still</span>
+      <span class="api-badge api-video">Video Gen: 1 clip per still</span>
+      <span class="api-badge api-db">Writes: bible.stage6.motion[]</span>
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Selected Stills &rarr; Motion</div>
+        <div style="display:flex;gap:4px;margin-bottom:8px;">
+          <div class="img-placeholder" style="aspect-ratio:9/16;width:40px;font-size:6px;">still</div>
+          <div style="display:flex;align-items:center;color:#222;">&rarr;</div>
+          <div class="img-placeholder" style="aspect-ratio:9/16;width:40px;font-size:6px;background:#1a0d17;border-color:#3d0a2e;">video</div>
+          <div style="width:20px;"></div>
+          <div class="img-placeholder" style="aspect-ratio:9/16;width:40px;font-size:6px;">still</div>
+          <div style="display:flex;align-items:center;color:#222;">&rarr;</div>
+          <div class="img-placeholder" style="aspect-ratio:9/16;width:40px;font-size:6px;background:#1a0d17;border-color:#3d0a2e;">video</div>
+          <div style="width:20px;"></div>
+          <div class="img-placeholder" style="aspect-ratio:9/16;width:40px;font-size:6px;">still</div>
+          <div style="display:flex;align-items:center;color:#222;">&rarr;</div>
+          <div class="img-placeholder generating" style="aspect-ratio:9/16;width:40px;font-size:6px;">&hellip;</div>
+        </div>
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Sequence Editor</div>
+        <div style="display:flex;gap:2px;height:24px;">
+          <div style="flex:2;background:#1a0d17;border:1px solid #3d0a2e;border-radius:3px;font-size:7px;display:flex;align-items:center;justify-content:center;color:#c43a6e;">3.2s</div>
+          <div style="flex:1;background:#1a0d17;border:1px solid #3d0a2e;border-radius:3px;font-size:7px;display:flex;align-items:center;justify-content:center;color:#c43a6e;">2.1s</div>
+          <div style="flex:3;background:#1a0d17;border:1px solid #3d0a2e;border-radius:3px;font-size:7px;display:flex;align-items:center;justify-content:center;color:#c43a6e;">4.8s</div>
+          <div style="flex:2;background:#111;border:1px solid #1a1a22;border-radius:3px;font-size:7px;display:flex;align-items:center;justify-content:center;color:#222;">pending</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SHORT FORM ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Alt Pipeline — Short-Form (Branches at Any Stage)</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-gen" style="background:#1a0d17;color:#c43a8a;border-color:#3d0a2e;">Video Generation</span>
+    <div class="step-title">Short-Form Content</div>
+    <div class="step-desc">Viral content pipeline. Branches from Stage 1 (standalone concept) or any completed stage (inherits all locked data). Motion only — no stills.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: concept + prompts</span>
+      <span class="api-badge api-video">Video Gen: per format</span>
+      <span class="api-badge api-db">Writes: bible.short_form[]</span>
+    </div>
+    <div class="data-flow">
+      <strong>Formats:</strong><br>
+      &bull; Loop (3-5s) &bull; Punch (5-15s) &bull; Carousel (3-7 frames)<br>
+      &bull; Micro-Trailer (15-45s) &bull; Character Intro (5-15s)<br><br>
+      <strong>Flow:</strong><br>
+      <span class="hl-claude">Find angle</span> (15 creative angles) &rarr; <span class="hl-claude">Concept lock</span> (format + viral mechanics + copy) &rarr; <span class="hl-vid">Generate</span> &rarr; <span class="hl-user">Select</span><br><br>
+      <strong>If post-pipeline:</strong> Prompt Anchors for characters/locations pasted verbatim. Same faces, same places.
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Concept Lock</div>
+        <div class="mock-card" style="border-left:2px solid #c43a8a;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <div class="mock-card-title" style="margin:0;">NAMASTE</div>
+            <span style="font-size:7px;padding:2px 6px;background:#1a0d17;border:1px solid #3d0a2e;color:#c43a8a;border-radius:3px;">Loop</span>
+          </div>
+          <div class="mock-card-sub">Photorealistic Trump doing a perfect namaste, eyes closed, marigold garland. Wind moves the flowers. Everything else still.</div>
+          <div style="display:flex;gap:4px;margin-top:6px;">
+            <span style="font-size:7px;padding:2px 5px;background:#0d0d17;border:1px solid #1a1a3d;color:#3a6ec4;border-radius:2px;">Rewatch Bait</span>
+            <span style="font-size:7px;padding:2px 5px;background:#0d0d17;border:1px solid #1a1a3d;color:#3a6ec4;border-radius:2px;">Debate Bait</span>
+          </div>
+        </div>
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px;">3 Loop Variations</div>
+        <div class="img-grid img-grid-3">
+          <div class="img-placeholder" style="aspect-ratio:9/16;background:#1a0d17;border-color:#3d0a2e;font-size:7px;color:#c43a6e;">v1</div>
+          <div class="img-placeholder selected" style="aspect-ratio:9/16;background:#1a0d17;border-color:#3ac45e;font-size:7px;color:#c43a6e;">v2</div>
+          <div class="img-placeholder" style="aspect-ratio:9/16;background:#1a0d17;border-color:#3d0a2e;font-size:7px;color:#c43a6e;">v3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CONSISTENCY ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">How Consistency Works Across Hundreds of Images</div><div class="divider-line"></div></div>
+
+<div class="consistency-grid">
+  <div class="con-card">
+    <h4>Character Prompt Anchor</h4>
+    <div class="con-sub">Locked after casting. Pasted verbatim into every prompt.</div>
+    <div class="con-code"><strong>Mara Voss:</strong> Weather-lined woman, early 40s, deep-set dark eyes, broken nose healed crooked, sun-darkened angular face, lean muscular build. Worn leather duster, bone-spur clasp at collar, dust in cropped grey-streaked hair.</div>
+  </div>
+  <div class="con-card">
+    <h4>Location Prompt Anchor</h4>
+    <div class="con-sub">Locked after location design. Pasted verbatim.</div>
+    <div class="con-code"><strong>The Bonefield:</strong> Narrow canyon, exposed fossil walls in stratified red-ochre sandstone, dinosaur ribcages embedded in cliff face, cracked dry riverbed floor, dawn light raking horizontally across east-facing wall.</div>
+  </div>
+  <div class="con-card">
+    <h4>Set Sheet Prompt Block</h4>
+    <div class="con-sub">Locked after settings. Every object in the space — no improvising.</div>
+    <div class="con-code"><strong>Mara's camp:</strong> Canvas lean-to against canyon wall, fire pit with iron grate, tin coffee pot (dented, blackened base), coiled rope on ledge, saddle with bone-spur pommel, single wool blanket (grey, frayed).</div>
+  </div>
+  <div class="con-card">
+    <h4>Scene Template</h4>
+    <div class="con-sub">Per scene. Locked blocks identical across all 10 variations.</div>
+    <div class="con-code"><strong>Locked:</strong> Format + Medium + Environment + Character + Negatives
+
+<strong>Variable:</strong> Camera angle, lens, DOF, light emphasis
+
+<strong>Result:</strong> 10 angles of the same moment. All cut together.</div>
+  </div>
+</div>
+
+<!-- ========== API USAGE ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">API Usage Per Full IP Run</div><div class="divider-line"></div></div>
+
+<table class="api-table">
+  <thead>
+    <tr><th>Stage</th><th>Claude API</th><th>Image Gen API</th><th>Video Gen API</th><th>DB Write</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ideas</td><td>1 call (30-50 sparks)</td><td>—</td><td>—</td><td>bible.stage1</td></tr>
+    <tr><td>Develop/Modify/Collide</td><td>1 per action</td><td>—</td><td>—</td><td>bible.stage1</td></tr>
+    <tr><td>Thumbnails</td><td>1 (5 prompts)</td><td>5 images per spark</td><td>—</td><td>bible.stage1</td></tr>
+    <tr><td>World (2a-2c)</td><td>3 calls</td><td>—</td><td>—</td><td>bible.stage2</td></tr>
+    <tr><td>Stories (3a-3b)</td><td>2 calls</td><td>—</td><td>—</td><td>bible.stage3</td></tr>
+    <tr><td>Style Lock</td><td>1 (3-5 dirs + prompts)</td><td>12-20 test images</td><td>—</td><td>bible.stage4</td></tr>
+    <tr><td>VLD</td><td>1 call</td><td>—</td><td>—</td><td>bible.stage4</td></tr>
+    <tr><td>Characters + Locations</td><td>1 call</td><td>—</td><td>—</td><td>bible.stage4</td></tr>
+    <tr><td>Casting</td><td>per character (prompt + anchor)</td><td>5 portraits + 1 sheet per char</td><td>—</td><td>bible.stage4</td></tr>
+    <tr><td>Scenes (&times;5)</td><td>5 calls (~50 each)</td><td>—</td><td>—</td><td>bible.stage5</td></tr>
+    <tr><td>Settings</td><td>1 call</td><td>—</td><td>—</td><td>bible.stage6</td></tr>
+    <tr><td style="color:#c4713a;font-weight:700;">Shots (heaviest)</td><td>1 per scene</td><td style="color:#c4713a;">10 &times; shots &times; scenes</td><td>—</td><td>bible.stage6</td></tr>
+    <tr><td>Motion</td><td>1 per still</td><td>—</td><td>1 clip per still</td><td>bible.stage6</td></tr>
+    <tr><td>Short-Form</td><td>concept + prompts</td><td>per format</td><td>per format</td><td>bible.short_form</td></tr>
+  </tbody>
+</table>
+
+<div style="display:flex;gap:16px;margin-top:16px;">
+  <div style="flex:1;background:#0d0d17;border:1px solid #1a1a3d;border-radius:8px;padding:16px;text-align:center;">
+    <div style="font-size:24px;font-weight:800;color:#3a6ec4;">~25-40</div>
+    <div style="font-size:10px;color:#444;text-transform:uppercase;letter-spacing:1px;">Claude API calls</div>
+  </div>
+  <div style="flex:1;background:#110d0d;border:1px solid #3d1a0a;border-radius:8px;padding:16px;text-align:center;">
+    <div style="font-size:24px;font-weight:800;color:#c4713a;">800-3,500</div>
+    <div style="font-size:10px;color:#444;text-transform:uppercase;letter-spacing:1px;">Image gen calls</div>
+  </div>
+  <div style="flex:1;background:#110d14;border:1px solid #3d0a28;border-radius:8px;padding:16px;text-align:center;">
+    <div style="font-size:24px;font-weight:800;color:#c43a6e;">20-100</div>
+    <div style="font-size:10px;color:#444;text-transform:uppercase;letter-spacing:1px;">Video gen calls</div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<div class="footer">
+  <span>Spacecadet &times; Claude — IP Engine</span>
+  <span>One-Person Film Studio</span>
+</div>
+
+</div>
+</body>
+</html>
