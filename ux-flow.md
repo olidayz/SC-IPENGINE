@@ -97,7 +97,7 @@ A single setup screen with the following controls:
 | **Alien dial** | Slider, 1-10, with label descriptions at each level | 7 | `bible.config.alien` |
 | **Spacecadet dimensions** | 4 toggles (Sci-Fi, Surreal, Spiritual, Satiraverse) — toggle emphasis on/off, at least 2 must be on | All on (balanced) | `bible.config.dimensions` |
 | **Tech seeds** | Dropdown multi-select from 7 territories, or "None" | None | `bible.config.seeds` |
-| **Reference anchors** | Searchable picker with category tabs (Directors, Films, TV, Movements, Music, Brands) + free-text custom entry. Autocomplete from `anchor-library.md` (500+ entries with default take/leave). Each selected anchor shows: name, category badge, editable "Take" field (pre-filled from library, user can override), editable "Leave" field (pre-filled, user can override). Max 3. | Empty (optional but recommended) | `bible.config.anchors[]` |
+| ~~**Reference anchors**~~ | **Moved to Style Lock (Stage 4.0)** — anchors live where visual decisions are made, not at session start. | — | `bible.stage4.style_lock.anchors[]` |
 | **Idea modifiers** | Checkbox group: Violation Mode, Satiraverse, Anti-Taste, Emotional Register (dropdown: WOW/NAH/HMM/NSFW/LOL/WTF/UGH), Contrast Mode (two emotion dropdowns) | None | `bible.config.modifiers` |
 | ~~**Pipeline**~~ | ~~Moved to top of form — see first row~~ | — | — |
 
@@ -431,29 +431,45 @@ The Story Window is presented as interactive cards, not a document. Each card ha
 
 ### 4.0 Style Lock
 
+**Step 1: Reference Anchors** (set here, not at session config)
+
+Before any style recommendations, user sets 2-3 reference anchors via searchable picker:
+- **Search bar** — autocomplete from `anchor-library.md` (500+ entries: directors, films, TV, movements, music, brands)
+- **Category tabs** — Directors, Films, TV, Movements, Music, Brands
+- **Free text** — custom entries not in the library
+- **Each anchor shows:** name, category badge, editable Take field (pre-filled default), editable Leave field (pre-filled default)
+- **Max 3.** The triangulation IS the vision.
+
+Anchors persist in the IP Bible and carry forward into VLD, scenes, and shot prompts.
+
+**Step 2: Style Recommendations**
+
 **API call 1:** Claude API
-- **Input:** Spark + world + story + Session Config (anchors especially important here)
+- **Input:** Spark + world + story + Session Config + reference anchors
 - **Prompt:** Load `4-style-lock.md` + `references/style-directions.md`
-- **Output:** 3-5 style recommendations, each as: `{ name, lock_type, pitch, reference_feel, risk, prompts[4] }`
+- **Output:** 3-5 style recommendations informed by anchors, each as: `{ name, lock_type, pitch, reference_feel, risk, prompts[4] }`
 
 **API call 2:** Image Gen API (batch — 4 images per direction, 12-20 total)
 - **Input:** 4 prompts per direction
 - **Output:** Generated test images
 
 **What the user sees:**
-- Style direction cards in a row. Each card shows:
+- **Top: Anchor picker** — set 2-3 references with take/leave before generating recommendations
+- **Below: Style direction cards.** Each card shows:
   - Direction name + lock type (Medium / Aesthetic / Combo)
   - 2-line pitch
+  - How it connects to the user's anchors
   - 4 generated test images in a 2×2 grid (The Face, The World, The Moment, The Icon)
   - Risk line in smaller text
 - Radio select: pick one direction
 
 **User actions:**
+- Set/change anchors → [Generate Recommendations] (can re-run with different anchors)
 - Select a style direction → [Lock Style]
 - [↻ Regenerate Images] per direction (same prompts, new gen)
 - [More Directions] → Claude API generates 3-5 more options
 
-**Saves to Bible:** `bible.stage4.style_lock` — locked style name + prompt DNA keywords
+**Saves to Bible:** `bible.stage4.style_lock` — locked style name + prompt DNA keywords + reference anchors
 
 ### 4.1 Art Direction (VLD)
 

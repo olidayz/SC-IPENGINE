@@ -38,7 +38,17 @@ Don't force a combo when one axis is enough. Don't leave both open — lock at l
 
 ## Generation Process
 
-### Step 1: Read the IP
+### Step 1: Set Reference Anchors
+
+**This is where reference anchors live.** Before recommending styles, the user sets 2-3 creative touchstones — films, directors, shows, artists, brands, movements. Each anchor has a **take** (what to borrow) and a **leave** (what to avoid).
+
+Anchors are selected via the **searchable picker** (`references/anchor-library.md` — 500+ entries with default take/leave, or free-text custom entry). Category tabs: Directors, Films, TV, Movements, Music, Brands.
+
+Anchors directly inform style recommendations — the engine triangulates from the anchors to suggest directions. "Coen Brothers + Miyazaki" points at very different styles than "Gaspar Noé + Afrofuturism."
+
+**Anchors persist in the IP Bible** and carry forward into VLD, scenes, and shot prompts as reference shorthand.
+
+### Step 2: Read the IP
 
 From the spark, world build, or story window — extract:
 - **Core tension** — what the IP is about
@@ -46,8 +56,9 @@ From the spark, world build, or story window — extract:
 - **World type** — constructed, revealed, hybrid
 - **Audience instinct** — who watches this
 - **Spacecadet dimension profile** — which dimensions are strongest
+- **Reference anchors** — the 2-3 touchstones the user just set
 
-### Step 2: Recommend 3-5 Style Combos
+### Step 3: Recommend 3-5 Style Directions
 
 Each recommendation can be a medium, an aesthetic, or a combo — whatever makes the strongest creative argument for THIS IP.
 
@@ -65,7 +76,7 @@ Present as:
 - At least 1 unexpected direction that stretches the IP
 - Use prompt DNA from whatever layers are locked (medium, aesthetic, or both)
 
-### Step 3: Generate 4 Prompts Per Combo
+### Step 4: Generate 4 Prompts Per Direction
 
 For each recommended combo, generate **4 vertical money shot prompts** (9:16) that show what this specific IP looks like in this specific style. These are style tests — not final production.
 
@@ -84,7 +95,7 @@ For each recommended combo, generate **4 vertical money shot prompts** (9:16) th
 - Every prompt is specific to THIS IP, not generic style demonstrations
 - Include `Exclude:` line on every prompt
 
-### Step 4: Present for Selection
+### Step 5: Present for Selection
 
 Show all combos with their 4 prompts. User picks one. That combo becomes a locked constraint for the entire VLD and all downstream stages.
 

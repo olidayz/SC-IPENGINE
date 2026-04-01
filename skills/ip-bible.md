@@ -23,15 +23,12 @@ Last updated: [date + stage]
 
 ## Session Config
 
+Pipeline: [Full / Short-Form / Both]
 Alien Dial: [N] / 10
 SC Dimensions: [emphasized or balanced]
 Tech Seeds: [territory or none]
-Reference Anchors:
-  1. [work] — take [X], leave [Y]
-  2. [work] — take [X], leave [Y]
-  3. [work] — take [X], leave [Y] (if set)
 Modifiers: [list or none]
-Pipeline: [Full / Short-Form / Both]
+Taste Filter: [On / Off]
 
 ---
 
@@ -95,6 +92,10 @@ Pipeline: [Full / Short-Form / Both]
 ## Stage 4: Visual Development
 
 ### Style Lock (4-style-lock — approved)
+**Reference Anchors:**
+  1. [work] — take [X], leave [Y]
+  2. [work] — take [X], leave [Y]
+  3. [work] — take [X], leave [Y] (if set)
 **Lock Type:** [Medium only / Aesthetic only / Medium × Aesthetic]
 **Medium:** [if locked]
 **Aesthetic:** [if locked]
