@@ -177,22 +177,49 @@ A single setup screen with the following controls:
 
 ## 2. STAGE 2: WORLD
 
+All world stages generate together in one Claude call (better quality — sections influence each other). The UI presents the output as a **card grid** — each section is its own interactive card with progressive disclosure.
+
+### Card Pattern (used across all 2.x stages)
+
+Every card shows:
+- **Title**
+- **1-2 line summary** (always visible — scannable without expanding)
+- **Full content** (collapsed by default, expand to read)
+- **Actions:** ✓ Approve | ✎ Edit inline | ↻ Regenerate this card (Claude call with rest of world as context) | 🛸 Spacecadetify
+
+User scans summaries. Expands what interests them. Edits what needs work. Approves the rest without reading every word.
+
 ### 2.1 Core (2 Directions)
 
 **API call:** Claude API
 - **Input:** Selected spark + Session Config
 - **Prompt:** Load `2a-core.md`
-- **Output:** 2 directions, each as structured JSON: `{ sacred_question, premise, tension, allegory, myth, rules[] }`
+- **Output:** 2 directions, each as structured JSON with per-section summaries: `{ sacred_question, sacred_question_summary, premise, premise_summary, tension, tension_summary, allegory, allegory_summary, myth, myth_summary, rules[] }`
 
 **What the user sees:**
-- Two side-by-side panels, each showing one direction:
-  - Sacred Question (highlighted)
-  - World Premise
-  - Tension
-  - Allegory
-  - Myth
-  - Rules table
-- Below: action row
+- Two side-by-side panels. Each direction shown as a card grid:
+
+```
+DIRECTION A                          DIRECTION B
+┌──────────────────┐                ┌──────────────────┐
+│ Sacred Question   │                │ Sacred Question   │
+│ "What happens..." │                │ "Who decides..."  │
+│ ▸ expand          │                │ ▸ expand          │
+├──────────────────┤                ├──────────────────┤
+│ Premise           │                │ Premise           │
+│ "Cowboys ride..." │                │ "Dinosaurs are..." │
+│ ▸ expand          │                │ ▸ expand          │
+├──────────────────┤                ├──────────────────┤
+│ Tension           │                │ Tension           │
+│ "Negotiation vs." │                │ "Sacred vs..."    │
+│ ▸ expand          │                │ ▸ expand          │
+├──────────────────┤                ├──────────────────┤
+│ Myth · Rules      │                │ Myth · Rules      │
+│ ▸ expand          │                │ ▸ expand          │
+└──────────────────┘                └──────────────────┘
+     [Pick A]                            [Pick B]
+                    [Hybridize]
+```
 
 **User actions:**
 
@@ -200,34 +227,83 @@ A single setup screen with the following controls:
 |--------|-------------|
 | **Pick Direction A** | Direction A locked, B discarded. |
 | **Pick Direction B** | Direction B locked, A discarded. |
-| **Hybridize** | Opens text input: "What to take from each?" → Claude API call → returns hybrid. Shown as a third panel. User approves or iterates. |
+| **Hybridize** | Opens text input: "What to take from each?" → Claude API call → returns hybrid as third card grid. User approves or iterates. |
 | **→ Next** | Routes to 2.2 World Build. |
 
 **Saves to Bible:** Approved direction — `bible.stage2.core`
 
 ### 2.2 World Build
 
-**API call:** Claude API
+**API call 1:** Claude API
 - **Input:** Approved core + Session Config (tech seeds load here if configured)
 - **Prompt:** Load `2b-world.md`
-- **Output:** Structured JSON: `{ speculative_layer, world_texture, history[], factions[], conflicts[], objects[] }`
+- **Output:** Structured JSON with summaries per section: `{ speculative_layer, world_texture, history[], factions[], conflicts[], objects[] }` — each with a `_summary` field
 
-**What the user sees:**
-- Scrollable document-style page with collapsible sections:
-  - Speculative Layer
-  - World Texture (prose)
-  - History (timeline/table)
-  - Factions (cards with territory, values, rivals)
-  - Conflicts
-  - Objects & Artifacts
-- Each section has: [✓ Approve] [✎ Edit] [↻ Regenerate Section]
+**API call 2:** Image Gen API (per faction)
+- **Input:** Faction visual identity prompts (auto-generated from faction descriptions)
+- **Output:** 1 concept image per faction — showing territory, people, aesthetic
 
-**User actions:**
-- Approve entire build or request edits per section
-- [✎ Edit] → inline text editing, user modifies directly
-- [↻ Regenerate Section] → Claude API call with feedback → replaces section
+**What the user sees — card grid:**
 
-**Saves to Bible:** Approved world build — `bible.stage2.world`
+```
+┌────────────────┐ ┌────────────────┐ ┌────────────────┐
+│ Speculative    │ │ World Texture  │ │ History        │
+│ Layer          │ │                │ │                │
+│ "All tech is   │ │ "Dust, bone,   │ │ [timeline]     │
+│  bio-based..." │ │  amber light." │ │ Era 1 → 2 → 3 │
+│ ✓  ✎  ↻  🛸   │ │ ✓  ✎  ↻  🛸   │ │ ✓  ✎  ↻  🛸   │
+└────────────────┘ └────────────────┘ └────────────────┘
+```
+
+**Factions — special treatment (cards with concept images):**
+
+```
+┌──────────────────────────────────┐
+│ 🔴 THE BONE AUTHORITY            │
+│ [CONCEPT IMAGE]                  │
+│ "Controls the fossil trade.      │
+│  Bureaucratic monopoly           │
+│  disguised as conservation."     │
+│                                  │
+│ ▸ Territory  ▸ Values  ▸ Rivals  │
+│ ▸ Characters ▸ Visual Identity   │
+│                                  │
+│ ✓  ✎  ↻  🛸  → Short-Form       │
+└──────────────────────────────────┘
+
+┌──────────────────────────────────┐
+│ 🟢 THE FREE RANGE               │
+│ [CONCEPT IMAGE]                  │
+│ "Nomadic riders who refuse to    │
+│  register their mounts..."       │
+│                                  │
+│ ▸ Territory  ▸ Values  ▸ Rivals  │
+│ ✓  ✎  ↻  🛸  → Short-Form       │
+└──────────────────────────────────┘
+```
+
+Each faction card:
+- **Concept image** (generated — shows territory + people + aesthetic in one frame)
+- 2-line summary (always visible)
+- Expandable sub-sections: Territory, Values, Rivals, Character Archetypes, Visual Identity
+- Full action row including → Short-Form (a faction could be great viral content on its own)
+
+**Remaining cards:**
+
+```
+┌────────────────┐ ┌────────────────┐
+│ Conflicts      │ │ Objects &      │
+│                │ │ Artifacts      │
+│ [expandable    │ │ [expandable    │
+│  conflict      │ │  list with     │
+│  pairs]        │ │  descriptions] │
+│ ✓  ✎  ↻  🛸   │ │ ✓  ✎  ↻  🛸   │
+└────────────────┘ └────────────────┘
+```
+
+**Bottom bar:** [Approve All Remaining] for sections the user doesn't need to inspect.
+
+**Saves to Bible:** Approved world build + faction concept image URLs — `bible.stage2.world`
 
 ### 2.3 Franchise
 
@@ -236,7 +312,7 @@ A single setup screen with the following controls:
 - **Prompt:** Load `2c-franchise.md`
 - **Output:** `{ tonal_range, expansion_vectors[], how_fans_join[] }`
 
-**Same UI pattern** — collapsible sections, approve/edit/regenerate per section.
+**Same card grid pattern.** Tonal Range as a 4-register card (Core / Light / Dark / Weird). Expansion Vectors as individual cards (Film 1, Films 2-3, Series, Game, Short-Form). How Fans Join as a card.
 
 **Saves to Bible:** `bible.stage2.franchise`
 
@@ -252,10 +328,10 @@ A single setup screen with the following controls:
 - **Output:** 3-5 stories, each as: `{ title, logline, protagonist: { name, position, premise, wound, hook }, ensemble[] }`
 
 **What the user sees:**
-- Story cards (expandable). Each shows:
-  - Title + logline (collapsed view)
+- Story seed cards. Each shows:
+  - Title + logline (always visible)
   - Expand → protagonist, premise, wound, hook, ensemble list
-  - ♥ Select for development
+  - ♥ Select for development | → Short-Form (branch any seed that has viral energy)
 
 **User selects 1-3 seeds.**
 
@@ -266,11 +342,86 @@ A single setup screen with the following controls:
 **API call:** Claude API (per selected seed)
 - **Input:** Selected seed + full world bible
 - **Prompt:** Load `3b-arcs.md`
-- **Output:** Full Story Window as structured JSON
+- **Output:** Full Story Window as structured JSON with per-section summaries
 
-**What the user sees:**
-- Document-style page per story: Setup, Characters, Premise, Protagonist, Opponent, Pressure Cooker, Collision, Cost
-- Approve / Edit / Regenerate per section
+**What the user sees — card grid per story:**
+
+The Story Window is presented as interactive cards, not a document. Each card has: summary (always visible) + full content (expandable) + ✓ ✎ ↻ 🛸 actions.
+
+**Layout:**
+
+```
+┌──────────────────────────────────────────────────┐
+│ SETUP                                            │
+│ "In a world where cowboys and dinosaurs          │
+│  negotiate an uneasy coexistence..."             │
+│ ▸ expand (1-2 paragraphs)                        │
+│ ✓  ✎  ↻  🛸                                     │
+└──────────────────────────────────────────────────┘
+
+┌──────────────────────┐  ←VS→  ┌──────────────────────┐
+│ PROTAGONIST          │        │ OPPONENT              │
+│                      │        │                       │
+│ Mara Voss            │        │ Director Harlan Cole  │
+│ First contact        │        │ Bone Authority head   │
+│ negotiator           │        │                       │
+│                      │        │                       │
+│ Want: Prove          │        │ Position: Dinosaurs   │
+│ coexistence works    │        │ are resources, not    │
+│                      │        │ partners              │
+│ Need: Let go of      │        │                       │
+│ control              │        │ Pressure: Bureaucratic│
+│                      │        │ suffocation + economic │
+│ Wound: Lost a        │        │ leverage              │
+│ partner to a Rex     │        │                       │
+│                      │        │                       │
+│ ✓  ✎  ↻  🛸         │        │ ✓  ✎  ↻  🛸          │
+└──────────────────────┘        └──────────────────────┘
+
+┌──────────────────────────────────────────────────┐
+│ PREMISE                                          │
+│ Trait → Action → Consequence                     │
+│ "A need to negotiate → risks everything on first │
+│  contact → discovers negotiation requires        │
+│  surrender, not skill"                           │
+│ ✓  ✎  ↻  🛸                                     │
+└──────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────┐
+│ PRESSURE COOKER (timeline)                       │
+│                                                  │
+│ ──●──────────●──────────●──────────●──────────●──│
+│   Inciting    Comp. 1    Comp. 2    Comp. 3  Clock│
+│   Event                                     runs │
+│                                              out  │
+│   "A wild Rex  "Bone     "Mara's   "The Rex     │
+│   crosses the  Authority  own team  remembers    │
+│   border into  revokes    turns on  the partner  │
+│   settlement"  her        her"      she lost"    │
+│                permit"                           │
+│ ✓  ✎  ↻  🛸                                     │
+└──────────────────────────────────────────────────┘
+
+┌──────────────────────┐ ┌──────────────────────┐
+│ COLLISION            │ │ COST                 │
+│                      │ │                      │
+│ The discovery:       │ │ Gained: First true   │
+│ "The Rex isn't       │ │ bond between species │
+│ negotiating. It's    │ │                      │
+│ grieving. Mara's     │ │ Lost: The illusion   │
+│ lost partner was     │ │ that she was ever    │
+│ its rider."          │ │ in control           │
+│                      │ │                      │
+│ ▸ Before/After shift │ │ ▸ Sacred Question    │
+│ ✓  ✎  ↻  🛸         │ │ ✓  ✎  ↻  🛸         │
+└──────────────────────┘ └──────────────────────┘
+```
+
+**Key layout decisions:**
+- **Protagonist vs. Opponent** — split card, side by side. The opposition IS the story. Visually mirrors the narrative tension.
+- **Pressure Cooker** — horizontal timeline, not text block. Inciting event → 3 complications → clock. Each node expandable. Shows escalation visually.
+- **Collision + Cost** — paired cards at the bottom. The payoff.
+- **Every card** has its own approve/edit/regen/spacecadetify. No "approve all" until every card is individually addressed.
 
 **Saves to Bible:** `bible.stage3.story_windows[]`
 

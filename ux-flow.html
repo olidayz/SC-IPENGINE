@@ -514,54 +514,192 @@
   <span>📖</span> <strong>IP Bible:</strong> Spark + thumbnail direction locked. <span class="save-tag">Auto-save</span>
 </div>
 
-<!-- ========== WORLD + STORIES ========== -->
-<div class="divider"><div class="divider-line"></div><div class="divider-label">Stages 2-3 — World + Story (Text Only)</div><div class="divider-line"></div></div>
+<!-- ========== WORLD ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 2 — World (Card Grid + Faction Images)</div><div class="divider-line"></div></div>
 
 <div class="step">
   <div class="step-info">
     <span class="step-tag tag-text">Text Generation</span>
-    <div class="step-title">World Building + Stories</div>
-    <div class="step-desc">All text. No image generation. Claude builds the world and finds stories inside it. User approves at each gate. Everything feeds vis-dev downstream.</div>
+    <span class="step-tag tag-gen" style="margin-left:4px;">Faction Images</span>
+    <div class="step-num">Stage 2</div>
+    <div class="step-title">World Building</div>
+    <div class="step-desc">Claude generates everything in one call (sections influence each other). UI presents as a <strong>card grid</strong> — each section is its own interactive card. Factions get concept images.</div>
     <div class="api-row">
-      <span class="api-badge api-claude">Claude: 5 calls</span>
-      <span class="api-badge api-db">Writes: bible.stage2 + bible.stage3</span>
+      <span class="api-badge api-claude">Claude: 3 calls (core, build, franchise)</span>
+      <span class="api-badge api-image">Image Gen: 1 per faction</span>
+      <span class="api-badge api-db">Writes: bible.stage2</span>
     </div>
     <div class="data-flow">
-      <strong>Stage 2 — World</strong> (3 approval gates):<br>
-      <span class="hl-claude">2a Core</span> &rarr; 2 directions, <span class="hl-user">user picks one or hybridizes</span> &rarr; <span class="hl-db">save</span><br>
-      <span class="hl-claude">2b Build</span> &rarr; factions, history, objects &rarr; <span class="hl-user">approve/edit per section</span> &rarr; <span class="hl-db">save</span><br>
-      <span class="hl-claude">2c Franchise</span> &rarr; tonal range, formats, fans &rarr; <span class="hl-user">approve</span> &rarr; <span class="hl-db">save</span><br><br>
-      <strong>Stage 3 — Stories</strong> (2 approval gates):<br>
-      <span class="hl-claude">3a Seeds</span> &rarr; 3-5 story pitches &rarr; <span class="hl-user">select 1-3</span> &rarr; <span class="hl-db">save</span><br>
-      <span class="hl-claude">3b Arcs</span> &rarr; full Story Windows &rarr; <span class="hl-user">approve/edit</span> &rarr; <span class="hl-db">save</span>
+      <strong>Card pattern (every section):</strong><br>
+      Title + 1-2 line summary (always visible) + full content (collapsed)<br>
+      Actions: <span class="hl-user">✓ Approve</span> · <span class="hl-user">✎ Edit</span> · <span class="hl-claude">↻ Regen</span> · <span class="hl-user">🛸 Spacecadetify</span><br><br>
+      <strong>Factions get special treatment:</strong><br>
+      Each faction = its own card with <span class="hl-img">concept image</span> (territory + people + aesthetic).<br>
+      Expandable sub-sections: Territory, Values, Rivals, Characters, Visual Identity.<br>
+      <span class="hl-user">&rarr; Short-Form</span> available per faction.
     </div>
   </div>
   <div class="step-screen">
     <div class="mock">
       <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
       <div class="mock-body">
-        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Stage 2a — Pick a direction</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <!-- 2a: Directions -->
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">2a — Pick a direction</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:10px;">
           <div class="mock-card" style="border-left:2px solid #3a6ec4;">
-            <div class="mock-card-title">Direction A</div>
-            <div class="mock-card-sub">Dinosaurs as infrastructure. Cowboys as maintenance workers for a biological machine they didn't build.</div>
+            <div class="mock-card-title" style="font-size:10px;">Direction A</div>
+            <div class="mock-card-sub">Dinosaurs as infrastructure.</div>
+            <div style="font-size:8px;color:#333;margin-top:4px;">▸ Sacred Question · Premise · Tension · Myth</div>
           </div>
           <div class="mock-card">
-            <div class="mock-card-title">Direction B</div>
-            <div class="mock-card-sub">Dinosaurs as gods. Cowboys as the first species arrogant enough to ride something sacred.</div>
+            <div class="mock-card-title" style="font-size:10px;">Direction B</div>
+            <div class="mock-card-sub">Dinosaurs as gods.</div>
+            <div style="font-size:8px;color:#333;margin-top:4px;">▸ Sacred Question · Premise · Tension · Myth</div>
           </div>
         </div>
-        <div class="mock-actions" style="margin-top:10px;">
+        <div class="mock-actions" style="margin-bottom:12px;">
           <span class="mock-btn mock-btn-primary">Pick A</span>
           <span class="mock-btn">Pick B</span>
           <span class="mock-btn">Hybridize</span>
         </div>
-        <div style="margin-top:16px;padding-top:12px;border-top:1px solid #111118;">
-          <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Stage 3a — Story Seeds</div>
-          <div class="mock-card">
-            <div class="mock-card-title">YEAR ONE</div>
-            <div class="mock-card-sub">Mara Voss — first contact negotiator. The dinosaurs don't want to be tamed. Neither does she.</div>
-            <div class="mock-actions"><span class="mock-btn" style="color:#c4c43a;">&hearts; Select</span></div>
+        <!-- 2b: Card grid -->
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">2b — World Build (card grid)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-bottom:6px;">
+          <div class="mock-card" style="padding:6px;">
+            <div style="font-size:8px;font-weight:700;color:#888;">Speculative Layer</div>
+            <div style="font-size:7px;color:#444;">"All tech is bio-based..."</div>
+            <div style="font-size:7px;color:#222;margin-top:2px;">✓ ✎ ↻ 🛸</div>
+          </div>
+          <div class="mock-card" style="padding:6px;">
+            <div style="font-size:8px;font-weight:700;color:#888;">World Texture</div>
+            <div style="font-size:7px;color:#444;">"Dust, bone, amber light"</div>
+            <div style="font-size:7px;color:#222;margin-top:2px;">✓ ✎ ↻ 🛸</div>
+          </div>
+          <div class="mock-card" style="padding:6px;">
+            <div style="font-size:8px;font-weight:700;color:#888;">History</div>
+            <div style="font-size:7px;color:#444;">3 eras timeline</div>
+            <div style="font-size:7px;color:#222;margin-top:2px;">✓ ✎ ↻ 🛸</div>
+          </div>
+        </div>
+        <!-- Faction cards with images -->
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Factions (with concept images)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+          <div class="mock-card" style="padding:6px;border-left:2px solid #ef4444;">
+            <div style="display:flex;gap:6px;">
+              <div class="img-placeholder" style="aspect-ratio:1;width:48px;flex-shrink:0;font-size:6px;border-color:#ef4444;">img</div>
+              <div>
+                <div style="font-size:9px;font-weight:700;color:#ccc;">The Bone Authority</div>
+                <div style="font-size:7px;color:#444;">"Bureaucratic monopoly disguised as conservation"</div>
+                <div style="font-size:7px;color:#222;margin-top:3px;">▸ Territory · Values · Rivals</div>
+                <div style="font-size:7px;color:#222;">✓ ✎ ↻ 🛸 →SF</div>
+              </div>
+            </div>
+          </div>
+          <div class="mock-card" style="padding:6px;border-left:2px solid #22c55e;">
+            <div style="display:flex;gap:6px;">
+              <div class="img-placeholder" style="aspect-ratio:1;width:48px;flex-shrink:0;font-size:6px;border-color:#22c55e;">img</div>
+              <div>
+                <div style="font-size:9px;font-weight:700;color:#ccc;">The Free Range</div>
+                <div style="font-size:7px;color:#444;">"Nomadic riders who refuse registration"</div>
+                <div style="font-size:7px;color:#222;margin-top:3px;">▸ Territory · Values · Rivals</div>
+                <div style="font-size:7px;color:#222;">✓ ✎ ↻ 🛸 →SF</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bible-bar">
+  <span>📖</span> <strong>IP Bible:</strong> World build saved per-card. Faction images stored. <span class="save-tag">Auto-save</span>
+</div>
+
+<!-- ========== STORIES ========== -->
+<div class="divider"><div class="divider-line"></div><div class="divider-label">Stage 3 — Stories (Card Grid + Timeline)</div><div class="divider-line"></div></div>
+
+<div class="step">
+  <div class="step-info">
+    <span class="step-tag tag-text">Text Generation</span>
+    <div class="step-num">Stage 3</div>
+    <div class="step-title">Stories</div>
+    <div class="step-desc">Find stories inside the world. Story Window presented as interactive cards — not a document. Protagonist vs. Opponent as split card. Pressure Cooker as visual timeline.</div>
+    <div class="api-row">
+      <span class="api-badge api-claude">Claude: 2 calls (seeds + windows)</span>
+      <span class="api-badge api-db">Writes: bible.stage3</span>
+    </div>
+    <div class="data-flow">
+      <strong>3a Seeds:</strong> 3-5 story cards &rarr; <span class="hl-user">select 1-3</span><br>
+      <strong>3b Story Window:</strong> card grid per story<br><br>
+      <strong>Layout:</strong><br>
+      &bull; Setup card (expandable prose)<br>
+      &bull; Protagonist ↔ Opponent (split card, side by side)<br>
+      &bull; Premise card (Trait &rarr; Action &rarr; Consequence)<br>
+      &bull; Pressure Cooker (horizontal timeline: inciting &rarr; 3 complications &rarr; clock)<br>
+      &bull; Collision + Cost (paired cards at bottom)
+    </div>
+  </div>
+  <div class="step-screen">
+    <div class="mock">
+      <div class="mock-bar"><div class="mock-dot"></div><div class="mock-dot"></div><div class="mock-dot"></div></div>
+      <div class="mock-body">
+        <!-- Seeds -->
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">3a — Story Seeds</div>
+        <div class="mock-card" style="border-left:2px solid #c4c43a;">
+          <div class="mock-card-title">YEAR ONE</div>
+          <div class="mock-card-sub">Mara Voss — first contact negotiator. The dinosaurs don't want to be tamed. Neither does she.</div>
+          <div class="mock-actions"><span class="mock-btn" style="color:#c4c43a;">&hearts;</span><span class="mock-btn">→SF</span></div>
+        </div>
+        <!-- Story Window cards -->
+        <div style="font-size:9px;color:#333;text-transform:uppercase;letter-spacing:1px;margin:10px 0 6px;">3b — Story Window (cards)</div>
+        <div class="mock-card" style="padding:6px;margin-bottom:4px;">
+          <div style="font-size:8px;font-weight:700;color:#888;">SETUP</div>
+          <div style="font-size:7px;color:#444;">"In a world where cowboys negotiate..." ▸ expand</div>
+        </div>
+        <!-- Protagonist vs Opponent -->
+        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:4px;">
+          <div class="mock-card" style="padding:6px;border-right:none;border-radius:6px 0 0 6px;">
+            <div style="font-size:8px;font-weight:700;color:#3a6ec4;">PROTAGONIST</div>
+            <div style="font-size:8px;font-weight:600;color:#ccc;">Mara Voss</div>
+            <div style="font-size:7px;color:#444;">Want: Prove coexistence</div>
+            <div style="font-size:7px;color:#444;">Wound: Lost a partner</div>
+          </div>
+          <div style="display:flex;align-items:center;background:#0c0c10;border-top:1px solid #1a1a22;border-bottom:1px solid #1a1a22;padding:0 6px;font-size:8px;color:#333;font-weight:700;">VS</div>
+          <div class="mock-card" style="padding:6px;border-left:none;border-radius:0 6px 6px 0;">
+            <div style="font-size:8px;font-weight:700;color:#c43a3a;">OPPONENT</div>
+            <div style="font-size:8px;font-weight:600;color:#ccc;">Director Cole</div>
+            <div style="font-size:7px;color:#444;">Position: Resources, not partners</div>
+            <div style="font-size:7px;color:#444;">Pressure: Bureaucratic</div>
+          </div>
+        </div>
+        <!-- Pressure Cooker timeline -->
+        <div class="mock-card" style="padding:8px;margin-bottom:4px;">
+          <div style="font-size:8px;font-weight:700;color:#c4713a;">PRESSURE COOKER</div>
+          <div style="display:flex;align-items:center;gap:2px;margin-top:6px;">
+            <div style="width:12px;height:12px;border-radius:50%;background:#c4713a;flex-shrink:0;"></div>
+            <div style="height:2px;flex:1;background:#3d1a0a;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#c4713a;flex-shrink:0;opacity:0.8;"></div>
+            <div style="height:2px;flex:1;background:#3d1a0a;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#c4713a;flex-shrink:0;opacity:0.6;"></div>
+            <div style="height:2px;flex:1;background:#3d1a0a;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#c4713a;flex-shrink:0;opacity:0.4;"></div>
+            <div style="height:2px;flex:1;background:#3d1a0a;"></div>
+            <div style="width:12px;height:12px;border-radius:50%;background:#ef4444;flex-shrink:0;"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:6px;color:#444;margin-top:2px;">
+            <span>Inciting</span><span>Comp.1</span><span>Comp.2</span><span>Comp.3</span><span style="color:#ef4444;">Clock</span>
+          </div>
+        </div>
+        <!-- Collision + Cost -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;">
+          <div class="mock-card" style="padding:6px;">
+            <div style="font-size:8px;font-weight:700;color:#a855f7;">COLLISION</div>
+            <div style="font-size:7px;color:#444;">"The Rex isn't negotiating. It's grieving."</div>
+          </div>
+          <div class="mock-card" style="padding:6px;">
+            <div style="font-size:8px;font-weight:700;color:#22c55e;">COST</div>
+            <div style="font-size:7px;color:#444;">Gained: First bond. Lost: Illusion of control.</div>
           </div>
         </div>
       </div>
