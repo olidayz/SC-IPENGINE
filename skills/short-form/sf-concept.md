@@ -28,33 +28,60 @@ When the input is a single subject with no collision, force one. Run the subject
 
 ### Collision Categories
 
-| Category | What It Does | Example with "Betty Boop" |
-|----------|-------------|--------------------------|
+| Category | What It Does | Example |
+|----------|-------------|---------|
 | **Crime** | The subject is committing, investigating, or victim of a specific crime | Betty Boop is running a money laundering operation through merch licensing |
 | **Modern Platform** | The subject exists on a platform that creates friction with who they are | Betty Boop is a Twitch streamer and her mods are out of control |
-| **Wrong Job** | The subject has a job that collides with their identity | Betty Boop is an HR manager at a tech startup |
-| **Wrong Era** | The subject is in a time period that creates friction | Betty Boop in 2026 TikTok vs. Betty Boop in her original 1932 context — simultaneously |
+| **Wrong Job** | The subject has a SPECIFIC mundane or absurd job that collides with their identity | Betty Boop is an HR manager at a tech startup |
+| **Wrong Era** | The subject is in a time period that creates friction | Betty Boop in 2026 TikTok vs. Betty Boop in her original 1932 context |
 | **Wrong Relationship** | The subject has a relationship that shouldn't exist | Betty Boop is Mickey Mouse's divorce lawyer |
-| **Power Inversion** | The subject's status is flipped — powerful becomes powerless or vice versa | Betty Boop owns the studio that created her and is firing executives |
+| **Power Inversion** | The subject's status is flipped | Betty Boop owns the studio that created her and is firing executives |
 | **Dark Secret** | The subject has a hidden truth that reframes everything | Betty Boop has been conscious inside every piece of merchandise for 94 years |
-| **Rivalry** | The subject is in direct conflict with someone unexpected | Betty Boop vs. the Mona Lisa for most reproduced female image in history |
-| **Mundane Extreme** | The subject in an extremely mundane situation, played straight | Betty Boop at the DMV. Betty Boop doing her taxes. Betty Boop on hold with Comcast. |
-| **Genre Swap** | The subject dropped into a genre that violates their tone | Betty Boop in a true crime documentary. Betty Boop in a Ken Burns doc. |
+| **Rivalry** | The subject is in direct conflict with someone unexpected | Betty Boop vs. the Mona Lisa for most reproduced female image |
+| **Genre Swap** | The subject dropped into a genre that violates their tone | Betty Boop in a true crime documentary |
 | **Literal** | Take something metaphorical about the subject and make it literally true | Betty Boop was literally drawn into existence and can feel the pen strokes |
-| **Scale** | Blow the subject up to global/cosmic scale or shrink to microscopic | Betty Boop is a religion with 200 million followers. Or: Betty Boop is the size of a postage stamp, living on someone's desk. |
+| **Scale** | Blow the subject up to cosmic scale or shrink to microscopic | Betty Boop is a religion with 200 million followers |
 | **Victim/Villain Flip** | The subject switches from their assumed moral position | Betty Boop isn't the victim of sexualization — she orchestrated it for power |
 | **Parasite** | The subject is feeding on, infiltrating, or replacing something | Betty Boop is slowly replacing all female cartoon characters from the inside |
-| **Documentary** | The subject is the focus of a specific documentary format (true crime, nature doc, exposé, behind-the-music) | "The Betty Boop Tapes" — a 4-part Netflix docuseries about what really happened at Fleischer Studios |
+| **Documentary** | The subject is the focus of a specific documentary format | "The Betty Boop Tapes" — a 4-part Netflix docuseries |
+| **Classified** | The subject is a government secret, military project, or intelligence asset | Betty Boop is a CIA psychological operation that got out of control |
+| **Biological** | The subject is a species, organism, condition, or evolutionary event | Big Chungus was found in the Mariana Trench and scientists can't explain it |
+
+### Collision Quality Rules
+
+**The collision must be VISUAL, not just clever.** Every collision must pass this test: can I immediately picture what the video looks like? If the collision is just a funny idea that plays out through dialogue or text, it fails.
+
+| GOOD collision (visual) | BAD collision (clever but not visual) |
+|------------------------|--------------------------------------|
+| Fu Manchu is a Walmart greeter | Fu Manchu is the reason your parents are afraid of MSG |
+| Clippy walks the halls of CIA headquarters | Clippy is the most dangerous software ever created |
+| Patrick Star standing at the foot of your bed at 3am | Patrick Star is secretly a genius |
+| Big Chungus restrained in a military hangar | Big Chungus is a cryptocurrency |
+| McLovin's face on Mount Rushmore | McLovin's ID changed identity law forever |
+
+The left column: you SEE it instantly. The right column: you'd need an essay to explain it.
+
+**The collision must NOT be:**
+- A fact about the subject (even a surprising one — facts are tweets, not videos)
+- An observation or cultural take ("Fu Manchu is the original supervillain" — that's a thread, not a video)
+- A premise that requires dialogue to land ("Yakub is beefing with God" — what does that LOOK like?)
+- An abstract reframe ("David Hasselhoff is Germany's nuclear deterrent" — cool sentence, unwatchable video)
+
+**The collision MUST be:**
+- A specific situation you can picture immediately
+- Something where the FIRST FRAME of the video is already interesting
+- Absurd, wrong, or impossible enough that you can't scroll past it
+- Simple enough to say in one sentence AND the listener pictures it
 
 ### How to Use Collision Seeds
 
 1. Run the subject against ALL categories internally
 2. Most won't fire. 3-5 will produce something with friction.
-3. Of those, pick the 2-3 with the strongest visual potential (remember: concepts must be PRODUCIBLE)
-4. Generate specific scenarios within each collision
+3. **VISUAL TEST EVERY COLLISION:** For each, ask "what does the thumbnail look like?" If you can't answer in 3 seconds, kill it. It's a clever thought, not a producible collision.
+4. Present ONLY collisions that pass the visual test
 5. If the user already provided a collision, skip this step entirely
 
-**The collision is NOT the concept.** "Betty Boop is a serial killer" is the collision. "Betty Boop leaves a black-and-white cartoon flower at each crime scene" is the concept. The collision sets the territory; the concepts are specific scenes within it.
+**The collision is NOT the concept.** "Betty Boop is a serial killer" is the collision. "Betty Boop leaves a black-and-white cartoon flower at each crime scene" is a scene within that collision. The collision sets the territory; the scenes within it are what get produced.
 
 ---
 
