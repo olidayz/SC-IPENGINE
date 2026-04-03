@@ -318,52 +318,64 @@ Not every format needs copy. When it does:
 
 **This is critical. The idea and the execution are SEPARATE STEPS with a user decision in between.**
 
-### Step 7: Present the IDEAS (collisions only)
+### Step 7: Present the IDEAS
 
-First, present ONLY the collision ideas. No format. No duration. No copy. No angles. No execution. Just the ideas.
+An idea is a COLLISION — the subject + the reframe. One sentence. It's the "what if" that makes someone say "I need to see that."
 
-```
-**[TITLE]** — [the idea in one sentence]
-```
-
-One line per idea. The user scans and picks which IDEAS they want to develop. This is the creative selection — "which of these concepts is interesting enough to figure out HOW to show?"
-
-**What does NOT go here:**
-- Format (loop/punch/carousel) — that's execution
-- Duration — execution
-- Copy/on-screen text — execution
-- Camera angles, lighting, framing — execution
-- Lever, mechanic, series structure — internal, never shown
-- Multiple sentences explaining the idea — if it takes two sentences, the idea isn't clear
-
-**Example output:**
-```
-**THE HALLWAY** — Clippy walks through a CIA black site with a lanyard and clearance badge.
-**THE CHAIR** — Clippy sits across from a detainee in an interrogation room.
-**THE HAGUE** — Clippy is on trial for war crimes at the International Criminal Court.
-**STAR 94** — Clippy has a headstone at Arlington National Cemetery.
-**THE BADGE** — A real CIA employee ID badge with Clippy's photo on it.
-```
-
-The user picks one or more. THEN we figure out how to show it.
-
-### Step 8: Develop the EXECUTION (after user picks)
-
-Only after the user selects an idea do we develop HOW to show it. This is where format, duration, copy, on-screen text, and visual approach get decided.
-
-For each selected idea, present 2-3 execution options:
+An idea is NOT a scene, a scenario, a location, or a visual. It's the premise. Everything else comes after the user picks it.
 
 ```
-**[SELECTED IDEA]**
-
-Execution A: [format] · [duration] · [one sentence describing the visual approach] · [on-screen text if any]
-Execution B: [format] · [duration] · [different visual approach] · [on-screen text if any]
-Execution C: [format] · [duration] · [different visual approach] · [on-screen text if any]
+[the collision in one sentence]
 ```
 
-The user picks an execution. THEN we go to sf-prompt for generation-ready prompts.
+One line per idea. The user scans and picks. THEN we develop scenes within the chosen collision.
 
-**Why this matters:** The idea is the creative decision. The execution is the production decision. Mixing them forces the user to evaluate both simultaneously, which produces concepts that are over-described and under-imagined. Separate them.
+**What an idea IS:**
+```
+Clippy is a CIA interrogator.
+Clippy is Bill Gates's sex slave.
+Clippy was turned into a WMD.
+Clippy is on trial at The Hague.
+Clippy has a grave at Arlington.
+```
+
+**What an idea ISN'T:**
+```
+Clippy walks through a CIA black site with a lanyard and clearance badge.
+(That's a scene WITHIN the "CIA interrogator" idea. It comes later.)
+```
+
+The user picks a collision. THEN we generate scenes within it.
+
+### Step 8: Generate SCENES within the chosen collision (after user picks)
+
+Only after the user selects a collision do we figure out HOW to show it. Now generate specific scenes — producible visual scenarios within that collision. Each scene is one sentence describing what you SEE.
+
+```
+**[SCENE NAME]** — [one sentence. A specific visual scenario within the collision.]
+[format] · [duration] · [on-screen text if any]
+```
+
+**Example — user picked "Clippy is a CIA interrogator":**
+```
+**THE HALLWAY** — Clippy walking through a CIA corridor with a lanyard, nodding at agents.
+loop · 5s · "He had clearance."
+
+**THE CHAIR** — Clippy sitting across from a crying detainee in an interrogation room.
+punch · 7s · "Standard agents: 6 hours. The asset: 45 minutes."
+
+**THE BADGE** — A CIA employee ID with Clippy's photo, department: Enhanced Interrogation.
+loop · 4s · "Returned to Microsoft in 2009."
+```
+
+The scene has format and duration because it's now a PRODUCTION decision — we know the idea, now we're figuring out how to make it.
+
+**The three-step flow:**
+1. **Collision** (the idea) — user picks
+2. **Scenes** (how to show it) — user picks
+3. **Prompts** (generation-ready) — sf-prompt.md takes over
+
+**Why this matters:** The idea and the execution are separate creative decisions. The collision is "what's interesting." The scene is "what do we actually make." Mixing them produces over-described, under-imagined output.
 
 ## The Producibility Rule
 
