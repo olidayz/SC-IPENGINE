@@ -72,6 +72,21 @@ The left column: you SEE it instantly. The right column: you'd need an essay to 
 - Something where the FIRST FRAME of the video is already interesting
 - Absurd, wrong, or impossible enough that you can't scroll past it
 - Simple enough to say in one sentence AND the listener pictures it
+- **Contains a VERB, not just a status.** "Milhouse is a cartel boss" = status. No video. "Milhouse runs a cartel meeting and nobody takes him seriously" = scenario with action, tension, and an obvious visual. Short-form needs the character DOING something, not just BEING something.
+
+### Status vs. Scenario
+
+The collision must be a SCENARIO, not a status. A status is a label ("X is Y"). A scenario is an event ("X does Y in Z situation"). Status collisions produce posters. Scenario collisions produce videos.
+
+| STATUS (no video) | SCENARIO (video) |
+|-------------------|-----------------|
+| Milhouse is a cartel boss | Milhouse runs a cartel meeting and no one takes him seriously |
+| Dr. Phil is a hostage negotiator | Dr. Phil negotiates a bank robbery by asking the gunman about his childhood |
+| Judge Judy is a drill sergeant | Judge Judy inspects a line of recruits and sends three home in 30 seconds |
+| Fu Manchu is a Walmart greeter | Fu Manchu greeting customers at Walmart and scaring every single one |
+| Clippy is a CIA interrogator | Clippy sitting across from a detainee in an interrogation room |
+
+The left column: what does the character DO for 10 seconds? No answer. The right column: you can see the video immediately.
 
 ### How to Use Collision Seeds
 
