@@ -4,17 +4,57 @@ Take a spark or IP concept and find the short-form angle. Not "make a meme" — 
 
 ---
 
-## Step 1: Read the Input
+## Step 1: Read the Input + Find the Collision
 
-**Standalone (from Stage 1):**
-- Title + logline from the spark
-- What's the core violation, reversal, or reveal?
-- What's the single strongest image this concept produces?
+A subject alone is not a concept. **Betty Boop** is a character. **Betty Boop is a serial killer of OnlyFans models** is a concept. The difference is a second seed that creates friction — the **collision**.
 
-**Post-Pipeline (from completed IP):**
-- Full context available — VLD, cast, locations, scenes
-- What's the most shareable fragment of this world?
-- What would make someone who's never heard of this IP stop scrolling?
+### If the user gives one seed:
+
+Generate the collision. The user gives "Betty Boop" — your job is to find the second element that makes it dangerous, strange, or impossible to ignore. Run the Collision Seeds below against the subject until something sparks.
+
+### If the user gives two seeds:
+
+The collision is already there. "Betty Boop + haunts OnlyFans models" = the friction exists. Your job is to find the specific scenarios WITHIN that collision.
+
+### If the user gives a full collision:
+
+"Betty Boop comes back as a serial killer of OnlyFans models" = subject + collision + specific reframe. Go straight to generating concepts.
+
+---
+
+## Step 1b: Collision Seeds
+
+When the input is a single subject with no collision, force one. Run the subject against these seed categories to find the clash that makes it interesting. The collision should feel WRONG — that wrongness is the content.
+
+### Collision Categories
+
+| Category | What It Does | Example with "Betty Boop" |
+|----------|-------------|--------------------------|
+| **Crime** | The subject is committing, investigating, or victim of a specific crime | Betty Boop is running a money laundering operation through merch licensing |
+| **Modern Platform** | The subject exists on a platform that creates friction with who they are | Betty Boop is a Twitch streamer and her mods are out of control |
+| **Wrong Job** | The subject has a job that collides with their identity | Betty Boop is an HR manager at a tech startup |
+| **Wrong Era** | The subject is in a time period that creates friction | Betty Boop in 2026 TikTok vs. Betty Boop in her original 1932 context — simultaneously |
+| **Wrong Relationship** | The subject has a relationship that shouldn't exist | Betty Boop is Mickey Mouse's divorce lawyer |
+| **Power Inversion** | The subject's status is flipped — powerful becomes powerless or vice versa | Betty Boop owns the studio that created her and is firing executives |
+| **Dark Secret** | The subject has a hidden truth that reframes everything | Betty Boop has been conscious inside every piece of merchandise for 94 years |
+| **Rivalry** | The subject is in direct conflict with someone unexpected | Betty Boop vs. the Mona Lisa for most reproduced female image in history |
+| **Mundane Extreme** | The subject in an extremely mundane situation, played straight | Betty Boop at the DMV. Betty Boop doing her taxes. Betty Boop on hold with Comcast. |
+| **Genre Swap** | The subject dropped into a genre that violates their tone | Betty Boop in a true crime documentary. Betty Boop in a Ken Burns doc. |
+| **Literal** | Take something metaphorical about the subject and make it literally true | Betty Boop was literally drawn into existence and can feel the pen strokes |
+| **Scale** | Blow the subject up to global/cosmic scale or shrink to microscopic | Betty Boop is a religion with 200 million followers. Or: Betty Boop is the size of a postage stamp, living on someone's desk. |
+| **Victim/Villain Flip** | The subject switches from their assumed moral position | Betty Boop isn't the victim of sexualization — she orchestrated it for power |
+| **Parasite** | The subject is feeding on, infiltrating, or replacing something | Betty Boop is slowly replacing all female cartoon characters from the inside |
+| **Documentary** | The subject is the focus of a specific documentary format (true crime, nature doc, exposé, behind-the-music) | "The Betty Boop Tapes" — a 4-part Netflix docuseries about what really happened at Fleischer Studios |
+
+### How to Use Collision Seeds
+
+1. Run the subject against ALL categories internally
+2. Most won't fire. 3-5 will produce something with friction.
+3. Of those, pick the 2-3 with the strongest visual potential (remember: concepts must be PRODUCIBLE)
+4. Generate specific scenarios within each collision
+5. If the user already provided a collision, skip this step entirely
+
+**The collision is NOT the concept.** "Betty Boop is a serial killer" is the collision. "Betty Boop leaves a black-and-white cartoon flower at each crime scene" is the concept. The collision sets the territory; the concepts are specific scenes within it.
 
 ---
 
@@ -278,20 +318,87 @@ Not every format needs copy. When it does:
 
 Present the locked concept:
 
-```
-## CONCEPT LOCK
+Present concepts as a scannable list. Each concept is ONE LINE — the title IS the logline. If it needs explaining, it's not sharp enough.
 
-**Title:** [from spark or IP]
-**Concept:** [1-2 sentences — the idea. What this piece IS.]
-**Angle:** [which angles fired — 1-2 primary]
-**Output:** [Loop / Punch / Carousel / Micro-Trailer / Character Intro]
-**Play:** [which play from the output's repertoire]
-**Viral Mechanics:** [2-3 from the 12, with stack logic if applicable]
-**Trend/Hijack:** [format hijack if applicable, or "original"]
-**Copy:** [caption/overlay if applicable — or "visual only"]
-**Duration:** [seconds, or "user-paced" for carousels]
-**Aspect:** [9:16 / 1:1 / 4:5]
-**Tone:** [1-3 words — the emotional register]
+```
+**[TITLE]** — [one sentence. The idea. What you SEE. Not what it means.]
+[format] · [duration] · [copy if any]
+```
+
+That's it. Two lines max per concept. The user scans, picks, moves to prompts.
+
+## The Producibility Rule
+
+**Every concept must describe something you can actually MAKE.** Not a thought. Not an observation. Not a cultural take. A specific scenario that translates directly into generated video or images.
+
+A concept is a SCENE — a specific situation with a subject doing something in a place. If you can't immediately picture the first frame, it's not a concept.
+
+### The Four Gates
+
+Every concept must pass all four:
+
+| Gate | Test | Kill If |
+|------|------|---------|
+| **Can I see it?** | Does the concept describe a specific visual scenario? | It's an opinion, a fact, or cultural commentary. |
+| **Can I generate it?** | Can an image/video model produce this from a prompt? | It requires abstract concepts, invisible information, or dialogue to work. |
+| **Is there a twist in the frame?** | Does the visual itself contain the inversion? | The twist is in the backstory, not the image. If the image alone doesn't hit, it fails. |
+| **VISUAL SHOCK: Would the thumbnail alone go viral?** | If you freeze the first frame and post it as an image with zero context, does it stop the scroll? Does it trigger an involuntary reaction — laugh, gasp, "what the fuck," double-take? | The concept depends on a setup/punchline structure, dialogue, context, or narrative to land. The FRAME must do the work before any video plays. |
+
+### The Visual Shock Rule
+
+**This is the most important gate.** Short-form lives in a feed. The thumbnail is shown before the video plays. If the thumbnail doesn't stop the thumb, the video never plays. The concept must produce a single frame so arresting that it works as a still image — even though we're making motion.
+
+**What passes Visual Shock:**
+- McLovin's face on a US passport, photorealistic, official
+- McLovin's face carved into Mount Rushmore
+- Kim K in a prison mugshot, flawless makeup, orange jumpsuit
+- SKIMS product shelf with prison orange as a shade
+- Betty Boop in a police lineup next to real humans
+- A 200-meter Nigel Thornberry face made of logs and stones, seen from a drone
+
+**What fails Visual Shock:**
+- "McLovin at the DMV" — you have to WATCH the conversation to get it
+- "Judge Judy in therapy" — the comedy is in the dialogue, not the image
+- "Betty Boop comments on OnlyFans posts" — it's a text interaction, not a visual
+- "Two true crime podcasters discuss the case" — it's audio, not image
+- Any concept that's basically a comedy sketch requiring setup and timing
+
+**The test:** Screenshot the concept. Post the screenshot with zero caption. Does it get engagement? If yes, it passes. If it needs the video to play, or text to explain, it fails.
+
+### What a concept IS vs ISN'T
+
+| PASSES (the image does the work) | FAILS (needs context to land) |
+|----------------------------------|-------------------------------|
+| McLovin's face on a real US passport | McLovin at the DMV counter arguing |
+| SKIMS shelf with prison orange as a shade | Kim having a conversation with Kris in a visiting room |
+| Betty Boop in a police lineup with real humans | Betty Boop making comments on social media |
+| Nigel Thornberry's face as a 200m ground formation seen from a drone | Nigel having a conversation where his voice changes |
+| Judge Judy sitting at the UN General Assembly podium | Judge Judy doing a therapy session (dialogue-dependent) |
+
+The left column: the FRAME is the content. The right column: you'd need to watch a scene unfold.
+
+### The One-Sentence Test
+
+Can you describe the video to someone in a bar in one sentence AND they immediately picture a specific image that makes them react? Not "that's a funny idea" — an actual visual reaction. "Oh SHIT, I want to see that."
+
+**What does NOT belong in the concept:**
+- Which "angle" or "play" generated it (internal machinery — never shown)
+- Viral mechanic labels (the mechanic is baked into the idea, not bolted on as a tag)
+- Tone words (if you need to label the tone, the concept isn't carrying it)
+- Explanations of WHY it works (if it works, it doesn't need explaining)
+- Camera angles, framing, or shot descriptions (that's production, not concept)
+- Cultural commentary that isn't visible in the frame
+
+**Example — good:**
+```
+**COMMISSARY HAUL** — Kim K unboxes prison commissary items in full influencer voice, reviewing a plastic comb like it's Chanel.
+punch · 8s
+```
+
+**Example — bad:**
+```
+**BETTY'S EARNINGS** — Betty Boop has earned $5 billion and owns nothing.
+(This is a fact. What does the VIDEO look like? There is no video. It's a tweet.)
 ```
 
 ---
@@ -300,12 +407,103 @@ Present the locked concept:
 
 | Don't | Why |
 |-------|-----|
-| Make a still when you should make a loop | If a concept feels like "one frame," make it a cinemagraph or a breath loop. Motion always. |
-| Force copy onto visual-only concepts | Not everything needs words. If the image carries it, let it. |
-| Choose the format first | The hook dictates the format, not the other way around. |
-| Stack more than 3 viral mechanics | Overengineering kills authenticity. 2-3, cleanly executed. |
-| Write copy that explains the image | Copy reframes, surprises, or contradicts. Never describes. |
-| Make it need context | Every piece must work for someone with ZERO knowledge of the IP. |
-| Ignore the feed | Short-form lives in a scroll. The feed is the context. Trend mechanics matter. |
-| Be precious about the IP | Short-form is irreverent by nature. The IP is material, not sacred text. |
-| Generate before concept is locked | Format, hook, mechanic, copy — all decided before any prompts. |
+| **Write a thought instead of a scene** | "Betty Boop was sexualized without consent" is a take. "Betty Boop walks into a modern strip club fully dressed" is a scene. If there's no visual scenario, it's not a concept. |
+| **Describe something you can't generate** | If an image/video model can't make it from a prompt, it's not producible. Abstract ideas, invisible context, and text-dependent concepts die here. |
+| **Put the twist in the backstory** | If the viewer needs to know WHY it's interesting, the frame isn't doing its job. The inversion must be VISIBLE. |
+| **Generate cultural commentary** | "The most sexualized woman in history was drawn by men" is an essay title. The concept needs to SHOW something, not SAY something. |
+| **Force copy onto visual-only concepts** | Not everything needs words. If the image carries it, let it. |
+| **Make it need context** | Every piece must work for someone with ZERO knowledge of the IP. |
+| **Write a concept that's really a premise** | "Nigel Thornberry is a wildlife trafficker" is a premise. "Nigel finishes a nature take and asks how many fit in the crates" is a concept. The premise informs the concept — it IS NOT the concept. |
+| **Be precious about the IP** | Short-form is irreverent by nature. The IP is material, not sacred text. |
+| **Produce interesting instead of viral** | Interesting = "that's clever." Viral = the viewer involuntarily shares, comments, or rewatches. If your concept doesn't exploit a specific psychological lever, it's interesting at best. |
+
+---
+
+## The Psychological Lever (MANDATORY)
+
+**This is what separates interesting from viral.** Every concept must be designed around a single psychological lever dialed to maximum. Not a mechanic label — a specific cognitive exploit that forces involuntary action.
+
+### The 8 Levers
+
+| Lever | What It Exploits | Involuntary Action | Example |
+|-------|-----------------|-------------------|---------|
+| **Theory of Mind** | The viewer's need to understand what a character is THINKING. An expression, a look, a pause that implies a hidden inner life. | Comment: speculation about intent, motive, feeling. "What is she thinking?" | Betty Boop in a police lineup — her expression shows she KNOWS something the others don't. What does she know? |
+| **Incomplete Story** | A fragment that implies a massive narrative before and after. The viewer MUST fill in the gaps. | Comment: theories. Rewatch: looking for clues. Share: "what happened here?" | A 1952 yearbook with McLovin's photo. How? Why? The missing story is the hook. |
+| **Moral Dilemma** | Two valid readings. Both defensible. Neither wins. The viewer is COMPELLED to take a side. | Comment: argument. Debate. Takes. Counter-takes. The comments become content. | Slenderman running a daycare — is this wholesome or horrifying? Both answers are right. The argument is the engagement. |
+| **Identity Projection** | The viewer sees THEMSELVES in the content. It says something about who they are. The share is self-expression. | Share: "this is so me." Save: personal resonance. Identity signal. | "My daycare installed cameras after parents complained about how clean it was" — every parent, every caretaker, every night worker sees themselves. |
+| **Forbidden Knowledge** | The viewer feels they're seeing something they SHOULDN'T. Leaked, secret, forbidden, restricted. The transgression is the thrill. | Share: "you need to see this." Rewatch: studying the forbidden thing. Saving: hoarding the secret. | Nigel Thornberry raw footage labeled "NOT FOR BROADCAST." You're not supposed to have this. |
+| **Scale Vertigo** | Something at a scale that breaks the brain. The viewer can't process the size/scope/number. The incomprehension IS the reaction. | Rewatch: trying to comprehend scale. Share: "look at how big/many/long this is." Gasp. | McLovin's face carved into Mount Rushmore. Graceland as a mecha robot striding over Memphis. The scale IS the content. |
+| **Uncanny Recognition** | Something deeply familiar presented WRONG. The viewer recognizes it but it's been altered in a way that triggers unease. Not horror — wrongness. | Comment: "this is cursed." Share: "why does this exist." Rewatch: studying what's wrong. | Betty Boop in a police lineup with real humans. You KNOW her but she doesn't belong here. The wrongness is magnetic. |
+| **Anticipatory Dread** | The viewer can see what's ABOUT to happen and can't stop watching. The tension of the inevitable. | Completion: can't leave before it happens. Rewatch: knowing what's coming makes it better. | Slenderman reaching for a crayon — his arm extends impossibly. You know what's going to happen. You watch anyway. |
+
+### How to Apply
+
+**Every concept gets ONE primary lever.** Not two. Not three. One. Dialed to maximum. The lever should be SO strong that the concept would fail without it.
+
+Ask: "What involuntary action does this concept force?" If the answer is "they'll think it's cool" — it's not viral. If the answer is "they HAVE to comment because they can't agree on whether it's wholesome or terrifying" — that's a lever.
+
+**The lever is chosen BEFORE the concept is finalized.** Not after. The concept is DESIGNED AROUND the lever, not tagged with one post-hoc.
+
+### Concept Lock Format (updated)
+
+```
+**[TITLE]** — [one sentence. What you SEE.]
+[format] · [duration] · [lever: which psychological lever, in 2-3 words]
+[on-screen text if any]
+```
+
+**Example:**
+```
+**NAPTIME** — Slenderman standing in a room of sleeping toddlers, one impossibly long arm stretched across the room patting a child's back.
+loop · 5s · lever: moral dilemma (wholesome or horrifying?)
+on-screen: "My daycare has a 5-star rating. We've never hired a night staff."
+```
+
+---
+
+## The Viral Scorecard (MANDATORY — run on every concept)
+
+Every concept is scored. **Kill anything under 5.** This is not optional.
+
+| Mechanic | 0 | 1 | 2 | 3 |
+|----------|---|---|---|---|
+| **Curiosity Gap** | No mystery | Mild "huh" | Strong "I need to know" | Unbearable — can't scroll past without resolution |
+| **Completion Bait** | No reason to finish | Mild interest | Building tension | The payoff is at the END and the setup demands you reach it |
+| **Emotional Spike** | Nothing felt | Mild amusement | Strong reaction (laugh, gasp, awe) | Involuntary physical response (jaw drop, hand over mouth, laugh out loud) |
+| **Share Trigger** | Wouldn't send | Might send | Would send to 1 person | MUST send to a specific person, immediately |
+| **Comment Bait** | Nothing to say | Mild opinion | Strong take | Two valid opposing takes — the comments will fight |
+| **Rewatch Bait** | Seen it, done | Minor detail missed | Rewarding second watch | Completely different experience on rewatch — hidden detail changes everything |
+| **Identity Signal** | Generic | Somewhat relatable | "This is so me" | Sharing this says something specific about WHO I AM |
+
+**Score: add up highest per mechanic. Max 21.**
+- **12+ = strong viral potential.** Proceed to prompts.
+- **8-11 = workable.** Can you dial one lever higher? If yes, iterate. If not, consider killing.
+- **5-7 = interesting, not viral.** Iterate or kill.
+- **Below 5 = kill.** This is a tweet, an observation, or a sketch — not viral short-form content.
+
+**The scorecard is internal.** The user never sees it. But every concept presented to the user has already passed the 5+ threshold. No exceptions.
+
+---
+
+## Series Thinking (MANDATORY)
+
+**Every concept must answer: "What's the series?"** before it gets locked. A single viral clip is luck. A series is a content engine. Default to series, not singles.
+
+After generating concepts, for each one that scores 8+, ask:
+
+1. **What's episode 2?** If there's no obvious second episode, the concept is a one-trick. It might still be worth making, but it's not a series.
+2. **What stays the same?** The locked element that makes episodes recognizable as a series.
+3. **What changes?** The variable that makes each episode fresh.
+
+If the concept naturally generates a series (the collision is RICH enough for multiple scenarios), note the series structure:
+
+```
+**[TITLE]** — [concept]
+[format] · [duration] · [lever]
+[on-screen text]
+Series: [structure — e.g. "Catalog: each episode a different daycare scenario"]
+```
+
+One-offs are allowed but must be explicitly noted: `Series: one-off`
+
+The default assumption is: if this works, we make more.
