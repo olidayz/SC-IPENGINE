@@ -314,18 +314,56 @@ Not every format needs copy. When it does:
 
 ---
 
-## Step 7: Lock
+## THE TWO-STEP PROCESS
 
-Present the locked concept:
+**This is critical. The idea and the execution are SEPARATE STEPS with a user decision in between.**
 
-Present concepts as a scannable list. Each concept is ONE LINE — the title IS the logline. If it needs explaining, it's not sharp enough.
+### Step 7: Present the IDEAS (collisions only)
+
+First, present ONLY the collision ideas. No format. No duration. No copy. No angles. No execution. Just the ideas.
 
 ```
-**[TITLE]** — [one sentence. The idea. What you SEE. Not what it means.]
-[format] · [duration] · [copy if any]
+**[TITLE]** — [the idea in one sentence]
 ```
 
-That's it. Two lines max per concept. The user scans, picks, moves to prompts.
+One line per idea. The user scans and picks which IDEAS they want to develop. This is the creative selection — "which of these concepts is interesting enough to figure out HOW to show?"
+
+**What does NOT go here:**
+- Format (loop/punch/carousel) — that's execution
+- Duration — execution
+- Copy/on-screen text — execution
+- Camera angles, lighting, framing — execution
+- Lever, mechanic, series structure — internal, never shown
+- Multiple sentences explaining the idea — if it takes two sentences, the idea isn't clear
+
+**Example output:**
+```
+**THE HALLWAY** — Clippy walks through a CIA black site with a lanyard and clearance badge.
+**THE CHAIR** — Clippy sits across from a detainee in an interrogation room.
+**THE HAGUE** — Clippy is on trial for war crimes at the International Criminal Court.
+**STAR 94** — Clippy has a headstone at Arlington National Cemetery.
+**THE BADGE** — A real CIA employee ID badge with Clippy's photo on it.
+```
+
+The user picks one or more. THEN we figure out how to show it.
+
+### Step 8: Develop the EXECUTION (after user picks)
+
+Only after the user selects an idea do we develop HOW to show it. This is where format, duration, copy, on-screen text, and visual approach get decided.
+
+For each selected idea, present 2-3 execution options:
+
+```
+**[SELECTED IDEA]**
+
+Execution A: [format] · [duration] · [one sentence describing the visual approach] · [on-screen text if any]
+Execution B: [format] · [duration] · [different visual approach] · [on-screen text if any]
+Execution C: [format] · [duration] · [different visual approach] · [on-screen text if any]
+```
+
+The user picks an execution. THEN we go to sf-prompt for generation-ready prompts.
+
+**Why this matters:** The idea is the creative decision. The execution is the production decision. Mixing them forces the user to evaluate both simultaneously, which produces concepts that are over-described and under-imagined. Separate them.
 
 ## The Producibility Rule
 
