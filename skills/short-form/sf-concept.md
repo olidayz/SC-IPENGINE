@@ -184,36 +184,35 @@ The audience recognizes the shape (GRWM, mukbang, tier list, house tour, recipe 
 
 ### How to Present
 
-Organize ideas by category. The user sees the category headers and scans:
+**List ideas under category headers.** Categories help the user scan by content type. But the ideas themselves are clean — one line each. No tags, no format notes, no metadata. Just the concept.
 
 ```
 INVERSION
-- [idea]
-- [idea]
+- Grim Reaper calls in sick and nobody dies for 24 hours
+- Grim Reaper gets replaced by a cheerful Gen Z 22-year-old with a clipboard
 
 STYLE TRANSFER
-- [idea]
-- [idea]
+- Harry Potter characters in full streetwear drip
 
 MUNDANE
-- [idea]
+- Day in the life of the Grim Reaper — GRWM, commute, first appointment at 6am
 
 MASHUP
-- [idea]
-- [idea]
+- Grim Reaper standing behind a wellness influencer who's filming a "how to live forever" video
 
 WHAT IF
-- [idea]
+- Grim Reaper has a quota and he's behind on December 31st
 
 CULTURAL NERVE
-- [idea]
+- Grim Reaper walks through an American hospital and the billing department is doing his job for him
 
 FORMAT HIJACK
-- [idea]
-- [idea]
+- Grim Reaper unboxes a new scythe — full unboxing format, tissue paper, rating
 ```
 
-Not every category fires for every subject. Skip empty categories. But aim for ideas across at least 3-4 categories to give the user real variety in content TYPE, not just content topic.
+Each idea is a standalone concept that obviously leads to content. The user scans by category, gets excited about 2-3, picks them. THEN we figure out format and execution.
+
+**Kill anything that needs explanation.** If the idea doesn't spark excitement in one line, it's dead. "Grim Reaper grocery shopping for one" — nobody's excited. "Grim Reaper calls in sick and nobody dies for 24 hours" — that's a show.
 
 ### The Tension Test (RUN ON EVERY IDEA BEFORE PRESENTING)
 
