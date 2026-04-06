@@ -26,6 +26,33 @@ The collision is already there. "Betty Boop + haunts OnlyFans models" = the fric
 
 When the input is a single subject with no collision, force one. Run the subject against these seed categories to find the clash that makes it interesting. The collision should feel WRONG — that wrongness is the content.
 
+### The Visual Appetite Test
+
+Before anything else: **would people WANT to see this?** Not "is this clever?" Not "does this make a cultural point?" — would someone see the thumbnail and think "that looks AMAZING" or "that's HILARIOUS" or "I NEED to see that"?
+
+The best collisions create visual appetite. You can TASTE what it would look like:
+- "Harry Potter characters in designer streetwear" — you immediately picture Harry in LV, Ron in Gucci, Hagrid in Balenciaga. Each character is its own piece of content. It looks SICK.
+- "Renaissance paintings but they're all at Waffle House" — you can see the Mona Lisa in a booth at 3am. It looks incredible.
+- "Slenderman runs a daycare" — you can see him reading to toddlers. It's wrong and wonderful.
+
+These collisions aren't "smart." They're not making a point. They just look SO GOOD or SO FUNNY that you can't scroll past.
+
+**The test:** When you say the collision out loud, does the other person's face light up? Do they say "oh shit, that would be amazing" or "I need to see that"? That reaction — not intellectual appreciation, but visual hunger — is what you're looking for.
+
+**Collisions that pass this test vs. collisions that don't:**
+
+| VISUAL APPETITE (want to see it) | INTELLECTUAL INTEREST (want to think about it) |
+|----------------------------------|-----------------------------------------------|
+| Harry Potter characters in full drip | Elvis's complex relationship with Black music |
+| Shrek but it's a Christopher Nolan film | The cultural implications of AI-resurrected artists |
+| SpongeBob characters as real humans, photorealistic | A commentary on parasocial celebrity worship |
+| Every Disney princess at Coachella | Elvis meets his own deepfake |
+| The Simpsons but it's a Wes Anderson movie | The appropriation debate visualized |
+
+The left column: people IMMEDIATELY want to see the images. The right column: people nod thoughtfully and keep scrolling.
+
+**Cultural relevance is a BONUS, not the goal.** If a collision is culturally timed AND creates visual appetite, that's the best possible outcome. But visual appetite alone beats cultural relevance alone, every time. Nobody shares a think-piece thumbnail. Everyone shares something that looks incredible.
+
 ### Collision Categories
 
 | Category | What It Does | Example |
