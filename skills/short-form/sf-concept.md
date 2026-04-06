@@ -151,19 +151,30 @@ Not a character swap or style transfer — a RULE change. The world works differ
 ---
 
 #### 6. CULTURAL NERVE
-*The subject collides with something people are ALREADY arguing about. The content inherits an existing debate.*
+*The subject collides with something people are arguing about RIGHT NOW. Not historically. Not generally. This week.*
 
-The collision taps into a live cultural tension. People share because they have a TAKE. The comments write themselves.
+This is the only category that requires research before generating. The collision must be TOPICAL — connected to an active conversation in the feed today.
 
-**Before generating:** Run a Cultural Pulse — research what's trending, what people are arguing about this week, what discourse surrounds this subject. (In the web app: API calls to trends/news. In CLI: web search.)
+**Before generating:** Run a Cultural Pulse — search trending topics, active discourse, this week's arguments. Find where the subject intersects with what's LIVE.
 
-**The test:** Will the comments section be a war? If people will ARGUE in the comments, it's a cultural nerve. If they just laugh, it's a different category.
+**The test:** Is this connected to a conversation happening THIS WEEK? If you have to explain the cultural context, it's not topical enough. If people are already arguing about the underlying topic and your content pours fuel on it, that's a cultural nerve.
 
-**Examples:**
-- Elvis AI hologram performs while real musicians picket outside
-- A 1950s-themed TikTok diner gets asked "nostalgia for WHO exactly?"
-- An OnlyFans model recreates Betty Boop's exact 1932 poses — who owns the act?
-- Mario made by AI vs. Mario made by Miyamoto — side by side, which is better?
+**What Cultural Nerve IS:**
+- Subject × something trending RIGHT NOW
+- Subject × an active online argument
+- Subject × a news event from this week
+- Subject × a meme or discourse that's currently live
+
+**What Cultural Nerve IS NOT:**
+- Historical facts about the subject ("Napoleon was actually average height" — that's a TIL)
+- Evergreen observations ("Elvis stole from Black artists" — true but not topical)
+- General cultural commentary ("cancel culture exists" — yes, and?)
+
+**Examples (these only work if the topic is CURRENTLY active):**
+- Napoleon × the current France protests (if France is protesting this week)
+- Elvis × an AI music controversy (if AI music is in the news this week)
+- SpongeBob × a labor rights debate (if minimum wage is trending this week)
+- Grim Reaper × a healthcare bill (if healthcare is in the news this week)
 
 ---
 
