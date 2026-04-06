@@ -232,6 +232,26 @@ Not every category fires for every subject. Skip empty categories. But aim for i
 
 **The left column:** There's something WRONG that you can feel. The right column: it looks nice but triggers nothing.
 
+### The Story Beat Rule
+
+**Every collision must contain a BEAT — a moment where something shifts.** Not a static state. Not a display. Not an infographic. Something HAPPENS. A character discovers, reacts, realizes, loses, wins, breaks, or changes.
+
+"SpongeBob works minimum wage" = a state. Nothing happens.
+"SpongeBob finds Mr. Krabs's tax returns and his face changes" = a beat. Something shifts.
+
+The beat is what makes it a VIDEO. Without a beat, it's a poster or an infographic — which isn't content.
+
+**The beat test:** Can you identify the MOMENT in this collision? The single second where everything changes? If yes, it's a story. If no, it's a description.
+
+| HAS A BEAT (something happens) | NO BEAT (just a state) |
+|-------------------------------|----------------------|
+| SpongeBob finds the tax returns. His face changes. | SpongeBob's pay stub displayed as an infographic |
+| Elvis performs at an open mic. Nobody claps. | Elvis is a backup dancer (for whom? doing what? when?) |
+| Gordon Ramsay tastes the Krabby Patty. He can't criticize it. This has never happened. | Gordon Ramsay at the Krusty Krab (and then what?) |
+| Clippy sits across from a detainee. The detainee is crying. | Clippy works at the CIA (doing what exactly?) |
+
+The left column: there's a MOMENT you can point to. The right column: it's a setup with no payoff.
+
 **Types of tension:**
 
 | Tension Type | What the Viewer Feels | Example |
