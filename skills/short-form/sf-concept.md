@@ -46,6 +46,66 @@ When the input is a single subject with no collision, force one. Run the subject
 | **Documentary** | The subject is the focus of a specific documentary format | "The Betty Boop Tapes" — a 4-part Netflix docuseries |
 | **Classified** | The subject is a government secret, military project, or intelligence asset | Betty Boop is a CIA psychological operation that got out of control |
 | **Biological** | The subject is a species, organism, condition, or evolutionary event | Big Chungus was found in the Mariana Trench and scientists can't explain it |
+| **Cultural Clash** | The subject collides with a live cultural tension — something people are ALREADY divided on. Not a random situation — a specific cultural nerve. The collision inherits the existing argument. | See Cultural Clash section below. |
+
+### Cultural Clash (the highest-leverage collision type)
+
+The most viral content taps into something people are ALREADY arguing about. The collision doesn't create the debate — it gives the debate a visual. People share because they have a TAKE, not because it's funny.
+
+**How it works:** Identify the cultural tensions the subject naturally touches. Then put the subject INTO that tension in a specific, visual way.
+
+**Cultural tension categories:**
+
+| Tension | What People Are Already Arguing About | Example with Elvis |
+|---------|--------------------------------------|-------------------|
+| **AI vs. Human** | AI replacing artists, deepfakes, authenticity | Elvis AI hologram performs at a sold-out arena and real musicians picket outside |
+| **Cultural Appropriation** | Who owns culture, who profits from it, who gets credit | Elvis walks into a Black church in Memphis and the congregation goes silent |
+| **Cancel Culture** | Can you separate art from artist, accountability vs. mob | Elvis gets cancelled in 2026 for everything he did in the 50s — his Spotify gets pulled mid-stream |
+| **Class / Inequality** | Rich vs. poor, access, privilege, who gets to have what | Elvis eats a gold-leaf steak while his original Tupelo house is being demolished behind him |
+| **Nostalgia vs. Progress** | Was it better before? Are we losing something? Is new always better? | Elvis walks into a modern recording studio where everything is Auto-Tuned and laptops — no instruments, no band |
+| **Gender / Identity** | Masculinity, femininity, identity performance, who gets to be what | Elvis in full jumpsuit walks into a 2026 gender-neutral fashion show |
+| **Body / Health** | Diet culture, beauty standards, fitness obsession, aging | Elvis's autopsy report projected on a screen at a wellness influencer convention |
+| **Parenting / Generations** | Boomer vs. Gen Z, how kids are raised, screen time, values | Elvis tries to parent a Gen Z teenager using 1950s rules |
+| **Religion / Belief** | Faith, atheism, hypocrisy, fundamentalism, spiritual capitalism | Elvis walks into a megachurch that's using his likeness without permission |
+| **Nationalism / Borders** | Immigration, patriotism, who belongs, national identity | Elvis at the US-Mexico border — which side is the real America? |
+| **Capitalism / Labor** | Gig economy, billionaires, exploitation, hustle culture | Elvis's estate makes $400M/year — how much does Memphis see? |
+| **Technology / Privacy** | Surveillance, data, phones, always-connected, AI | Elvis's face is on every AI training dataset without consent and he's been dead for 50 years |
+
+**The key difference:** A random collision (Elvis works at a gas station) is funny. A cultural collision (Elvis AI hologram performs and real musicians picket outside) is SHAREABLE — because people have a TAKE. The comments write themselves. Half the audience agrees, half disagrees. The argument IS the engagement.
+
+**When to use Cultural Clash vs. other categories:**
+- If the subject is already culturally loaded (Elvis, Waffle House, Dr. Phil) → Cultural Clash should be your FIRST attempt. The subject already lives inside cultural tensions. Find them.
+- If the subject is purely fictional or absurd (Big Chungus, Clippy) → Cultural Clash may not fire. Use other categories. But check: even Clippy can hit AI vs. Human tension.
+- **At least 30% of all collisions presented should be Cultural Clashes** when the subject supports it. These are the highest-engagement collisions because they inherit an existing audience debate.
+
+### Cultural Pulse (dynamic research — RUN BEFORE GENERATING COLLISIONS)
+
+The static tension categories above are evergreen — they're always relevant. But the BEST cultural clashes collide the subject with something people are talking about RIGHT NOW. Not last month. Not generally. This week.
+
+**Before generating any collisions, research the current cultural landscape:**
+
+1. **Search for the subject** — what are people currently saying/arguing about this subject? Any recent news, controversy, meme, discourse?
+2. **Search for trending topics** — what are the top cultural conversations happening right now? Politics, pop culture, tech, sports, social media discourse.
+3. **Search for active memes/formats** — what formats, sounds, or templates are currently trending on TikTok/Instagram/Twitter?
+4. **Find the intersection** — where does the subject naturally collide with something that's LIVE? The subject + a trending topic = a cultural clash that's relevant TODAY, not just theoretically interesting.
+
+**Example:**
+- Subject: Elvis
+- Cultural Pulse finds: AI music generation is dominating the news cycle this week
+- Collision: Elvis AI hologram performs at a sold-out arena while real musicians picket outside
+- This is 10x more shareable than "Elvis works at a gas station" because people are ALREADY in the AI-music argument. The content enters an existing conversation instead of starting from zero.
+
+**In the web app:** This is an API call. Before collision generation, pull:
+- Trending topics (Twitter/X API, Google Trends)
+- Trending sounds/formats (TikTok trending API)
+- Recent news for the subject (news API)
+- Active cultural debates (Reddit trending, Twitter discourse)
+
+Feed this into the Claude call as context alongside the subject. The collisions that emerge will be culturally timed, not just theoretically clever.
+
+**In the CLI/skill:** Run web searches for the subject + "trending" + "controversy" + "discourse" before generating. Include findings as context.
+
+**The rule: at least 2 of the presented collisions should be culturally timed** — connected to something happening NOW, not just an evergreen tension. These are the ones most likely to spread because they ride an existing wave instead of creating one from scratch.
 
 ### Collision Quality Rules
 
