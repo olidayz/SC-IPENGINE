@@ -215,6 +215,43 @@ FORMAT HIJACK
 
 Not every category fires for every subject. Skip empty categories. But aim for ideas across at least 3-4 categories to give the user real variety in content TYPE, not just content topic.
 
+### The Tension Test (RUN ON EVERY IDEA BEFORE PRESENTING)
+
+**Every collision, regardless of category, must contain a specific TENSION.** Tension is the thing the viewer FEELS — the discomfort, injustice, absurdity, wrongness, or impossibility that makes them react. Without tension, a collision is just a description.
+
+**Ask:** What's UNCOMFORTABLE, UNFAIR, or WRONG about this collision? If the answer is "nothing, it's just cool" — kill it. Cool is not viral. Tension is viral.
+
+| HAS TENSION (something is wrong) | NO TENSION (just a description) |
+|----------------------------------|--------------------------------|
+| Elvis auditions for his own biopic and gets rejected (injustice — HE is Elvis) | Elvis as a Pixar character (just a style filter) |
+| Elvis delivers DoorDash in the jumpsuit (fall from grace — the king is serving you) | Elvis album covers as Supreme drops (just graphic design) |
+| Gordon Ramsay recreates Elvis's diet and is horrified (the reaction — it's disgusting) | Every era of Elvis as anime (just a visual exercise) |
+| Elvis's hits played next to the Black originals (the theft — same song, different outcomes) | Elvis but in a Wes Anderson style (just an aesthetic) |
+| Slenderman runs a daycare and the kids love him (moral confusion — is this safe?) | Slenderman as a Renaissance painting (just a style) |
+| McLovin's face on Mount Rushmore (absurdity — a fake ID elevated to national monument) | McLovin as a GTA character (just a game skin) |
+
+**The left column:** There's something WRONG that you can feel. The right column: it looks nice but triggers nothing.
+
+**Types of tension:**
+
+| Tension Type | What the Viewer Feels | Example |
+|-------------|----------------------|---------|
+| **Injustice** | "That's not fair" / "That's wrong" | Elvis auditions for his own role and gets rejected |
+| **Fall from grace** | "How did it come to this" | Elvis delivering DoorDash in the white jumpsuit |
+| **Moral confusion** | "Is this ok? I can't tell" | Slenderman reading bedtime stories to toddlers |
+| **Absurd escalation** | "This is insane and getting worse" | Big Chungus restrained in a military hangar with $14B budget |
+| **Uncomfortable recognition** | "This is too real" | Every Elvis hit played next to the Black original |
+| **Visceral reaction** | "Oh my god" / gasp / laugh / disgust | Gordon Ramsay's face as he recreates Elvis's 10,000 calorie daily diet |
+| **Status violation** | "That person doesn't belong there" | Judge Judy at the UN podium |
+| **Existential dread** | "I can't stop thinking about this" | Patrick Star standing at the foot of your bed at 3am |
+
+**STYLE TRANSFERS get special scrutiny.** Style transfers are the most likely to fail the tension test because they're often just [subject] + [aesthetic]. A style transfer ONLY passes if the transfer itself creates tension:
+- "Harry Potter in streetwear" PASSES — the tension is the clash between wizard world and hypebeast culture. Each character's outfit says something about who they are.
+- "Elvis as Pixar" FAILS — there's no tension. It's just a render style.
+- "Breaking Bad as a Studio Ghibli film" PASSES — the tension is beauty applied to horror. Meth cooking as a watercolor pastoral.
+- "The Simpsons as photorealistic humans" PASSES — the tension is the uncanny. Their features are horrifying when real.
+- "SpongeBob in Renaissance style" — borderline. Only passes if the specific paintings create friction (SpongeBob as The Last Supper = tension. SpongeBob as a generic portrait = no tension).
+
 ### Cultural Pulse (dynamic research — RUN BEFORE GENERATING)
 
 Before generating collisions, research the current cultural landscape. This feeds the Cultural Nerve category but also informs all others — a style transfer that's culturally timed is stronger than one that isn't.
