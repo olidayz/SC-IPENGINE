@@ -243,177 +243,50 @@ Each idea is a standalone concept that obviously leads to content. The user scan
 
 **Kill anything that needs explanation.** If the idea doesn't spark excitement in one line, it's dead.
 
-### What Makes a Strong Idea
+### The 4 Gates (the ONLY filters)
 
-A strong idea has ALL FOUR of these:
+Run every idea through these 4 gates before presenting. If it passes all 4, it lives. If it fails any one, kill it. That's it. No other filters. No scorecards. No tension typologies. Four questions.
 
-1. **Clear subject** — you know exactly who/what it is in 3 words
-2. **One twist** — not three twists, not a clever observation, ONE clear turn that changes everything
-3. **Obvious content** — you can immediately imagine multiple scenes, multiple videos, multiple episodes. The idea is GENERATIVE — it spawns content naturally.
-4. **Story engine** — the concept has built-in narrative momentum. Things HAPPEN. It escalates, unfolds, builds. It's not a single joke or a static situation.
+**1. CAN I PICTURE IT?**
+Can you see the video in your head? Not the concept — the actual images. If someone described this to you, would you immediately picture specific frames?
+- PASS: "Slenderman runs a daycare" — you see him reading to toddlers instantly
+- KILL: "The concept of mortality applied to a children's character" — you see nothing
 
-**Strong ideas (pass all 4):**
-- "Day in the life of the Grim Reaper" — clear subject, one twist (mundane routine applied to Death), you can picture 20 different scenes, each scene has its own mini-story
-- "Grim Reaper replaced by Gen Z 22-year-old" — clear subject, one twist (swap), you immediately see the contrast playing out in every possible death scenario, each encounter is its own episode
-- "Nigel Thornberry is an animal trafficker" — clear subject, one twist (dark inversion of his identity), you can picture leaked tapes and documents and investigations, endless content
-- "Tamagotchi haunting" — clear subject, one twist (wrong genre), you immediately see it playing out in someone's life, escalating night by night
+**2. IS THERE A STORY?**
+What happens in the SECOND scene? If you can't answer that, it's a thought, not content. Facts, observations, reframes, moods, art filters, and single images all fail this test.
+- PASS: "Nigel Thornberry is an animal trafficker" — the leaked tape, the customs invoice, the face drop. Scenes write themselves.
+- KILL: "Arnold's parents abandoned him" — true, but what's scene 2? There isn't one. It's a tweet.
 
-**Weak ideas (fail 1 or more):**
-- "Grim Reaper is afraid of dying" — one twist but NO story engine. Ok he's scared, then what? Where does it GO?
-- "Grim Reaper learns to drive" — clear subject but NO obvious content. It's one joke. One scene. Done.
-- "Grim Reaper grocery shopping for one" — NO twist. He's just sad. That's a mood, not an idea.
-- "Elvis as a Pixar character" — NO twist. It's just an art style. There's no story, no engine, no escalation.
+**3. IS THERE TENSION?**
+What's WRONG about this? What makes the viewer feel something — discomfort, injustice, absurdity, moral confusion, a gasp, a laugh? If the answer is "nothing, it's just cool" — kill it.
+- PASS: "Arnold is a serial killer who uses his childhood psychology skills to hunt" — the gap between helpful kid and predator is horrifying
+- KILL: "Elvis as a Pixar character" — it looks nice and triggers nothing
 
-**The generative test:** Can you immediately list 5 scenes/episodes without thinking hard? If yes, the idea has a story engine. If you struggle past 2, it's a single joke, not a concept.
+**4. IS IT A SERIES?**
+Can you list 5 episodes without thinking hard? If yes, it's a content engine. If you struggle past 2, it's a one-off joke.
+- PASS: "Grim Reaper replaced by Gen Z 22-year-old" — every death is an episode
+- KILL: "Grim Reaper learns to drive" — that's one scene, done
 
-### The Second Scene Test
+**DO NOT add more filters.** These 4 are enough. More gates = safer ideas = less viral. Dark, risky, transgressive, uncomfortable ideas should PASS these gates easily. If an idea makes you uncomfortable, that's gate 3 working. Don't kill it.
 
-**Before presenting ANY idea, ask: "What happens in the second scene?"**
+### Cultural Pulse (RUN BEFORE GENERATING)
 
-If you can't answer immediately, the idea is a THOUGHT disguised as content. Kill it.
+Before generating collisions, research what's culturally LIVE this week. Feeds the Cultural Nerve category and makes all other categories sharper.
 
-| Idea | Second scene? | Verdict |
-|------|--------------|---------|
-| Arnold is a serial killer who uses his psychology skills to hunt | He profiles his next target at a coffee shop the way he used to read kids on the stoop | KEEP — the second scene is obvious, and the third, and the fourth |
-| Arnold's grandparents raised him because both parents vanished — that's abandonment | ...uh... | KILL — it's a reframe, not a story. There's no second scene because nothing HAPPENS |
-| Grim Reaper replaced by a Gen Z 22-year-old | She shows up at her first death with a clipboard and a positive attitude. The dying person is confused | KEEP — every death is a new scene |
-| Hey Arnold characters as photorealistic adults at 30 | ...it's just more portraits? | KILL — it's an art exercise with no narrative. There's no "then what" |
-| Nigel Thornberry is an animal trafficker | The leaked tape. The customs invoice. The B-roll where his face changes | KEEP — the scenes write themselves |
-| Arnold was a 9-year-old unpaid therapist for adults | ...you just... think about that? | KILL — it's an observation. A tweet. Not content. |
+1. Search for the subject — recent news, controversy, discourse
+2. Search trending topics — what are people arguing about this week
+3. Search active formats — what's trending on TikTok/Instagram
+4. Find intersections
 
-**Types of things that FAIL the second scene test:**
-- **Facts/observations** — "Arnold's parents abandoned him" (true, but what's the video?)
-- **Art filters** — "Characters as photorealistic humans" (cool image, no story)
-- **Reframes** — "That show was actually dark" (yes, and then what happens?)
-- **Moods** — "Arnold never left the boarding house" (sad, but what's scene 2?)
-- **Single images** — "Helga's shrine as a crime wall" (one frame, no progression)
-
-**Types of things that PASS:**
-- **Scenarios with built-in escalation** — each scene raises the stakes
-- **Character doing an activity** — each scene is a new situation within the activity
-- **Series-native premises** — each episode is a new case/encounter/attempt
-- **Inversions with consequences** — the twist creates a chain of events, not just a moment
-
-### The Tension Test (RUN ON EVERY IDEA BEFORE PRESENTING)
-
-**Every collision, regardless of category, must contain a specific TENSION.** Tension is the thing the viewer FEELS — the discomfort, injustice, absurdity, wrongness, or impossibility that makes them react. Without tension, a collision is just a description.
-
-**Ask:** What's UNCOMFORTABLE, UNFAIR, or WRONG about this collision? If the answer is "nothing, it's just cool" — kill it. Cool is not viral. Tension is viral.
-
-| HAS TENSION (something is wrong) | NO TENSION (just a description) |
-|----------------------------------|--------------------------------|
-| Elvis auditions for his own biopic and gets rejected (injustice — HE is Elvis) | Elvis as a Pixar character (just a style filter) |
-| Elvis delivers DoorDash in the jumpsuit (fall from grace — the king is serving you) | Elvis album covers as Supreme drops (just graphic design) |
-| Gordon Ramsay recreates Elvis's diet and is horrified (the reaction — it's disgusting) | Every era of Elvis as anime (just a visual exercise) |
-| Elvis's hits played next to the Black originals (the theft — same song, different outcomes) | Elvis but in a Wes Anderson style (just an aesthetic) |
-| Slenderman runs a daycare and the kids love him (moral confusion — is this safe?) | Slenderman as a Renaissance painting (just a style) |
-| McLovin's face on Mount Rushmore (absurdity — a fake ID elevated to national monument) | McLovin as a GTA character (just a game skin) |
-
-**The left column:** There's something WRONG that you can feel. The right column: it looks nice but triggers nothing.
-
-### The Story Beat Rule
-
-**Every collision must contain a BEAT — a moment where something shifts.** Not a static state. Not a display. Not an infographic. Something HAPPENS. A character discovers, reacts, realizes, loses, wins, breaks, or changes.
-
-"SpongeBob works minimum wage" = a state. Nothing happens.
-"SpongeBob finds Mr. Krabs's tax returns and his face changes" = a beat. Something shifts.
-
-The beat is what makes it a VIDEO. Without a beat, it's a poster or an infographic — which isn't content.
-
-**The beat test:** Can you identify the MOMENT in this collision? The single second where everything changes? If yes, it's a story. If no, it's a description.
-
-| HAS A BEAT (something happens) | NO BEAT (just a state) |
-|-------------------------------|----------------------|
-| SpongeBob finds the tax returns. His face changes. | SpongeBob's pay stub displayed as an infographic |
-| Elvis performs at an open mic. Nobody claps. | Elvis is a backup dancer (for whom? doing what? when?) |
-| Gordon Ramsay tastes the Krabby Patty. He can't criticize it. This has never happened. | Gordon Ramsay at the Krusty Krab (and then what?) |
-| Clippy sits across from a detainee. The detainee is crying. | Clippy works at the CIA (doing what exactly?) |
-
-The left column: there's a MOMENT you can point to. The right column: it's a setup with no payoff.
-
-**Types of tension:**
-
-| Tension Type | What the Viewer Feels | Example |
-|-------------|----------------------|---------|
-| **Injustice** | "That's not fair" / "That's wrong" | Elvis auditions for his own role and gets rejected |
-| **Fall from grace** | "How did it come to this" | Elvis delivering DoorDash in the white jumpsuit |
-| **Moral confusion** | "Is this ok? I can't tell" | Slenderman reading bedtime stories to toddlers |
-| **Absurd escalation** | "This is insane and getting worse" | Big Chungus restrained in a military hangar with $14B budget |
-| **Uncomfortable recognition** | "This is too real" | Every Elvis hit played next to the Black original |
-| **Visceral reaction** | "Oh my god" / gasp / laugh / disgust | Gordon Ramsay's face as he recreates Elvis's 10,000 calorie daily diet |
-| **Status violation** | "That person doesn't belong there" | Judge Judy at the UN podium |
-| **Existential dread** | "I can't stop thinking about this" | Patrick Star standing at the foot of your bed at 3am |
-
-**STYLE TRANSFERS get special scrutiny.** Style transfers are the most likely to fail the tension test because they're often just [subject] + [aesthetic]. A style transfer ONLY passes if the transfer itself creates tension:
-- "Harry Potter in streetwear" PASSES — the tension is the clash between wizard world and hypebeast culture. Each character's outfit says something about who they are.
-- "Elvis as Pixar" FAILS — there's no tension. It's just a render style.
-- "Breaking Bad as a Studio Ghibli film" PASSES — the tension is beauty applied to horror. Meth cooking as a watercolor pastoral.
-- "The Simpsons as photorealistic humans" PASSES — the tension is the uncanny. Their features are horrifying when real.
-- "SpongeBob in Renaissance style" — borderline. Only passes if the specific paintings create friction (SpongeBob as The Last Supper = tension. SpongeBob as a generic portrait = no tension).
-
-### Cultural Pulse (dynamic research — RUN BEFORE GENERATING)
-
-Before generating collisions, research the current cultural landscape. This feeds the Cultural Nerve category but also informs all others — a style transfer that's culturally timed is stronger than one that isn't.
-
-1. **Search for the subject** — recent news, controversy, meme, discourse
-2. **Search for trending topics** — active cultural conversations this week
-3. **Search for active memes/formats** — what's trending on TikTok/Instagram/Twitter
-4. **Find intersections** — where does the subject meet what's live?
-
-**In the web app:** API calls to Twitter trends, Google Trends, TikTok trending, news APIs — fed as context to Claude.
+**In the web app:** API calls to trends/news APIs, fed as context to Claude.
 **In CLI:** Web search before generating.
 
-### Collision Quality Rules
+### How to Generate
 
-**The collision must be VISUAL, not just clever.** Every collision must pass this test: can I immediately picture what the video looks like? If the collision is just a funny idea that plays out through dialogue or text, it fails.
-
-| GOOD collision (visual) | BAD collision (clever but not visual) |
-|------------------------|--------------------------------------|
-| Fu Manchu is a Walmart greeter | Fu Manchu is the reason your parents are afraid of MSG |
-| Clippy walks the halls of CIA headquarters | Clippy is the most dangerous software ever created |
-| Patrick Star standing at the foot of your bed at 3am | Patrick Star is secretly a genius |
-| Big Chungus restrained in a military hangar | Big Chungus is a cryptocurrency |
-| McLovin's face on Mount Rushmore | McLovin's ID changed identity law forever |
-
-The left column: you SEE it instantly. The right column: you'd need an essay to explain it.
-
-**The ONLY things that kill a collision:**
-- It's not an idea, it's a fact ("Elvis ate a lot" — that's Wikipedia)
-- You literally cannot picture ANY visual ("the concept of mortality" — that's an essay)
-- It's a single joke with no story engine ("Napoleon is short" — yeah, and?)
-
-**Everything else lives.** Dark, risky, transgressive, uncomfortable, weird, offensive-adjacent — these are the ideas that go viral. The gates below exist to catch GARBAGE, not to filter out RISK. If an idea makes you uncomfortable, that's a signal it might work, not a signal to kill it.
-
-**DO NOT self-censor.** The best ideas in every batch are the ones that feel slightly dangerous. "Nigel Thornberry is an animal trafficker" is dark. "Betty Boop is a serial killer of OnlyFans models" is transgressive. "Clippy is a CIA interrogator" is absurd. These are the ideas that stopped the user mid-scroll. Safe ideas get scrolled past.
-
-**The collision MUST be:**
-- A specific situation you can picture immediately
-- Something where the FIRST FRAME of the video is already interesting
-- Absurd, wrong, or impossible enough that you can't scroll past it
-- Simple enough to say in one sentence AND the listener pictures it
-- **Contains a VERB, not just a status.** "Milhouse is a cartel boss" = status. No video. "Milhouse runs a cartel meeting and nobody takes him seriously" = scenario with action, tension, and an obvious visual. Short-form needs the character DOING something, not just BEING something.
-
-### Status vs. Scenario
-
-The collision must be a SCENARIO, not a status. A status is a label ("X is Y"). A scenario is an event ("X does Y in Z situation"). Status collisions produce posters. Scenario collisions produce videos.
-
-| STATUS (no video) | SCENARIO (video) |
-|-------------------|-----------------|
-| Milhouse is a cartel boss | Milhouse runs a cartel meeting and no one takes him seriously |
-| Dr. Phil is a hostage negotiator | Dr. Phil negotiates a bank robbery by asking the gunman about his childhood |
-| Judge Judy is a drill sergeant | Judge Judy inspects a line of recruits and sends three home in 30 seconds |
-| Fu Manchu is a Walmart greeter | Fu Manchu greeting customers at Walmart and scaring every single one |
-| Clippy is a CIA interrogator | Clippy sitting across from a detainee in an interrogation room |
-
-The left column: what does the character DO for 10 seconds? No answer. The right column: you can see the video immediately.
-
-### How to Use Collision Seeds
-
-1. Run the subject against ALL categories internally
-2. Most won't fire. 3-5 will produce something with friction.
-3. **VISUAL TEST EVERY COLLISION:** For each, ask "what does the thumbnail look like?" If you can't answer in 3 seconds, kill it. It's a clever thought, not a producible collision.
-4. Present ONLY collisions that pass the visual test
-5. If the user already provided a collision, skip this step entirely
+1. Run the subject through all 8 categories — generate at least 5 per category
+2. Run the 4 gates on every idea — kill failures
+3. Present survivors organized by category
+4. Go weird. Go dark. Go risky. The user can say no. You can't show them ideas you killed.
 
 **The collision is NOT the concept.** "Betty Boop is a serial killer" is the collision. "Betty Boop leaves a black-and-white cartoon flower at each crime scene" is a scene within that collision. The collision sets the territory; the scenes within it are what get produced.
 
