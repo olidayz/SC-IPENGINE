@@ -178,7 +178,23 @@ This is the only category that requires research before generating. The collisio
 
 ---
 
-#### 7. FORMAT HIJACK
+#### 7. DARK TIMELINE
+*The subject grew up / evolved into something completely unrelated to who they were. The gap between the original and the outcome IS the content.*
+
+Works best with characters people have childhood nostalgia for. The innocence of the original is the setup. The adult outcome is the shock. The viewer fills in the gap — "how did we get here from THERE?"
+
+**The test:** Is the outcome COMPLETELY unrelated to the original? If it's a natural extension ("Arnold grows up to be a therapist"), it's boring — that's expected. If it's a total break ("Arnold is a serial killer"), the gap between who they were and who they became is the content.
+
+**Examples:**
+- Arnold from Hey Arnold is a serial killer
+- Dora the Explorer is a cartel smuggler
+- Steve from Blue's Clues is in witness protection
+- Caillou grew up to be a dictator
+- The Teletubbies are war criminals
+
+---
+
+#### 8. FORMAT HIJACK
 *The subject inserted into a recognizable social media format. The format is familiar, the content is wrong.*
 
 The audience recognizes the shape (GRWM, mukbang, tier list, house tour, recipe video) and gets surprised by who's in it. The format does half the work — it's instantly legible.
