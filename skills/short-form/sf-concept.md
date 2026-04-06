@@ -212,7 +212,30 @@ FORMAT HIJACK
 
 Each idea is a standalone concept that obviously leads to content. The user scans by category, gets excited about 2-3, picks them. THEN we figure out format and execution.
 
-**Kill anything that needs explanation.** If the idea doesn't spark excitement in one line, it's dead. "Grim Reaper grocery shopping for one" — nobody's excited. "Grim Reaper calls in sick and nobody dies for 24 hours" — that's a show.
+**Kill anything that needs explanation.** If the idea doesn't spark excitement in one line, it's dead.
+
+### What Makes a Strong Idea
+
+A strong idea has ALL FOUR of these:
+
+1. **Clear subject** — you know exactly who/what it is in 3 words
+2. **One twist** — not three twists, not a clever observation, ONE clear turn that changes everything
+3. **Obvious content** — you can immediately imagine multiple scenes, multiple videos, multiple episodes. The idea is GENERATIVE — it spawns content naturally.
+4. **Story engine** — the concept has built-in narrative momentum. Things HAPPEN. It escalates, unfolds, builds. It's not a single joke or a static situation.
+
+**Strong ideas (pass all 4):**
+- "Day in the life of the Grim Reaper" — clear subject, one twist (mundane routine applied to Death), you can picture 20 different scenes, each scene has its own mini-story
+- "Grim Reaper replaced by Gen Z 22-year-old" — clear subject, one twist (swap), you immediately see the contrast playing out in every possible death scenario, each encounter is its own episode
+- "Nigel Thornberry is an animal trafficker" — clear subject, one twist (dark inversion of his identity), you can picture leaked tapes and documents and investigations, endless content
+- "Tamagotchi haunting" — clear subject, one twist (wrong genre), you immediately see it playing out in someone's life, escalating night by night
+
+**Weak ideas (fail 1 or more):**
+- "Grim Reaper is afraid of dying" — one twist but NO story engine. Ok he's scared, then what? Where does it GO?
+- "Grim Reaper learns to drive" — clear subject but NO obvious content. It's one joke. One scene. Done.
+- "Grim Reaper grocery shopping for one" — NO twist. He's just sad. That's a mood, not an idea.
+- "Elvis as a Pixar character" — NO twist. It's just an art style. There's no story, no engine, no escalation.
+
+**The generative test:** Can you immediately list 5 scenes/episodes without thinking hard? If yes, the idea has a story engine. If you struggle past 2, it's a single joke, not a concept.
 
 ### The Tension Test (RUN ON EVERY IDEA BEFORE PRESENTING)
 
