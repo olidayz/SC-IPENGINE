@@ -266,6 +266,34 @@ A strong idea has ALL FOUR of these:
 
 **The generative test:** Can you immediately list 5 scenes/episodes without thinking hard? If yes, the idea has a story engine. If you struggle past 2, it's a single joke, not a concept.
 
+### The Second Scene Test
+
+**Before presenting ANY idea, ask: "What happens in the second scene?"**
+
+If you can't answer immediately, the idea is a THOUGHT disguised as content. Kill it.
+
+| Idea | Second scene? | Verdict |
+|------|--------------|---------|
+| Arnold is a serial killer who uses his psychology skills to hunt | He profiles his next target at a coffee shop the way he used to read kids on the stoop | KEEP — the second scene is obvious, and the third, and the fourth |
+| Arnold's grandparents raised him because both parents vanished — that's abandonment | ...uh... | KILL — it's a reframe, not a story. There's no second scene because nothing HAPPENS |
+| Grim Reaper replaced by a Gen Z 22-year-old | She shows up at her first death with a clipboard and a positive attitude. The dying person is confused | KEEP — every death is a new scene |
+| Hey Arnold characters as photorealistic adults at 30 | ...it's just more portraits? | KILL — it's an art exercise with no narrative. There's no "then what" |
+| Nigel Thornberry is an animal trafficker | The leaked tape. The customs invoice. The B-roll where his face changes | KEEP — the scenes write themselves |
+| Arnold was a 9-year-old unpaid therapist for adults | ...you just... think about that? | KILL — it's an observation. A tweet. Not content. |
+
+**Types of things that FAIL the second scene test:**
+- **Facts/observations** — "Arnold's parents abandoned him" (true, but what's the video?)
+- **Art filters** — "Characters as photorealistic humans" (cool image, no story)
+- **Reframes** — "That show was actually dark" (yes, and then what happens?)
+- **Moods** — "Arnold never left the boarding house" (sad, but what's scene 2?)
+- **Single images** — "Helga's shrine as a crime wall" (one frame, no progression)
+
+**Types of things that PASS:**
+- **Scenarios with built-in escalation** — each scene raises the stakes
+- **Character doing an activity** — each scene is a new situation within the activity
+- **Series-native premises** — each episode is a new case/encounter/attempt
+- **Inversions with consequences** — the twist creates a chain of events, not just a moment
+
 ### The Tension Test (RUN ON EVERY IDEA BEFORE PRESENTING)
 
 **Every collision, regardless of category, must contain a specific TENSION.** Tension is the thing the viewer FEELS — the discomfort, injustice, absurdity, wrongness, or impossibility that makes them react. Without tension, a collision is just a description.
