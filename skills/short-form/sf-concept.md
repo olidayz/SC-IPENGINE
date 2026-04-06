@@ -53,86 +53,179 @@ The left column: people IMMEDIATELY want to see the images. The right column: pe
 
 **Cultural relevance is a BONUS, not the goal.** If a collision is culturally timed AND creates visual appetite, that's the best possible outcome. But visual appetite alone beats cultural relevance alone, every time. Nobody shares a think-piece thumbnail. Everyone shares something that looks incredible.
 
-### Collision Categories
+### The 7 Collision Categories
 
-| Category | What It Does | Example |
-|----------|-------------|---------|
-| **Crime** | The subject is committing, investigating, or victim of a specific crime | Betty Boop is running a money laundering operation through merch licensing |
-| **Modern Platform** | The subject exists on a platform that creates friction with who they are | Betty Boop is a Twitch streamer and her mods are out of control |
-| **Wrong Job** | The subject has a SPECIFIC mundane or absurd job that collides with their identity | Betty Boop is an HR manager at a tech startup |
-| **Wrong Era** | The subject is in a time period that creates friction | Betty Boop in 2026 TikTok vs. Betty Boop in her original 1932 context |
-| **Wrong Relationship** | The subject has a relationship that shouldn't exist | Betty Boop is Mickey Mouse's divorce lawyer |
-| **Power Inversion** | The subject's status is flipped | Betty Boop owns the studio that created her and is firing executives |
-| **Dark Secret** | The subject has a hidden truth that reframes everything | Betty Boop has been conscious inside every piece of merchandise for 94 years |
-| **Rivalry** | The subject is in direct conflict with someone unexpected | Betty Boop vs. the Mona Lisa for most reproduced female image |
-| **Genre Swap** | The subject dropped into a genre that violates their tone | Betty Boop in a true crime documentary |
-| **Literal** | Take something metaphorical about the subject and make it literally true | Betty Boop was literally drawn into existence and can feel the pen strokes |
-| **Scale** | Blow the subject up to cosmic scale or shrink to microscopic | Betty Boop is a religion with 200 million followers |
-| **Victim/Villain Flip** | The subject switches from their assumed moral position | Betty Boop isn't the victim of sexualization — she orchestrated it for power |
-| **Parasite** | The subject is feeding on, infiltrating, or replacing something | Betty Boop is slowly replacing all female cartoon characters from the inside |
-| **Documentary** | The subject is the focus of a specific documentary format | "The Betty Boop Tapes" — a 4-part Netflix docuseries |
-| **Classified** | The subject is a government secret, military project, or intelligence asset | Betty Boop is a CIA psychological operation that got out of control |
-| **Biological** | The subject is a species, organism, condition, or evolutionary event | Big Chungus was found in the Mariana Trench and scientists can't explain it |
-| **Cultural Clash** | The subject collides with a live cultural tension — something people are ALREADY divided on. Not a random situation — a specific cultural nerve. The collision inherits the existing argument. | See Cultural Clash section below. |
+Every collision belongs to exactly ONE category. Present ideas organized by category — the user sees what TYPE of content each idea produces, not just the idea itself.
 
-### Cultural Clash (the highest-leverage collision type)
+Generate 1-3 ideas per category. Skip categories that don't fire for this subject. Present the category name as a header so the user can scan by type.
 
-The most viral content taps into something people are ALREADY arguing about. The collision doesn't create the debate — it gives the debate a visual. People share because they have a TAKE, not because it's funny.
+---
 
-**How it works:** Identify the cultural tensions the subject naturally touches. Then put the subject INTO that tension in a specific, visual way.
+#### 1. INVERSION
+*Flip what the subject IS KNOWN FOR. The opposite of their core identity.*
 
-**Cultural tension categories:**
+The subject's most defining trait is reversed. This only works when the inversion is SPECIFIC to this subject — it couldn't apply to anyone else.
 
-| Tension | What People Are Already Arguing About | Example with Elvis |
-|---------|--------------------------------------|-------------------|
-| **AI vs. Human** | AI replacing artists, deepfakes, authenticity | Elvis AI hologram performs at a sold-out arena and real musicians picket outside |
-| **Cultural Appropriation** | Who owns culture, who profits from it, who gets credit | Elvis walks into a Black church in Memphis and the congregation goes silent |
-| **Cancel Culture** | Can you separate art from artist, accountability vs. mob | Elvis gets cancelled in 2026 for everything he did in the 50s — his Spotify gets pulled mid-stream |
-| **Class / Inequality** | Rich vs. poor, access, privilege, who gets to have what | Elvis eats a gold-leaf steak while his original Tupelo house is being demolished behind him |
-| **Nostalgia vs. Progress** | Was it better before? Are we losing something? Is new always better? | Elvis walks into a modern recording studio where everything is Auto-Tuned and laptops — no instruments, no band |
-| **Gender / Identity** | Masculinity, femininity, identity performance, who gets to be what | Elvis in full jumpsuit walks into a 2026 gender-neutral fashion show |
-| **Body / Health** | Diet culture, beauty standards, fitness obsession, aging | Elvis's autopsy report projected on a screen at a wellness influencer convention |
-| **Parenting / Generations** | Boomer vs. Gen Z, how kids are raised, screen time, values | Elvis tries to parent a Gen Z teenager using 1950s rules |
-| **Religion / Belief** | Faith, atheism, hypocrisy, fundamentalism, spiritual capitalism | Elvis walks into a megachurch that's using his likeness without permission |
-| **Nationalism / Borders** | Immigration, patriotism, who belongs, national identity | Elvis at the US-Mexico border — which side is the real America? |
-| **Capitalism / Labor** | Gig economy, billionaires, exploitation, hustle culture | Elvis's estate makes $400M/year — how much does Memphis see? |
-| **Technology / Privacy** | Surveillance, data, phones, always-connected, AI | Elvis's face is on every AI training dataset without consent and he's been dead for 50 years |
+| What to flip | How |
+|-------------|-----|
+| Their skill/talent | They're terrible at it |
+| Their moral position | They're the opposite |
+| Their role | They're on the other side |
+| Their status | Powerful → powerless or vice versa |
 
-**The key difference:** A random collision (Elvis works at a gas station) is funny. A cultural collision (Elvis AI hologram performs and real musicians picket outside) is SHAREABLE — because people have a TAKE. The comments write themselves. Half the audience agrees, half disagrees. The argument IS the engagement.
+**The test:** Does this inversion only work because of WHO this specific subject is? "Elvis can't sing" works because Elvis IS singing. "Nigel traffics animals" works because Nigel IS conservation. "Big Chungus is tiny" works because Chungus IS big. If you could swap in any character, the inversion is generic.
 
-**When to use Cultural Clash vs. other categories:**
-- If the subject is already culturally loaded (Elvis, Waffle House, Dr. Phil) → Cultural Clash should be your FIRST attempt. The subject already lives inside cultural tensions. Find them.
-- If the subject is purely fictional or absurd (Big Chungus, Clippy) → Cultural Clash may not fire. Use other categories. But check: even Clippy can hit AI vs. Human tension.
-- **At least 30% of all collisions presented should be Cultural Clashes** when the subject supports it. These are the highest-engagement collisions because they inherit an existing audience debate.
+**Examples:**
+- Nigel Thornberry is a wildlife trafficker
+- Mr. Rogers runs a fight club
+- Bob Ross paints crime scenes
+- The Dalai Lama is a bouncer
 
-### Cultural Pulse (dynamic research — RUN BEFORE GENERATING COLLISIONS)
+---
 
-The static tension categories above are evergreen — they're always relevant. But the BEST cultural clashes collide the subject with something people are talking about RIGHT NOW. Not last month. Not generally. This week.
+#### 2. STYLE TRANSFER
+*The subject in a visual world they don't belong in. The style IS the content.*
 
-**Before generating any collisions, research the current cultural landscape:**
+A recognizable subject rendered in a completely different visual language. Every character/element gets the transfer. Natural series — each character is an episode.
 
-1. **Search for the subject** — what are people currently saying/arguing about this subject? Any recent news, controversy, meme, discourse?
-2. **Search for trending topics** — what are the top cultural conversations happening right now? Politics, pop culture, tech, sports, social media discourse.
-3. **Search for active memes/formats** — what formats, sounds, or templates are currently trending on TikTok/Instagram/Twitter?
-4. **Find the intersection** — where does the subject naturally collide with something that's LIVE? The subject + a trending topic = a cultural clash that's relevant TODAY, not just theoretically interesting.
+**The test:** Can you picture MULTIPLE images immediately? If the collision only produces one image, it's not a style transfer — it's a single visual. Style transfers are inherently series-native.
 
-**Example:**
-- Subject: Elvis
-- Cultural Pulse finds: AI music generation is dominating the news cycle this week
-- Collision: Elvis AI hologram performs at a sold-out arena while real musicians picket outside
-- This is 10x more shareable than "Elvis works at a gas station" because people are ALREADY in the AI-music argument. The content enters an existing conversation instead of starting from zero.
+**Examples:**
+- Harry Potter characters in designer streetwear
+- The Simpsons as a Wes Anderson film
+- SpongeBob characters as photorealistic humans
+- Every Disney princess at Coachella
+- Breaking Bad but it's a Studio Ghibli film
+- The Office but it's a Renaissance painting
 
-**In the web app:** This is an API call. Before collision generation, pull:
-- Trending topics (Twitter/X API, Google Trends)
-- Trending sounds/formats (TikTok trending API)
-- Recent news for the subject (news API)
-- Active cultural debates (Reddit trending, Twitter discourse)
+---
 
-Feed this into the Claude call as context alongside the subject. The collisions that emerge will be culturally timed, not just theoretically clever.
+#### 3. MUNDANE
+*The subject in an aggressively normal situation, played completely straight.*
 
-**In the CLI/skill:** Run web searches for the subject + "trending" + "controversy" + "discourse" before generating. Include findings as context.
+The comedy is in the gap between who the subject IS and the banality of the situation. Nothing extraordinary happens. The subject treats it as normal. The mundanity IS the content.
 
-**The rule: at least 2 of the presented collisions should be culturally timed** — connected to something happening NOW, not just an evergreen tension. These are the ones most likely to spread because they ride an existing wave instead of creating one from scratch.
+**The test:** Is the situation boring for a normal person? If yes, it's mundane. The subject's presence is what makes it content.
+
+**Examples:**
+- Slenderman runs a daycare
+- Godzilla waits in line at the DMV
+- Darth Vader does his taxes
+- Thanos at a parent-teacher conference
+- The Predator on a first date at Applebee's
+
+---
+
+#### 4. MASHUP
+*The subject collides with ANOTHER specific subject. Two worlds forced together.*
+
+Not the subject in a generic situation — the subject meets a SPECIFIC other subject. The friction between the two IS the content.
+
+**The test:** Are BOTH subjects essential? If you remove either one, does the idea collapse? If yes, it's a mashup.
+
+**Examples:**
+- Judge Judy presides over the divorce of God and Satan
+- Dr. Phil does couples therapy for Batman and the Joker
+- Gordon Ramsay reviews Waffle House
+- David Attenborough narrates a UFC fight
+- Bob Ross teaches painting to the Hulk
+
+---
+
+#### 5. WHAT IF
+*One rule of reality changed. The subject exists in a world where one thing is different.*
+
+Not a character swap or style transfer — a RULE change. The world works differently and the subject exists inside that new reality.
+
+**The test:** Can you state the rule in one sentence? "What if [X] was true?" If the rule is clear, the consequences are visual.
+
+**Examples:**
+- The losing World Cup country disappears from the map
+- Every time Clippy appears, someone confesses a crime
+- Big Chungus is a classified military weapon
+- McLovin's fake ID is found in historical archives going back centuries
+- Every red card in football sends the player to actual prison under the stadium
+
+---
+
+#### 6. CULTURAL NERVE
+*The subject collides with something people are ALREADY arguing about. The content inherits an existing debate.*
+
+The collision taps into a live cultural tension. People share because they have a TAKE. The comments write themselves.
+
+**Before generating:** Run a Cultural Pulse — research what's trending, what people are arguing about this week, what discourse surrounds this subject. (In the web app: API calls to trends/news. In CLI: web search.)
+
+**The test:** Will the comments section be a war? If people will ARGUE in the comments, it's a cultural nerve. If they just laugh, it's a different category.
+
+**Examples:**
+- Elvis AI hologram performs while real musicians picket outside
+- A 1950s-themed TikTok diner gets asked "nostalgia for WHO exactly?"
+- An OnlyFans model recreates Betty Boop's exact 1932 poses — who owns the act?
+- Mario made by AI vs. Mario made by Miyamoto — side by side, which is better?
+
+---
+
+#### 7. FORMAT HIJACK
+*The subject inserted into a recognizable social media format. The format is familiar, the content is wrong.*
+
+The audience recognizes the shape (GRWM, mukbang, tier list, house tour, recipe video) and gets surprised by who's in it. The format does half the work — it's instantly legible.
+
+**The test:** Does the format exist independently? Would this format work with a normal person? If yes, putting the subject in it creates the collision.
+
+**Examples:**
+- Slenderman does a GRWM
+- Voldemort does a house tour of the Chamber of Secrets
+- Guy Fieri does a mukbang of Elvis's actual diet
+- Hannibal Lecter does a cooking tutorial
+- Patrick Star does a morning routine video
+- The Joker does a skincare routine
+
+---
+
+### How to Present
+
+Organize ideas by category. The user sees the category headers and scans:
+
+```
+INVERSION
+- [idea]
+- [idea]
+
+STYLE TRANSFER
+- [idea]
+- [idea]
+
+MUNDANE
+- [idea]
+
+MASHUP
+- [idea]
+- [idea]
+
+WHAT IF
+- [idea]
+
+CULTURAL NERVE
+- [idea]
+
+FORMAT HIJACK
+- [idea]
+- [idea]
+```
+
+Not every category fires for every subject. Skip empty categories. But aim for ideas across at least 3-4 categories to give the user real variety in content TYPE, not just content topic.
+
+### Cultural Pulse (dynamic research — RUN BEFORE GENERATING)
+
+Before generating collisions, research the current cultural landscape. This feeds the Cultural Nerve category but also informs all others — a style transfer that's culturally timed is stronger than one that isn't.
+
+1. **Search for the subject** — recent news, controversy, meme, discourse
+2. **Search for trending topics** — active cultural conversations this week
+3. **Search for active memes/formats** — what's trending on TikTok/Instagram/Twitter
+4. **Find intersections** — where does the subject meet what's live?
+
+**In the web app:** API calls to Twitter trends, Google Trends, TikTok trending, news APIs — fed as context to Claude.
+**In CLI:** Web search before generating.
 
 ### Collision Quality Rules
 
