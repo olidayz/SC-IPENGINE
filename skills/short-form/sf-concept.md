@@ -57,7 +57,9 @@ The left column: people IMMEDIATELY want to see the images. The right column: pe
 
 Every collision belongs to exactly ONE category. Present ideas organized by category — the user sees what TYPE of content each idea produces, not just the idea itself.
 
-Generate 1-3 ideas per category. Skip categories that don't fire for this subject. Present the category name as a header so the user can scan by type.
+**Generate at least 5 ideas per category.** Present every category with its header — even if some ideas within a category are weaker. Volume produces variety. The user will kill the weak ones. Your job is to not pre-kill the interesting ones.
+
+Go weird. Go dark. Go risky. The user can always say no. But they can't pick an idea you never showed them.
 
 ---
 
@@ -320,11 +322,14 @@ Before generating collisions, research the current cultural landscape. This feed
 
 The left column: you SEE it instantly. The right column: you'd need an essay to explain it.
 
-**The collision must NOT be:**
-- A fact about the subject (even a surprising one — facts are tweets, not videos)
-- An observation or cultural take ("Fu Manchu is the original supervillain" — that's a thread, not a video)
-- A premise that requires dialogue to land ("Yakub is beefing with God" — what does that LOOK like?)
-- An abstract reframe ("David Hasselhoff is Germany's nuclear deterrent" — cool sentence, unwatchable video)
+**The ONLY things that kill a collision:**
+- It's not an idea, it's a fact ("Elvis ate a lot" — that's Wikipedia)
+- You literally cannot picture ANY visual ("the concept of mortality" — that's an essay)
+- It's a single joke with no story engine ("Napoleon is short" — yeah, and?)
+
+**Everything else lives.** Dark, risky, transgressive, uncomfortable, weird, offensive-adjacent — these are the ideas that go viral. The gates below exist to catch GARBAGE, not to filter out RISK. If an idea makes you uncomfortable, that's a signal it might work, not a signal to kill it.
+
+**DO NOT self-censor.** The best ideas in every batch are the ones that feel slightly dangerous. "Nigel Thornberry is an animal trafficker" is dark. "Betty Boop is a serial killer of OnlyFans models" is transgressive. "Clippy is a CIA interrogator" is absurd. These are the ideas that stopped the user mid-scroll. Safe ideas get scrolled past.
 
 **The collision MUST be:**
 - A specific situation you can picture immediately
