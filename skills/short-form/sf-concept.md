@@ -196,12 +196,50 @@ Option C: punch · 10s · Security cam footage. Timestamp running. Clippy enters
 ```
 
 Each option includes:
+- **First frame** — the single image that stops the scroll. NOT the beginning of the story — the most arresting image in the piece. This is an explicit decision, not "whatever happens first."
 - **Format** (loop / punch / carousel / micro-trailer / character intro)
 - **Duration**
-- **What happens visually** (one sentence — not a full production description)
+- **What happens** (one sentence — not a full production description)
 - **On-screen text** (if any)
 
+**The First Frame Rule:** The first frame is chosen for SCROLL-STOPPING, not narrative logic. Sometimes the story starts in the middle. Sometimes the punchline is frame 1. The first frame should be the image that, if frozen and posted as a still with zero context, would get engagement on its own.
+
+**Example:**
+```
+Story: "The sun rises during a race and Dracula has to choose between winning and surviving"
+
+Option A:
+  First frame: Dracula's face in the cockpit — pale skin, fangs, red eyes, dashboard glow, orange sunrise creeping through the windshield
+  punch · 15s
+  What happens: He sees the sunrise, his skin starts smoking where light hits, he accelerates instead of stopping, crosses the line trailing smoke
+  on-screen: "Lap 147. Sunrise in 90 seconds."
+
+NOT this:
+  First frame: Wide shot of a track at night
+  (That's "some race." You scroll past.)
+```
+
 The user picks. THEN sf-prompt.md takes over for generation-ready prompts.
+
+### Prompt Output
+
+sf-prompt.md produces TWO things for each piece:
+
+1. **Plain language description** — what's happening in each shot, written so anyone can understand it. No jargon. No JSON. Just "here's what you'll see."
+
+2. **JSON prompt** — the generation-ready technical prompt for the image/video API.
+
+Both are presented together. The plain language is for the user to review and approve. The JSON is for the machine to generate.
+
+```
+SHOT 1 (0-3s):
+Dracula in the cockpit of a NASCAR car at night. No helmet. Pale white skin,
+slicked black hair, fangs visible. He's wearing a black fire suit. Through
+the windshield the sky is turning orange at the horizon. He sees it. His
+jaw tightens. This is the scroll-stopper — his face IS the thumbnail.
+
+{ "duration": "0-3s", "description": "Dracula in NASCAR cockpit...", ... }
+```
 
 ### The 15 Angles (internal — used to generate format options)
 
