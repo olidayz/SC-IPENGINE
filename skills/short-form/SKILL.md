@@ -70,13 +70,11 @@ One character. 5-15 seconds. No dialogue. Presence, environment, signature detai
 
 | File | Purpose | Load When |
 |------|---------|-----------|
-| `sf-concept.md` | Concept Lock — 15 Angles, Format Plays, 12 Viral Mechanics with stacking, Trend Hijacking (15 format hijacks), 8 Copy Moves | Always first |
-| `sf-prompt.md` | Production Prompt — generation-ready prompts per output type, viral quality gates | After concept is locked |
-| `sf-series.md` | Series Thinking — 8 series structures for turning one-offs into content systems | When building recurring content, not just singles |
-| `references/viral-patterns.md` | 10 structural viral patterns — the mechanics underneath trends | Reference during concept development |
-| `references/scroll-grammar.md` | Visual language of the feed — 18 First Frame openers, vertical composition, feed color rules, text rules, motion grammar | Reference during prompt generation |
-| `references/audio-plays.md` | Sound design for short-form — 22 sound plays, beat sync rules, mute/unmute design | Reference during video prompt generation |
-| `references/pacing-science.md` | Attention architecture — the attention curve, cut rhythms, re-hook techniques, payoff types | Reference during video sequencing |
+| `sf-concept.md` | 3 Rounds: Seeds → Stories → Format. 9 collision categories, 4 gates, 15 angles, copy moves. | Always first |
+| `sf-prompt.md` | Production prompts — shot-by-shot (plain language + JSON), full sequence prompt, first frame prompt. | After Round 3 (format locked) |
+| `sf-series.md` | 8 series structures for turning one-offs into content systems. | When building recurring content |
+| `references/scroll-grammar.md` | 18 First Frame openers, vertical composition zones, feed color rules, text rules, motion grammar. | **Load at Round 3** (first frame decision) + **sf-prompt** (frame composition) |
+| `references/pacing-science.md` | Attention curve, 7 cut rhythms, re-hook techniques, shot duration rules, payoff types. | **Load at sf-prompt** (multi-shot pieces only: punch, micro-trailer, character intro) |
 
 ---
 

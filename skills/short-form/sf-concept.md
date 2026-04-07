@@ -204,6 +204,11 @@ Each option includes:
 
 **The First Frame Rule:** The first frame is chosen for SCROLL-STOPPING, not narrative logic. Sometimes the story starts in the middle. Sometimes the punchline is frame 1. The first frame should be the image that, if frozen and posted as a still with zero context, would get engagement on its own.
 
+**LOAD `references/scroll-grammar.md` at this step.** Use it for:
+- **First Frame Taxonomy (18 openers)** — which opener type fits this concept? Face opener? Object opener? Text opener? Don't default to "close-up of face" every time.
+- **Vertical composition zones** — where does the subject sit in the 9:16 frame? Hero zone, safe zone, text zone.
+- **Text placement** — where does on-screen text go to avoid platform chrome? How many words? What timing?
+
 **Example:**
 ```
 Story: "The sun rises during a race and Dracula has to choose between winning and surviving"

@@ -65,6 +65,21 @@ orange sunrise creeping through the windshield behind him.
 
 ---
 
+## References (LOAD before generating multi-shot prompts)
+
+**LOAD `references/pacing-science.md`** when building any multi-shot piece (punch, micro-trailer, character intro). Use it for:
+- **Attention curve** — where does the hook land, the commit, the re-hook, the payoff? Don't just guess "3 seconds per shot." Map the piece to the curve: Hook (0-1.5s) → Promise (1.5-3s) → First Commit (3-5s) → Re-Hook (5-8s) → Payoff (final 2-3s).
+- **Cut rhythm** — which rhythm fits this piece? Staccato (fast cuts, density), Waltz (steady, confident), Heartbeat (alternating long-short), Avalanche (accelerating), Breath (long hold → burst → hold). Pick one. Don't default to even cuts.
+- **Re-hook timing** — where does attention dip? Plant a re-hook there (new visual, tonal shift, text event, scale change). For 5-10s content: every 2-3s. For 15-30s: every 3-5s.
+- **Shot duration** — 0.5-1s = one idea, 1-2s = a moment, 2-4s = a scene, 4s+ = earned breathing room. Each shot's length should be a deliberate choice based on what it needs to communicate.
+
+**LOAD `references/scroll-grammar.md`** when composing individual frames. Use it for:
+- **Vertical composition** — hero zone (middle 60%), safe zone (top 15%), text zone (bottom 25%). Put the subject in the hero zone. Keep text out of platform chrome areas.
+- **Feed color rules** — saturated beats muted, one dominant colour, contrast with platform. Red stops scrolls.
+- **Motion grammar** — movement in first 0.5s, fast cuts beat slow, vertical motion stronger than horizontal in 9:16.
+
+---
+
 ## Output by Format
 
 Everything is motion. No stills. If a concept feels like "one frame" — make it a loop or a punch.
