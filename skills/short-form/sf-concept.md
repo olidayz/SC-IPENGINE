@@ -178,7 +178,26 @@ This is the only category that requires research before generating. The collisio
 
 ---
 
-#### 7. DARK TIMELINE
+#### 7. RANDOM SMASH
+*Throw the subject into a completely unrelated universe, situation, or context. The randomness IS the hook. No logic. No thematic connection. Just two things that have no business being together.*
+
+The best collisions often come from pure randomness, not clever thematic links. "Basquiat is a driving instructor in Bikini Bottom" has no intellectual justification. It just SOUNDS amazing. You want to see it. That's enough.
+
+**How to generate:** Pick a random world, franchise, situation, job, or context that has NOTHING to do with the subject. Force them together. If it makes you laugh or say "what?" — keep it. If it makes you nod thoughtfully — that's the wrong reaction. This category should produce "WHAT?" not "hmm."
+
+**Examples:**
+- Basquiat is a character in Super Smash Bros
+- Basquiat is the driving instructor in Bikini Bottom
+- Napoleon is a contestant on RuPaul's Drag Race
+- The Grim Reaper coaches a peewee football team
+- Clippy is a marriage counselor
+- Judge Judy is the DJ at Coachella
+
+**The test:** Does this collision make you laugh or go "WHAT?" purely from the randomness? If yes, keep it. This is the one category where thematic logic is the ENEMY. The less sense it makes, the better — as long as you can picture it.
+
+---
+
+#### 8. DARK TIMELINE
 *The subject grew up / evolved into something completely unrelated to who they were. The gap between the original and the outcome IS the content.*
 
 Works best with characters people have childhood nostalgia for. The innocence of the original is the setup. The adult outcome is the shock. The viewer fills in the gap — "how did we get here from THERE?"
@@ -194,7 +213,7 @@ Works best with characters people have childhood nostalgia for. The innocence of
 
 ---
 
-#### 8. FORMAT HIJACK
+#### 9. FORMAT HIJACK
 *The subject inserted into a recognizable social media format. The format is familiar, the content is wrong.*
 
 The audience recognizes the shape (GRWM, mukbang, tier list, house tour, recipe video) and gets surprised by who's in it. The format does half the work — it's instantly legible.
