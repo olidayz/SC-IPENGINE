@@ -6,11 +6,62 @@ Take a locked concept from sf-concept and produce generation-ready prompts. Form
 
 ## Input
 
-- Locked concept from sf-concept (format, hook, viral mechanics, copy, tone)
-- Style Lock (if post-pipeline — inherited medium/aesthetic)
-- Prompt Anchors (if post-pipeline — characters and locations from Name Registry)
-- Set Sheets (if post-pipeline — locked environment descriptions)
-- Taste profile (always on)
+From sf-concept Round 3:
+- **Story** — what happens (from Round 2)
+- **Format** — loop / punch / carousel / micro-trailer / character intro
+- **Style** — the visual look and feel (chosen in Round 3)
+- **First frame** — the scroll-stopping image (chosen in Round 3)
+- **On-screen text** — if any
+- **Duration**
+
+If post-pipeline: Style Lock, Prompt Anchors, Set Sheets, VLD all inherited.
+
+## Output Structure
+
+Every piece gets THREE outputs:
+
+### 1. Shot-by-shot (plain language + JSON)
+
+Each shot described twice:
+- **Plain language** — what's happening, written so anyone can understand. No jargon. This is for the user to review and approve.
+- **JSON prompt** — the generation-ready technical prompt for the API.
+
+```
+SHOT 1 (0-3s) — THE SCROLL-STOPPER:
+Dracula in a NASCAR cockpit. No helmet. Pale skin, fangs, red eyes
+reflecting dashboard glow. Through the windshield the horizon is turning
+orange. He sees it. His jaw tightens.
+
+{ "shot": 1, "duration": "0-3s", "description": "...", ... }
+```
+
+### 2. Full sequence prompt
+
+After the shot-by-shot, output the ENTIRE piece as ONE continuous description. This is for video gen tools (Runway, Kling, Sora) that work better with a single unified prompt than cut-by-cut instructions.
+
+```
+FULL SEQUENCE (15s):
+[One flowing paragraph describing the entire video from first frame
+to last, including style, subject, action, environment, lighting
+shifts, and the key visual moments. No shot numbers. No timestamps.
+Just the complete video as a continuous piece.]
+
+{ "format": "vertical 9:16 video, 15 seconds",
+  "style": "...",
+  "full_sequence": "..." }
+```
+
+### 3. First frame (standalone image prompt)
+
+The first frame extracted as its own image prompt. This is the thumbnail — used for preview, for the feed, for the scroll-stop. Must work as a still image on its own.
+
+```
+FIRST FRAME:
+Dracula's face in a NASCAR cockpit. Pale skin, fangs, dashboard glow,
+orange sunrise creeping through the windshield behind him.
+
+{ "format": "vertical 9:16 image", "description": "..." }
+```
 
 ---
 

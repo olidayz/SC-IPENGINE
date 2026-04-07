@@ -209,15 +209,32 @@ Each option includes:
 Story: "The sun rises during a race and Dracula has to choose between winning and surviving"
 
 Option A:
-  First frame: Dracula's face in the cockpit — pale skin, fangs, red eyes, dashboard glow, orange sunrise creeping through the windshield
+  First frame: Dracula's face in the cockpit — pale skin, fangs, red eyes, dashboard glow, sunrise through windshield
+  Style: Cinematic broadcast — ESPN night race lighting, lens flares, high contrast
   punch · 15s
-  What happens: He sees the sunrise, his skin starts smoking where light hits, he accelerates instead of stopping, crosses the line trailing smoke
+  What happens: He sees the sunrise, his skin starts smoking, he accelerates instead of stopping, crosses the line trailing smoke
   on-screen: "Lap 147. Sunrise in 90 seconds."
+
+Option B:
+  First frame: Same face, but grainy — TV broadcast compression, scan lines
+  Style: Found footage — 4am stream quality, commentator audio, security cam feel
+  punch · 15s
+  What happens: Same story, but told through broadcast cameras. Commentator pauses. Replay shows empty seat.
+  on-screen: same
+
+Option C:
+  First frame: Same face, but beautiful — golden light, cinematic depth
+  Style: Documentary — drone aerials, natural light transition, silence and engine sound
+  punch · 15s
+  What happens: Same story, told through scale. Drone pulls back to show sunrise swallowing the track.
+  on-screen: none — the image is the ending
 
 NOT this:
   First frame: Wide shot of a track at night
   (That's "some race." You scroll past.)
 ```
+
+Each format option includes a **style** — the visual look and feel. Same story can look completely different depending on the style. The user picks the format AND the look as one decision.
 
 The user picks. THEN sf-prompt.md takes over for generation-ready prompts.
 
